@@ -1,6 +1,7 @@
 package tw.momocraft.lotteryplus.utils;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 import tw.momocraft.lotteryplus.handlers.ServerHandler;
 
@@ -10,7 +11,7 @@ import java.util.Random;
 
 public class Lottery {
 
-    public static void startLottery(CommandSender sender, String group) {
+    public static void startLottery(CommandSender sender, Player player, String group) {
         // Get the group's property.
         Map<List<String>, Double> lotteryProp = ConfigHandler.getConfigPath().getLotteryProp().get(group);
         if (lotteryProp != null) {
@@ -28,15 +29,19 @@ public class Lottery {
                 if (randTotalChance <= value) {
                     // Random execute a reward command from that group.
                     command = key.get(new Random().nextInt(key.size()));
-                    CustomCommands.executeMultipleCmds(sender, command);
-                    ServerHandler.sendFeatureMessage("Lottery", group, "execute", "continue", command,
+                    if (player != null) {
+                        CustomCommands.executeMultipleCmds(player, command);
+                    } else {
+                        CustomCommands.executeMultipleCmds(sender, command);
+                    }
+                    ServerHandler.sendFeatureMessage("Lottery", sender.getName(), "execute", "continue", group + " " + command,
                             new Throwable().getStackTrace()[0]);
                     return;
                 }
                 randTotalChance -= value;
             }
         } else {
-            ServerHandler.sendConsoleMessage("Can not find this type: " + group);
+            Language.sendLangMessage("Message.LotteryPlus.lotteryNotFound", sender);
         }
     }
 }

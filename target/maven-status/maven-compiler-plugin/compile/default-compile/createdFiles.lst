@@ -11,6 +11,7 @@ tw\momocraft\lotteryplus\utils\Language$Lang.class
 tw\momocraft\lotteryplus\LotteryPlus.class
 tw\momocraft\lotteryplus\utils\VaultAPI.class
 tw\momocraft\lotteryplus\handlers\UpdateHandler.class
+tw\momocraft\lotteryplus\handlers\PlayerHandler.class
 tw\momocraft\lotteryplus\utils\DependAPI.class
 tw\momocraft\lotteryplus\handlers\ConfigHandler.class
 tw\momocraft\lotteryplus\utils\ConfigPath.class

@@ -3,8 +3,10 @@ package tw.momocraft.lotteryplus;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 import tw.momocraft.lotteryplus.handlers.PermissionsHandler;
+import tw.momocraft.lotteryplus.handlers.PlayerHandler;
 import tw.momocraft.lotteryplus.handlers.ServerHandler;
 import tw.momocraft.lotteryplus.utils.Language;
 import tw.momocraft.lotteryplus.utils.Lottery;
@@ -65,9 +67,27 @@ public class Commands implements CommandExecutor {
         } else if (args.length == 2 && args[0].equalsIgnoreCase("lottery")) {
             if (PermissionsHandler.hasPermission(sender, "lotteryplus.command.lottery")) {
                 if (ConfigHandler.getConfigPath().isLottery()) {
-                    Lottery.startLottery(sender, args[1]);
+                    Lottery.startLottery(sender, null, args[1]);
                 } else {
-                    ServerHandler.sendConsoleMessage("Lottery: Disabled");
+                    ServerHandler.sendConsoleMessage("Lottery is Disabled.");
+                }
+            } else {
+                Language.sendLangMessage("Message.noPermission", sender);
+            }
+            return true;
+        } else if (args.length == 3 && args[0].equalsIgnoreCase("lottery")) {
+            if (PermissionsHandler.hasPermission(sender, "lotteryplus.command.lottery")) {
+                if (ConfigHandler.getConfigPath().isLottery()) {
+                    Player player = PlayerHandler.getPlayerString(args[2]);
+                    if (player == null) {
+                        String[] placeHolders = Language.newString();
+                        placeHolders[1] = args[2];
+                        Language.sendLangMessage("Message.targetNotFound", sender, placeHolders);
+                        return true;
+                    }
+                    Lottery.startLottery(sender, player, args[1]);
+                } else {
+                    ServerHandler.sendConsoleMessage("Lottery is Disabled.");
                 }
             } else {
                 Language.sendLangMessage("Message.noPermission", sender);

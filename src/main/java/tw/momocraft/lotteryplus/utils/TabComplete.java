@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.util.StringUtil;
+import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 import tw.momocraft.lotteryplus.handlers.PermissionsHandler;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class TabComplete implements TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         final List<String> completions = new ArrayList<>();
         final List<String> commands = new ArrayList<>();
-        if (args.length == 2 && args[0].equalsIgnoreCase("help") && PermissionsHandler.hasPermission(sender, "lotteryplus.use")) {
-
+        if (args.length == 2 && args[0].equalsIgnoreCase("lottery") && PermissionsHandler.hasPermission(sender, "lotteryplus.command.lottery")) {
+            commands.addAll(ConfigHandler.getConfigPath().getLotteryProp().keySet());
         } else if (args.length == 1) {
             if (PermissionsHandler.hasPermission(sender, "lotteryplus.use")) {
                 commands.add("help");

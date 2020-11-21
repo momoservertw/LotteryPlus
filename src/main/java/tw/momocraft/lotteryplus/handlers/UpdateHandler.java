@@ -14,7 +14,7 @@ import java.net.URLConnection;
  */
 public class UpdateHandler {
 
-    private final int PROJECTID = 70592;
+    private final int PROJECTID = 85995;
 
     private final String HOST = "https://api.spigotmc.org/legacy/update.php?resource=" + this.PROJECTID;
     private String versionExact = LotteryPlus.getInstance().getDescription().getVersion();
@@ -38,7 +38,7 @@ public class UpdateHandler {
     public void checkUpdates(final CommandSender sender) {
         if (this.updateNeeded(sender) && this.updatesAllowed) {
             ServerHandler.sendMessage(sender, "&aNew version is available: " + "&e&lv" + this.latestVersion);
-            ServerHandler.sendMessage(sender, "&ehttps://www.spigotmc.org/resources/LotteryPlus.70510/history");
+            ServerHandler.sendMessage(sender, "&ehttps://www.spigotmc.org/resources/LotteryPlus.85995/history");
         } else if (this.updatesAllowed) {
             ServerHandler.sendMessage(sender, "&fYou are up to date!");
         }

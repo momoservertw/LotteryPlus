@@ -7,7 +7,7 @@ Debugging: false
 General:
   # - "custom: congratulate, Lottery ticket, Jackpot, $10,000"
   Custom-Commands:
-    reward: "message: &f &6&lReward&c✤ &f%cmd_arg1%"
+    reward: "message: &6&lReward&c✤ &f%cmd_arg1%"
     awards: "message: &d✧ &f%cmd_arg1% &d✧"
     cgl: "broadcast: &6Congratulate &e%player% &6use &f%cmd_arg1% &8- &6Get the %cmd_arg2% &7<&f%cmd_arg3%&7>"
     money: "console: money give %player% %cmd_arg1%"
@@ -16,34 +16,37 @@ Lottery:
   Enable: true
   Groups:
     ticket:
-      Enable: false
+      Enable: true
       Normal:
         Enable: true
         Chance: 0.5
         Commands:
-          - "custom: reward, Normal;console: money give %player% %random_number%500%"
+          - "message: &6&lReward&c✤ &fNormal award;console: give %player% IRON_INGOT 16"
+          - "message: &6&lReward&c✤ &fNormal award;console: give %player% GOLD_INGOT 8"
+          - "message: &6&lReward&c✤ &fNormal award;console: money give %player% %random_number%500%"
       Rare:
         Enable: true
         Chance: 0.375
         Commands:
-          - "custom: reward, Rare;console: money give %player% 1000"
+          - "message: &6&lReward&c✤ &fNormal award;console: give %player% IRON_INGOT 32"
+          - "message: &6&lReward&c✤ &fNormal award;console: give %player% GOLD_INGOT 16"
+          - "message: &6&lReward&c✤ &fRare award;console: money give %player% 1000"
       Super-Rare:
         Enable: true
         Chance: 0.06
         Commands:
-          - "custom: reward, Super Rare;console: money give %player% 3000"
+          - "message: &6&lReward&c✤ &fNormal award;console: give %player% IRON_INGOT 64"
+          - "message: &6&lReward&c✤ &fNormal award;console: give %player% GOLD_INGOT 32"
+          - "message: &6&lReward&c✤ &fSuper Rare award;console: money give %player% 3000"
       Ultra-Rare:
         Enable: true
         Chance: 0.03
         Commands:
-          - "custom: reward, Ultra Rare;console: money give %player% 10000"
-      Mysterious:
-        Enable: true
-        Chance: 0.025
-        Commands:
-          - 'custom: cgl, Mysterious, Lottery Ticket, &cRandom Head;console: give %player% minecraft:player_head{SkullOwner:"%random_player%"} 1'
+          - "message: &6&lReward&c✤ &fNormal award;console: give %player% DIAMOND 1"
+          - "message: &6&lReward&c✤ &fNormal award;console: give %player% GOLD_INGOT 64"
+          - "message: &6&lReward&c✤ &fUltra Rare award;console: money give %player% 10000"
     head_random:
-      Enable: false
+      Enable: true
       online:
         Enable: true
         Chance: 20
@@ -69,6 +72,7 @@ Message:
   noPermission: '&cYou do not have permission to use that command!'
   configReload: '&aConfiguration(s) Reloaded!'
   unknownCommand: '&cUnknown command, See &e/LotteryPlus help &cfor a list of commands.'
+  targetNotFound: '&cThe player &c%targetplayer% &ccould not be found!'
   LotteryPlus:
     Commands:
       title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &d&lLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
@@ -76,3 +80,4 @@ Message:
       reload: "&a/lotteryplus reload &8- &7Reloads config file."
       version: "&f/lotteryplus version &8- &7Checks the plugin version and updates."
       lottery: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
+    lotteryNotFound: "&cThis lottery group doesn't exist."

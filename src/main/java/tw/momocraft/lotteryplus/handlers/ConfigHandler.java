@@ -40,7 +40,7 @@ public class ConfigHandler {
         ServerHandler.sendConsoleMessage("&fHooked [ &e"
                 + (getDepends().getVault().vaultEnabled() ? "Vault, " : "")
                 + (getDepends().PlaceHolderAPIEnabled() ? "PlaceHolderAPI, " : "")
-                + " &f]");
+                + "&f]");
     }
 
 
