@@ -1,0 +1,43 @@
+name: LotteryPlus
+main: tw.momocraft.lotteryplus.LotteryPlus
+author: Momocraft
+api-version: 1.13
+version: 1.0.0
+description: Server utils.
+softdepend: [ Vault, PlaceHolderAPI ]
+
+commands:
+  lotteryplus:
+    description: Displays main command menu.
+    permission: lotteryplus.use
+    usage: |
+      /lotteryplus
+
+permissions:
+  lotteryplus.*:
+    description: Allows use of all commands and feature.
+    default: op
+    children:
+      lotteryplus.use: true
+      LotteryPlus.command.*: true
+      LotteryPlus.bypass.*: true
+      LotteryPlus.drop.*: true
+  LotteryPlus.use:
+    description: Allows use of basic commands.
+    default: true
+  LotteryPlus.command.*:
+    description: Allows use all commands.
+    default: op
+    children:
+      LotteryPlus.command.reload: true
+      LotteryPlus.command.version: true
+      LotteryPlus.command.lottery: true
+  LotteryPlus.command.reload:
+    description: Allows use of /LotteryPlus command reload.
+    default: op
+  LotteryPlus.command.version:
+    description: Allows use of command /LotteryPlus version.
+    default: op
+  LotteryPlus.command.lottery:
+    description: Allows use of command /LotteryPlus lottery.
+    default: op
