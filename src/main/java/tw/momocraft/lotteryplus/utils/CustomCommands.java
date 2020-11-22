@@ -59,26 +59,6 @@ public class CustomCommands {
                 input = input.replace("custom: ", "");
                 dispatchCustomCommand(player, input);
                 return;
-                /*
-            } else if (input.startsWith("message-suggestion:")) {
-                input = input.replace("message-suggestion: ", "");
-                dispatchMessageCommand(player, input, true);
-                return;
-            } else if (input.startsWith("message-console:")) {
-                input = input.replace("message-console: ", "");
-                dispatchMessageCommand(player, input, true);
-                return;
-            } else if (input.startsWith("message-player:")) {
-                input = input.replace("message-player: ", "");
-                dispatchMessageCommand(player, input, true);
-                return;
-            } else if (input.startsWith("message-op:")) {
-                input = input.replace("message-op: ", "");
-                dispatchMessageCommand(player, input, true);
-                return;
-
-
-                 */
             }
             dispatchConsoleCommand(null, input, false);
         } else {
@@ -111,21 +91,6 @@ public class CustomCommands {
         } else if (input.startsWith("chat:")) {
             ServerHandler.sendErrorMessage("&cThere is an error while execute command \"&echat:" + input + "&c\" &8- &cCan not find the execute target.");
             return;
-            /*
-        } else if (input.startsWith("message-suggestion:")) {
-            ServerHandler.sendErrorMessage("&cThere is an error while execute command \"&emessage-suggestion: " + input + "&c\" &8- &cCan not find the execute target.");
-            return;
-        } else if (input.startsWith("message-console:")) {
-            ServerHandler.sendErrorMessage("&cThere is an error while execute command \"&emessage-console: " + input + "&c\" &8- &cCan not find the execute target.");
-            return;
-        } else if (input.startsWith("message-player:")) {
-            ServerHandler.sendErrorMessage("&cThere is an error while execute command \"&emessage-player: " + input + "&c\" &8- &cCan not find the execute target.");
-            return;
-        } else if (input.startsWith("message-op:")) {
-            ServerHandler.sendErrorMessage("&cThere is an error while execute command \"&emessage-op: " + input + "&c\" &8- &cCan not find the execute target.");
-            return;
-
-             */
         }
         dispatchConsoleCommand(null, input, true);
     }

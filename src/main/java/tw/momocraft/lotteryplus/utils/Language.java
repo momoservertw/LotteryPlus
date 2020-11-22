@@ -8,31 +8,6 @@ import tw.momocraft.lotteryplus.handlers.ServerHandler;
 public class Language {
     private static Lang langType = Lang.ENGLISH;
 
-    public static void dispatchMessage(CommandSender sender, String langMessage, boolean hasPrefix) {
-        if (hasPrefix) {
-            Player player = null;
-            if (sender instanceof Player) {
-                player = (Player) sender;
-            }
-            langMessage = Utils.translateLayout(langMessage, player);
-            String prefix = Utils.translateLayout(ConfigHandler.getConfig(langType.nodeLocation()).getString("Message.prefix"), player);
-            if (prefix == null) {
-                prefix = "";
-            } else {
-                prefix += "";
-            }
-            langMessage = prefix + langMessage;
-            sender.sendMessage(langMessage);
-        } else {
-            Player player = null;
-            if (sender instanceof Player) {
-                player = (Player) sender;
-            }
-            langMessage = Utils.translateLayout(langMessage, player);
-            sender.sendMessage(langMessage);
-        }
-    }
-
     public static void dispatchMessage(CommandSender sender, String langMessage) {
         Player player = null;
         if (sender instanceof Player) {

@@ -5,7 +5,7 @@ Check-Updates: true
 Debugging: false
 
 General:
-  # - "custom: congratulate, Lottery ticket, Jackpot, $10,000"
+  # - "custom: cgl, Lottery ticket, Jackpot, $10,000"
   Custom-Commands:
     reward: "message: &6&lReward&c✤ &f%cmd_arg1%"
     awards: "message: &d✧ &f%cmd_arg1% &d✧"

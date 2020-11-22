@@ -2,7 +2,7 @@ name: LotteryPlus
 main: tw.momocraft.lotteryplus.LotteryPlus
 author: Momocraft
 api-version: 1.13
-version: 1.0.1
+version: 1.0.2
 description: Server utils.
 softdepend: [ Vault, PlaceHolderAPI ]
 

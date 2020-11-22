@@ -25,15 +25,15 @@ public class VaultAPI {
     }
 
     private boolean setupEconomy() {
-        if (LotteryPlus.getInstance().getServer().getPluginManager().getPlugin("Vault") == null) {  return false; }
+        if (LotteryPlus.getInstance().getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
         RegisteredServiceProvider<Economy> rsp = LotteryPlus.getInstance().getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null) {  return false; }
+        if (rsp == null) {
+            return false;
+        }
         this.econ = rsp.getProvider();
         return this.econ != null;
-    }
-
-    public Economy getEconomy() {
-        return this.econ;
     }
 
     public boolean vaultEnabled() {
@@ -41,7 +41,9 @@ public class VaultAPI {
     }
 
     private void setVaultStatus(boolean bool) {
-        if (bool) { this.enableEconomy(); }
+        if (bool) {
+            this.enableEconomy();
+        }
         this.isEnabled = bool;
     }
 }

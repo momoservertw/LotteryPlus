@@ -1,0 +1,595 @@
+# --{ =-=-=-=-=-=-=-=-=-= LotteryPlus's Configuration Settings, by Momocraft =-=-=-=-=-=-=-=-=-= }--
+# Wiki: https://github.com/momoservertw/LotteryPlus/wiki
+Config-Version: 1
+Check-Updates: true
+Debugging: false
+
+General:
+  # - "custom: cgl, Lottery ticket, Jackpot, $10,000"
+  Custom-Commands:
+    reward: "message: &f &6&l得到了&c✤ &f%cmd_arg1%"
+    awards: "message: &d✧ &f%cmd_arg1% &d✧"
+    cgl: "broadcast: &6恭喜 &e%player% &6使用 &f%cmd_arg1% &8- &6兌換到%cmd_arg2% &7<&f%cmd_arg3%&7>"
+      money: "console: cmi money give %player% %cmd_arg1%"
+
+    pet: "console: petadmin create -f %player% %cmd_arg1%"
+    petmsg: "message: &f &6&l得到了&c✤ &f寵物 %cmd_arg1%"
+    petskill: "console: petadmin skilltree %player% %cmd_arg1%"
+    petskillmsg: "message: &6你的寵物技能已更改為： &f%cmd_arg1%"
+    vehicle: "console: give%cmd_arg1% %player% %cmd_arg2%"
+    vehiclemsg: "message: &f &6&l得到了&c✤ &f坐騎 %cmd_arg1%"
+    ij: "console: ij get %cmd_arg1% %player%"
+    ij2: "console: ij get %cmd_arg1% %player% %cmd_arg2%"
+
+Lottery:
+  Enable: true
+  Settings:
+  Groups:
+    mypet-novice:
+      Enable: true
+      Normal:
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: petmsg, 狼;custom: pet, WOLF"
+          - "custom: petmsg, 貓;custom: pet, OCELOT"
+    mypet:
+      Enable: true
+      Normal:
+        Enable: true
+        Chance: 0.5
+        Commands:
+          - "custom: petmsg, 豬;custom: pet, PIG"
+          - "custom: petmsg, 牛;custom: pet, COW"
+          - "custom: petmsg, 殭屍;custom: pet, ZOMBIE"
+          - "custom: petmsg, 烏賊;custom: pet, SQUID"
+      Rare:
+        Enable: true
+        Chance: 0.375
+        Commands:
+          - "custom: petmsg, 骷髏;custom: pet, SKELETON"
+          - "custom: petmsg, 殭屍豬人;custom: pet, ZOMBIFIEDPIGLIN"
+          - "custom: petmsg, 屍殼;custom: pet, HUSK"
+          - "custom: petmsg, 馬;custom: pet, HORSE"
+          - "custom: petmsg, 驢子;custom: pet, DONKEY"
+      Mysterious:
+        Enable: true
+        Chance: 0.025
+        Commands:
+          - "custom: cgl, 第1系列 寵物轉蛋, 神秘寵物, 雞;custom: pet, CHICKEN"
+      Super-Rare:
+        Enable: true
+        Chance: 0.06
+        Commands:
+          - "custom: cgl, 第1系列 寵物轉蛋, 超稀有寵物, 烈焰神;custom: pet, BLAZE"
+      Ultra-Rare:
+        Enable: true
+        Chance: 0.03
+        Commands:
+          - "custom: cgl, 第1系列 寵物轉蛋, 極稀有寵物, 惱鬼;custom: pet, VEX"
+    petskill:
+      Enable: true
+      Combat:
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: petskillmsg, 守護者;custom: petskill, c1"
+          - "custom: petskillmsg, 戰士;custom: petskill, c2"
+          - "custom: petskillmsg, 追擊者;custom: petskill, c3"
+          - "custom: petskillmsg, 弓箭手;custom: petskill, c4"
+          - "custom: petskillmsg, 坦克;custom: petskill, c5"
+          - "custom: petskillmsg, 赤兔魂;custom: petskill, r1"
+          - "custom: petskillmsg, 絕影魂;custom: petskill, r2"
+          - "custom: petskillmsg, 的盧魂;custom: petskill, r3"
+          - "custom: petskillmsg, 小精靈;custom: petskill, w1"
+          - "custom: petskillmsg, 大食怪;custom: petskill, w2"
+          - "custom: petskillmsg, 收藏家;custom: petskill, w3"
+    petskill_fire:
+      Enable: true
+      Combat:
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: petskillmsg, 烈焰-守護者;custom: petskill, fire_c1"
+          - "custom: petskillmsg, 烈焰-戰士;custom: petskill, fire_c2"
+          - "custom: petskillmsg, 烈焰-追擊者;custom: petskill, fire_c3"
+          - "custom: petskillmsg, 烈焰-弓箭手;custom: petskill, fire_c4"
+          - "custom: petskillmsg, 烈焰-坦克;custom: petskill, fire_c5"
+          - "custom: petskillmsg, 烈焰-赤兔魂;custom: petskill, fire_r1"
+          - "custom: petskillmsg, 烈焰-絕影魂;custom: petskill, fire_r2"
+          - "custom: petskillmsg, 烈焰-的盧魂;custom: petskill, fire_r3"
+          - "custom: petskillmsg, 烈焰-小精靈;custom: petskill, fire_w1"
+          - "custom: petskillmsg, 烈焰-大食怪;custom: petskill, fire_w2"
+          - "custom: petskillmsg, 烈焰-收藏家;custom: petskill, fire_w3"
+    petskill_arrowexp:
+      Enable: true
+      Combat:
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: petskillmsg, 妖精-守護者;custom: petskill, arrowexp_c1"
+          - "custom: petskillmsg, 妖精-戰士;custom: petskill, arrowexp_c2"
+          - "custom: petskillmsg, 妖精-追擊者;custom: petskill, arrowexp_c3"
+          - "custom: petskillmsg, 妖精-弓箭手;custom: petskill, arrowexp_c4"
+          - "custom: petskillmsg, 妖精-坦克;custom: petskill, arrowexp_c5"
+          - "custom: petskillmsg, 妖精-赤兔魂;custom: petskill, arrowexp_r1"
+          - "custom: petskillmsg, 妖精-絕影魂;custom: petskill, arrowexp_r2"
+          - "custom: petskillmsg, 妖精-的盧魂;custom: petskill, arrowexp_r3"
+          - "custom: petskillmsg, 妖精-小精靈;custom: petskill, arrowexp_w1"
+          - "custom: petskillmsg, 妖精-大食怪;custom: petskill, arrowexp_w2"
+          - "custom: petskillmsg, 妖精-收藏家;custom: petskill, arrowexp_w3"
+    petskill_decay:
+      Enable: true
+      Combat:
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: petskillmsg, 腐化-守護者;custom: petskill, decay_c1"
+          - "custom: petskillmsg, 腐化-戰士;custom: petskill, decay_c2"
+          - "custom: petskillmsg, 腐化-追擊者;custom: petskill, decay_c3"
+          - "custom: petskillmsg, 腐化-弓箭手;custom: petskill, decay_c4"
+          - "custom: petskillmsg, 腐化-坦克;custom: petskill, decay_c5"
+          - "custom: petskillmsg, 腐化-赤兔魂;custom: petskill, decay_r1"
+          - "custom: petskillmsg, 腐化-絕影魂;custom: petskill, decay_r2"
+          - "custom: petskillmsg, 腐化-的盧魂;custom: petskill, decay_r3"
+          - "custom: petskillmsg, 腐化-小精靈;custom: petskill, decay_w1"
+          - "custom: petskillmsg, 腐化-大食怪;custom: petskill, decay_w2"
+          - "custom: petskillmsg, 腐化-收藏家;custom: petskill, decay_w3"
+    petskill_lithe:
+      Enable: true
+      Combat:
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: petskillmsg, 輕盈-守護者;custom: petskill, lithe_c1"
+          - "custom: petskillmsg, 輕盈-戰士;custom: petskill, lithe_c2"
+          - "custom: petskillmsg, 輕盈-追擊者;custom: petskill, lithe_c3"
+          - "custom: petskillmsg, 輕盈-弓箭手;custom: petskill, lithe_c4"
+          - "custom: petskillmsg, 輕盈-坦克;custom: petskill, lithe_c5"
+          - "custom: petskillmsg, 輕盈-赤兔魂;custom: petskill, lithe_r1"
+          - "custom: petskillmsg, 輕盈-絕影魂;custom: petskill, lithe_r2"
+          - "custom: petskillmsg, 輕盈-的盧魂;custom: petskill, lithe_r3"
+          - "custom: petskillmsg, 輕盈-小精靈;custom: petskill, lithe_w1"
+          - "custom: petskillmsg, 輕盈-大食怪;custom: petskill, lithe_w2"
+          - "custom: petskillmsg, 輕盈-收藏家;custom: petskill, lithe_w3"
+    petskill_mount:
+      Enable: true
+      Combat:
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: petskillmsg, 溫馴-守護者;custom: petskill, mount_c1"
+          - "custom: petskillmsg, 溫馴-戰士;custom: petskill, mount_c2"
+          - "custom: petskillmsg, 溫馴-追擊者;custom: petskill, mount_c3"
+          - "custom: petskillmsg, 溫馴-弓箭手;custom: petskill, mount_c4"
+          - "custom: petskillmsg, 溫馴-坦克;custom: petskill, mount_c5"
+          - "custom: petskillmsg, 溫馴-赤兔魂;custom: petskill, mount_r1"
+          - "custom: petskillmsg, 溫馴-絕影魂;custom: petskill, mount_r2"
+          - "custom: petskillmsg, 溫馴-的盧魂;custom: petskill, mount_r3"
+          - "custom: petskillmsg, 溫馴-小精靈;custom: petskill, mount_w1"
+          - "custom: petskillmsg, 溫馴-大食怪;custom: petskill, mount_w2"
+          - "custom: petskillmsg, 溫馴-收藏家;custom: petskill, mount_w3"
+    vehicles:
+      Enable: true
+      Bike:
+        Enable: true
+        Chance: 0.25
+        Commands:
+          - "custom: vehiclemsg, 腳踏車;custom: vehicle, bike, BLACK"
+          - "custom: vehiclemsg, 腳踏車;custom: vehicle, bike, ORANGE"
+          - "custom: vehiclemsg, 腳踏車;custom: vehicle, bike, RED"
+      Car:
+        Enable: true
+        Chance: 0.25
+        Commands:
+          - "custom: vehiclemsg, 汽車;custom: vehicle, car, BLACK"
+          - "custom: vehiclemsg, 汽車;custom: vehicle, car, YELLOW"
+          - "custom: vehiclemsg, 汽車;custom: vehicle, car, MAGENTA"
+      Tank:
+        Enable: true
+        Chance: 0.1875
+        Commands:
+          - "custom: vehiclemsg, 坦克;custom: vehicle, tank, T1"
+          - "custom: vehiclemsg, 坦克;custom: vehicle, tank, T2"
+          - "custom: vehiclemsg, 坦克;custom: vehicle, tank, T3"
+      Train:
+        Enable: true
+        Chance: 0.1875
+        Commands:
+          - "custom: vehiclemsg, 火車;custom: vehicle, train, T1"
+          - "custom: vehiclemsg, 火車;custom: vehicle, train, T2"
+          - "custom: vehiclemsg, 火車;custom: vehicle, train, T3"
+      Racingcar:
+        Enable: true
+        Chance: 0.0425
+        Commands:
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 賽車;custom: vehicle, racingcar, YELLOW"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 賽車;custom: vehicle, racingcar, RED"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 賽車;custom: vehicle, racingcar, PURPLE"
+      Plane:
+        Enable: true
+        Chance: 0.0475
+        Commands:
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 飛機;custom: vehicle, plane, P1"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 飛機;custom: vehicle, plane, P2"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 飛機;custom: vehicle, plane, P3"
+      Drill:
+        Enable: true
+        Chance: 0.015
+        Commands:
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 鑽地機;custom: vehicle, drill, D1"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 鑽地機;custom: vehicle, drill, D2"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 鑽地機;custom: vehicle, drill, D3"
+      Broom:
+        Enable: true
+        Chance: 0.015
+        Commands:
+          - "custom: cgl, 第1系列 坐騎轉蛋, 極稀有坐騎, 飛天掃把;custom: vehicle, drill, B1"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 極稀有坐騎, 飛天掃把;custom: vehicle, drill, B2"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 極稀有坐騎, 飛天掃把;custom: vehicle, drill, B3"
+    vehicles2:
+      Enable: true
+      Raft:
+        Enable: true
+        Chance: 0.25
+        Commands:
+          - "custom: vehiclemsg, 木筏;custom: vehicle, traft, OLD"
+          - "custom: vehiclemsg, 木筏;custom: vehicle, traft, NETHER"
+          - "custom: vehiclemsg, 木筏;custom: vehicle, traft, PIRATE"
+      Tractor:
+        Enable: true
+        Chance: 0.25
+        Commands:
+          - "custom: vehiclemsg, 拖拉機;custom: vehicle, tractor, YELLOW"
+          - "custom: vehiclemsg, 拖拉機;custom: vehicle, tractor, RED"
+          - "custom: vehiclemsg, 拖拉機;custom: vehicle, tractor, GREEN"
+      Sportbike:
+        Enable: true
+        Chance: 0.1875
+        Commands:
+          - "custom: vehiclemsg, 競速自行車;custom: vehicle, sportbike, SB1"
+          - "custom: vehiclemsg, 競速自行車;custom: vehicle, sportbike, SB2"
+          - "custom: vehiclemsg, 競速自行車;custom: vehicle, sportbike, SB3"
+      Hoverbike:
+        Enable: true
+        Chance: 0.1875
+        Commands:
+          - "custom: vehiclemsg, 飛天車;custom: vehicle, hoverbike, HB1"
+          - "custom: vehiclemsg, 飛天車;custom: vehicle, hoverbike, HB2"
+          - "custom: vehiclemsg, 飛天車;custom: vehicle, hoverbike, HB3"
+      Parachute:
+        Enable: true
+        Chance: 0.0475
+        Commands:
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 降落傘;custom: vehicle, parachute, PC1"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 降落傘;custom: vehicle, parachute, PC2"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 降落傘;custom: vehicle, parachute, PC3"
+      Submarine:
+        Enable: true
+        Chance: 0.0475
+        Commands:
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 潛艇;custom: vehicle, submarine, S1"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 潛艇;custom: vehicle, submarine, S2"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 超稀有坐騎, 潛艇;custom: vehicle, submarine, S3"
+      Helicopter:
+        Enable: true
+        Chance: 0.03
+        Commands:
+          - "custom: cgl, 第1系列 坐騎轉蛋, 極稀有坐騎, 直升機;custom: vehicle, helicopter, H1"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 極稀有坐騎, 直升機;custom: vehicle, helicopter, H2"
+          - "custom: cgl, 第1系列 坐騎轉蛋, 極稀有坐騎, 直升機;custom: vehicle, helicopter, H3"
+    # 康乃馨
+    carnation:
+      Enable: true
+      "1":
+        Enable: true
+        Chance: 0.15
+        Commands:
+          - "custom: cgl, 康乃馨, 特等獎, 特效✷ 抱抱你 學習書;custom: ij, p_hug"
+          - "custom: cgl, 康乃馨, 特等獎, 特效✷ 抱抱你 學習書;custom: ij, p_hug"
+          - "custom: cgl, 康乃馨, 特等獎, 不滅盾牌;console: cmi give %player% shield unbreakable n &6&l不滅盾牌 l &d拉拉發明的小工具"
+          - 'custom: cgl, 康乃馨, 特等獎, 鋼鐵鞘翅;console: give %player% minecraft:elytra{display:{Name:"{\"text\":\"§6§l鋼鐵鞘翅\"}",Lore:["§d菈菈發明的小工具"]},Unbreakable:1} 1;'
+          - "custom: cgl, 康乃馨, 特等獎, 隨機頭顱 兌換券;custom: ij, head_random"
+          - "custom: cgl, 康乃馨, 特等獎, 第1系列 寵物轉蛋;custom: ij, petbuy1"
+      "2":
+        Enable: true
+        Chance: 0.25
+        Commands:
+          - "custom: cgl, 康乃馨, 一等獎, 茉茉禮包II;custom: ij, GP2"
+          - "custom: cgl, 康乃馨, 一等獎, 寵物經驗包II;custom: ij, petexp2"
+      "3":
+        Enable: true
+        Chance: 0.3
+        Commands:
+          - "custom: awards, 二等獎;custom: ij, GP1"
+          - "custom: awards, 二等獎;custom: ij, JP1"
+          - "custom: awards, 二等獎;custom: ij, fly"
+          - "custom: awards, 二等獎;custom: reward, 不死圖騰 x3;console: cmi give %player% totem_of_undying 3"
+      "4":
+        Enable: true
+        Chance: 0.3
+        Commands:
+          - "custom: awards, 三等獎;custom: ij2, points, 5"
+          - "custom: awards, 三等獎;cmi money give %player% 1000"
+          - "custom: awards, 三等獎;custom: reward, 鐵錠 x64;console: cmi give %player% iron_ingot 64"
+          - "custom: awards, 三等獎;custom: reward, 金錠 x64;console: cmi give %player% gold_ingot 64"
+          - "custom: awards, 三等獎;custom: reward, 附魔金蘋果 x64;console: cmi give %player% enchanted_golden_apple 1"
+    # 隨機糖果
+    c_random_candy:
+      Enable: true
+      "1":
+        Enable: true
+        Chance: 0.15
+        Commands:
+          - "custom: ij, c_fast_digging3"
+          - "custom: ij, c_health_boost3"
+          - "custom: ij, c_increate_damage3"
+          - "custom: ij, c_jump3"
+          - "custom: ij, c_regenration3"
+          - "custom: ij, c_luck3"
+          - "custom: ij, c_speed3"
+    # 茉茉刮刮樂I
+    JP1:
+      Enable: true
+      "1":
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂I, 頭獎, 1萬元;custom: money, 10000"
+      "2":
+        Enable: true
+        Chance: 3
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂I, 貳獎, 6千元;custom: money, 6000"
+      "3":
+        Enable: true
+        Chance: 6
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂I, 參獎, 3千元;custom: money, 3000"
+      "4":
+        Enable: true
+        Chance: 12
+        Commands:
+          - 'custom: money, %random_number%1000%'
+      # 茉茉刮刮樂II
+    JP2:
+      Enable: true
+      "1":
+        Enable: true
+        Chance: 12
+        Commands:
+          - 'custom: money, %random_number%3000%'
+      "2":
+        Enable: true
+        Chance: 6
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂II, 參獎, 6千元;custom: money, 6000"
+      "3":
+        Enable: true
+        Chance: 3
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂II, 貳獎, 1萬元;custom: money, 10000"
+      "4":
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂II, 頭獎, 5萬元;custom: money, 50000"
+      "5":
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂II, 特別獎, 第1系列 寵物轉蛋;custom: ij, petbuy1"
+    # 茉茉刮刮樂III
+    JP3:
+      Enable: true
+      "1":
+        Enable: true
+        Chance: 12
+        Commands:
+          - 'custom: money, %random_number%6000%'
+      "2":
+        Enable: true
+        Chance: 6
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂III, 參獎, 1萬元;custom: money, 10000"
+      "3":
+        Enable: true
+        Chance: 3
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂III, 貳獎, 5萬元;custom: money, 50000"
+      "4":
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂III, 頭獎, 10萬元;custom: money, 100000"
+      "5":
+        Enable: true
+        Chance: 1
+        Commands:
+          - 'custom: cgl, 茉茉刮刮樂III, 特別獎, 鋼鐵鞘翅;console: give %player% minecraft:elytra{display:{Name:"{\"text\":\"§6§l鋼鐵鞘翅\"}",Lore:["§d菈菈發明的小工具"]},Unbreakable:1} 1'
+    # 茉茉刮刮樂IV
+    JP4:
+      Enable: true
+      "1":
+        Enable: true
+        Chance: 12
+        Commands:
+          - 'custom: money, %random_number%10000%'
+      "2":
+        Enable: true
+        Chance: 6
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂IV, 參獎, 5萬元;custom: money, 50000"
+      "3":
+        Enable: true
+        Chance: 3
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂IV, 貳獎, 10萬元;custom: money, 100000"
+      "4":
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂IV, 頭獎, 20萬元;custom: money, 200000"
+      "5":
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: cgl, 茉茉刮刮樂IV, 特別獎, 隨機頭顱;custom: ij, random_head"
+    # 茉茉禮包I
+    GP1:
+      Enable: true
+      "1":
+        Enable: true
+        Chance: 4
+        Commands:
+          - "custom: money, %random_number%3000%"
+          - "custom: ij2, points, %random_number%5%"
+      "2":
+        Enable: true
+        Chance: 2
+        Commands:
+          - "custom: cgl, 茉茉禮包I, 參獎, 3千元;custom: money, 3000"
+      "3":
+        Enable: true
+        Chance: 2
+        Commands:
+          - "custom: cgl, 茉茉禮包I, 貳獎, 15個代幣;custom: ij2, points, 15"
+      "4":
+        Enable: true
+        Chance: 2
+        Commands:
+          - "custom: cgl, 茉茉禮包I, 頭獎, 寵物經驗I;custom: ij, petexp1"
+      "5":
+        Enable: true
+        Chance: 2
+        Commands:
+          - 'custom: cgl, 茉茉禮包I, 特別獎, 鋼鐵鞘翅;console: give %player% minecraft:elytra{display:{Name:"{\"text\":\"§6§l鋼鐵鞘翅\"}",Lore:["§d菈菈發明的小工具"]},Unbreakable:1} 1'
+    # 茉茉禮包II
+    GP2:
+      Enable: true
+      "1":
+        Enable: true
+        Chance: 8
+        Commands:
+          - "custom: money, %random_number%5000%"
+          - "custom: ij2, points, %random_number%15%"
+      "2":
+        Enable: true
+        Chance: 2
+        Commands:
+          - "custom: cgl, 茉茉禮包II, 參獎, 1萬元;custom: money, 10000"
+      "3":
+        Enable: true
+        Chance: 2
+        Commands:
+          - "custom: cgl, 茉茉禮包II, 貳獎, 30個代幣;custom: ij2, points, 30"
+      "4":
+        Enable: true
+        Chance: 2
+        Commands:
+          - "custom: cgl, 茉茉禮包II, 頭獎, 寵物經驗II;custom: ij, petexp2"
+      "5":
+        Enable: true
+        Chance: 1
+        Commands:
+          - 'custom: cgl, 茉茉禮包II, 特別獎, 第1系列 寵物轉蛋;custom: ij, petbuy1'
+    # 茉茉禮包III
+    GP3:
+      Enable: true
+      "1":
+        Enable: true
+        Chance: 8
+        Commands:
+          - "custom: money, %random_number%5000%"
+          - "custom: ij2, points, %random_number%15%"
+      "2":
+        Enable: true
+        Chance: 2
+        Commands:
+          - "custom: cgl, 茉茉禮包III, 參獎, 1萬元;custom: money, 10000"
+          - "custom: cgl, 茉茉禮包III, 參獎, 代幣30個;custom: ij2, points10, 3"
+      "3":
+        Enable: true
+        Chance: 2
+        Commands:
+          - "custom: cgl, 茉茉禮包III, 貳獎, 5萬元;custom: money, 50000"
+          - "custom: cgl, 茉茉禮包III, 貳獎, 代幣100個;custom: ij, points100"
+          - "custom: cgl, 茉茉禮包III, 貳獎, 寵物經驗II;custom: ij, petexp1"
+      "4":
+        Enable: true
+        Chance: 2
+        Commands:
+          - "custom: cgl, 茉茉禮包III, 頭獎, 隨機頭顱;custom: ij, head_random"
+      "5":
+        Enable: true
+        Chance: 1
+        Commands:
+          - 'custom: cgl, 茉茉禮包III, 特別獎, 第1系列 坐騎轉蛋;custom: ij, vehiclebuy1'
+    # 黃金彩蛋
+    egg1:
+      Enable: true
+      "1":
+        Enable: true
+        Chance: 10
+        Commands:
+          - "custom: money, 10000"
+      "2":
+        Enable: true
+        Chance: 6
+        Commands:
+          - "custom: reward, 附魔金蘋果 x3;console: cmi give %player% enchanted_golden_apple 3"
+      "3":
+        Enable: true
+        Chance: 2
+        Commands:
+          - "custom: cgl, 黃金彩蛋, 稀有, 5萬元;custom: ij, petbuy1"
+      "4":
+        Enable: true
+        Chance: 2
+        Commands:
+          - "custom: cgl, 茉茉禮包III, 激稀有, &d&l茉&c&l茉&6&l彩&e&l蛋;console: hdb give 4549 1 %player%"
+    # 隨機頭顱
+    head_random:
+      Enable: true
+      online:
+        Enable: true
+        Chance: 20
+        Commands:
+          - 'custom: cgl, 隨機頭顱 兌換券, 在線玩家, 頭顱;console: give %player% minecraft:player_head{SkullOwner:"%random_player%"} 1'
+      staff:
+        Enable: true
+        Chance: 6
+        Commands:
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 小草的頭顱;console: give %player% minecraft:player_head{SkullOwner:"yoyo880603"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 筱芯的頭顱;console: give %player% minecraft:player_head{SkullOwner:"PTL_piepiepig"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 牆壁的頭顱;console: give %player% minecraft:player_head{SkullOwner:"LOTT_0"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, KK的頭顱;console: give %player% minecraft:player_head{SkullOwner:"PowLim_Deity"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, GG的頭顱;console: give %player% minecraft:player_head{SkullOwner:"JFla"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 小米的頭顱;console: give %player% minecraft:player_head{SkullOwner:"milk9915"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 提特的頭顱;console: give %player% minecraft:player_head{SkullOwner:"teter36"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 阿勝的頭顱;console: give %player% minecraft:player_head{SkullOwner:"mwx3344"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 小霸的頭顱;console: give %player% minecraft:player_head{SkullOwner:"Tyrant_Turant"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 茉茉的頭顱;console: give %player% minecraft:player_head{SkullOwner:"Momo_Darkness"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 嶸嶸的頭顱;console: give %player% minecraft:player_head{SkullOwner:"supermeo"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 紫雲的頭顱;console: give %player% minecraft:player_head{SkullOwner:"Zi_Shen_OuO"} 1'
+      owner:
+        Enable: true
+        Chance: 2
+        Commands:
+          - 'custom: cgl, 隨機頭顱 兌換券, 服主, 友利的頭顱;console: give %player% minecraft:player_head{SkullOwner:"AllBye"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 服主, 小埋的頭顱;console: give %player% minecraft:player_head{SkullOwner:"huangge0513"} 1'
+
+Message:
+  prefix: '&f'
+  noPermission: '&cYou do not have permission to use that command!'
+  configReload: '&aConfiguration(s) Reloaded!'
+  unknownCommand: '&cUnknown command, See &e/LotteryPlus help &cfor a list of commands.'
+  targetNotFound: '&cThe player &c%targetplayer% &ccould not be found!'
+  LotteryPlus:
+    Commands:
+      title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &d&lLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
+      help: "&a/lotteryplus help &8- &7This help menu."
+      reload: "&a/lotteryplus reload &8- &7Reloads config file."
+      version: "&f/lotteryplus version &8- &7Checks the plugin version and updates."
+      lottery: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
+    lotteryNotFound: "&cThis lottery group doesn't exist."

@@ -11,7 +11,7 @@ public class ServerHandler {
     public static void sendConsoleMessage(String message) {
         String prefix = "&7[&dLotteryPlus&7] ";
         message = prefix + message;
-        message = ChatColor.translateAlternateColorCodes('&', message).toString();
+        message = ChatColor.translateAlternateColorCodes('&', message);
         LotteryPlus.getInstance().getServer().getConsoleSender().sendMessage(message);
     }
 
@@ -85,6 +85,7 @@ public class ServerHandler {
                         + " &8(" + ste.getClassName() + " " + ste.getMethodName() + " " + ste.getLineNumber() + ")", true);
                 break;
             case "return":
+            case "success":
             default:
                 ServerHandler.sendDebugMessage("&f" + feature + "&8 - &f" + target + "&8 : &f" + check + "&8, &a" + action + "&8, &7" + detail
                         + " &8(" + ste.getClassName() + " " + ste.getMethodName() + " " + ste.getLineNumber() + ")", true);
@@ -111,6 +112,7 @@ public class ServerHandler {
                         + " &8(" + ste.getClassName() + " " + ste.getMethodName() + " " + ste.getLineNumber() + ")", true);
                 break;
             case "return":
+            case "success":
             default:
                 ServerHandler.sendDebugMessage("&f" + feature + "&8 - &f" + target + "&8 : &f" + check + "&8, &a" + action
                         + " &8(" + ste.getClassName() + " " + ste.getMethodName() + " " + ste.getLineNumber() + ")", true);

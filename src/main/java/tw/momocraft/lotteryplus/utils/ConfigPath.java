@@ -20,9 +20,7 @@ public class ConfigPath {
     //  ============================================== //
     //         Lottery Settings                        //
     //  ============================================== //
-
     private boolean lottery;
-
     private Map<String, Map<List<String>, Double>> lotteryProp;
 
 

@@ -1,14 +1,11 @@
 package tw.momocraft.lotteryplus.handlers;
 
-import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import tw.momocraft.lotteryplus.Commands;
 import tw.momocraft.lotteryplus.LotteryPlus;
 import tw.momocraft.lotteryplus.utils.ConfigPath;
 import tw.momocraft.lotteryplus.utils.DependAPI;
-import org.bukkit.Location;
 import tw.momocraft.lotteryplus.utils.TabComplete;
 
 import java.io.File;
@@ -135,36 +132,11 @@ public class ConfigHandler {
         return ConfigHandler.getConfig("config.yml").getBoolean("Debugging");
     }
 
-    public static boolean getLoggable() {
-        return ConfigHandler.getConfig("config.yml").getBoolean("Log-Commands");
-    }
-
     public static UpdateHandler getUpdater() {
         return updater;
     }
 
     private static void setUpdater(UpdateHandler update) {
         updater = update;
-    }
-
-    /**
-     * Converts a serialized location to a Location. Returns null if string is empty
-     *
-     * @param s - serialized location in format "world:x:y:z"
-     * @return Location
-     */
-    static public Location getLocationString(final String s) {
-        if (s == null || s.trim() == "") {
-            return null;
-        }
-        final String[] parts = s.split(":");
-        if (parts.length == 4) {
-            final World w = Bukkit.getServer().getWorld(parts[0]);
-            final int x = Integer.parseInt(parts[1]);
-            final int y = Integer.parseInt(parts[2]);
-            final int z = Integer.parseInt(parts[3]);
-            return new Location(w, x, y, z);
-        }
-        return null;
     }
 }

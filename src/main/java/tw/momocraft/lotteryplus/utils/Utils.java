@@ -13,51 +13,6 @@ import java.util.*;
 
 public class Utils {
 
-    public static boolean containsIgnoreCase(String string1, String string2) {
-        if (string1 != null && string2 != null && string1.toLowerCase().contains(string2.toLowerCase())) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean isInt(String s) {
-        try {
-            Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
-
-    public static int getRandom(int lower, int upper) {
-        Random random = new Random();
-        return random.nextInt((upper - lower) + 1) + lower;
-    }
-
-    public static Integer returnInteger(String text) {
-        if (text == null) {
-            return null;
-        } else {
-            char[] characters = text.toCharArray();
-            Integer value = null;
-            boolean isPrevDigit = false;
-            for (int i = 0; i < characters.length; i++) {
-                if (isPrevDigit == false) {
-                    if (Character.isDigit(characters[i])) {
-                        isPrevDigit = true;
-                        value = Character.getNumericValue(characters[i]);
-                    }
-                } else {
-                    if (Character.isDigit(characters[i])) {
-                        value = (value * 10) + Character.getNumericValue(characters[i]);
-                    } else {
-                        break;
-                    }
-                }
-            }
-            return value;
-        }
-    }
 
     private static String getNearbyPlayer(Player player, int range) {
         try {
@@ -93,41 +48,6 @@ public class Utils {
         if (player != null && !(player instanceof ConsoleCommandSender)) {
             try {
                 input = input.replace("%player%", playerName);
-            } catch (Exception e) {
-                ServerHandler.sendDebugTrace(e);
-            }
-            try {
-                input = input.replace("%mob_kills%", String.valueOf(player.getStatistic(Statistic.MOB_KILLS)));
-            } catch (Exception e) {
-                ServerHandler.sendDebugTrace(e);
-            }
-            try {
-                input = input.replace("%player_kills%", String.valueOf(player.getStatistic(Statistic.PLAYER_KILLS)));
-            } catch (Exception e) {
-                ServerHandler.sendDebugTrace(e);
-            }
-            try {
-                input = input.replace("%player_deaths%", String.valueOf(player.getStatistic(Statistic.DEATHS)));
-            } catch (Exception e) {
-                ServerHandler.sendDebugTrace(e);
-            }
-            try {
-                input = input.replace("%player_food%", String.valueOf(player.getFoodLevel()));
-            } catch (Exception e) {
-                ServerHandler.sendDebugTrace(e);
-            }
-            try {
-                input = input.replace("%player_health%", String.valueOf(player.getHealth()));
-            } catch (Exception e) {
-                ServerHandler.sendDebugTrace(e);
-            }
-            try {
-                input = input.replace("%player_location%", player.getLocation().getBlockX() + ", " + player.getLocation().getBlockY() + ", " + player.getLocation().getBlockZ() + "");
-            } catch (Exception e) {
-                ServerHandler.sendDebugTrace(e);
-            }
-            try {
-                input = input.replace("%player_interact%", getNearbyPlayer(player, 3));
             } catch (Exception e) {
                 ServerHandler.sendDebugTrace(e);
             }
@@ -171,13 +91,12 @@ public class Utils {
         if (ConfigHandler.getDepends().PlaceHolderAPIEnabled()) {
             try {
                 try {
-                    String s = PlaceholderAPI.setPlaceholders(player, input);
-                    return s;
+                    return PlaceholderAPI.setPlaceholders(player, input);
                 } catch (NoSuchFieldError e) {
                     ServerHandler.sendDebugMessage("Error has occured when setting the PlaceHolder " + e.getMessage() + ", if this issue persits contact the developer of PlaceholderAPI.");
                     return input;
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         return input;
