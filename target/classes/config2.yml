@@ -10,7 +10,7 @@ General:
     reward: "message: &f &6&l得到了&c✤ &f%cmd_arg1%"
     awards: "message: &d✧ &f%cmd_arg1% &d✧"
     cgl: "broadcast: &6恭喜 &e%player% &6使用 &f%cmd_arg1% &8- &6兌換到%cmd_arg2% &7<&f%cmd_arg3%&7>"
-    money: "console: cmi money give %player% %cmd_arg1%"
+      money: "console: cmi money give %player% %cmd_arg1%"
 
     pet: "console: petadmin create -f %player% %cmd_arg1%"
     petmsg: "message: &f &6&l得到了&c✤ &f寵物 %cmd_arg1%"
