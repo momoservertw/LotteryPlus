@@ -13,6 +13,9 @@ import java.util.*;
 
 public class Utils {
 
+    public static String getRandomString(List<String> list) {
+        return list.get(new Random().nextInt(list.size()));
+    }
 
     private static String getNearbyPlayer(Player player, int range) {
         try {
@@ -51,41 +54,42 @@ public class Utils {
             } catch (Exception e) {
                 ServerHandler.sendDebugTrace(e);
             }
-            try {
-                // %random_number%500%
-                if (input.contains("%random_number%")) {
-                    String[] arr = input.split("%");
-                    List<Integer> list = new ArrayList<>();
-                    for (int i = 0; i < arr.length; i++) {
-                        if (arr[i].equals("random_number")) {
-                            list.add(Integer.parseInt(arr[i + 1]));
-                        }
-                    }
-                    for (int max : list) {
-                        input = input.replace("%random_number%" + max + "%", String.valueOf(new Random().nextInt(max)));
-                    }
-                }
-            } catch (Exception e) {
-                ServerHandler.sendDebugTrace(e);
-            }
-            try {
-                // %random_player%
-                try {
-                    List<Player> playerList = new ArrayList(Bukkit.getOnlinePlayers());
-                    String randomPlayer = playerList.get(new Random().nextInt(playerList.size())).getName();
-                    input = input.replace("%random_player%", randomPlayer);
-                } catch (Exception e) {
-                    ServerHandler.sendDebugTrace(e);
-                }
-            } catch (Exception e) {
-                ServerHandler.sendDebugTrace(e);
-            }
-        } else {
+        }
+        if (player == null) {
             try {
                 input = input.replace("%player%", "CONSOLE");
             } catch (Exception e) {
                 ServerHandler.sendDebugTrace(e);
             }
+        }
+        try {
+            // %random_number%500%
+            if (input.contains("%random_number%")) {
+                String[] arr = input.split("%");
+                List<Integer> list = new ArrayList<>();
+                for (int i = 0; i < arr.length; i++) {
+                    if (arr[i].equals("random_number")) {
+                        list.add(Integer.parseInt(arr[i + 1]));
+                    }
+                }
+                for (int max : list) {
+                    input = input.replace("%random_number%" + max + "%", String.valueOf(new Random().nextInt(max)));
+                }
+            }
+        } catch (Exception e) {
+            ServerHandler.sendDebugTrace(e);
+        }
+        try {
+            // %random_player%
+            try {
+                List<Player> playerList = new ArrayList(Bukkit.getOnlinePlayers());
+                String randomPlayer = playerList.get(new Random().nextInt(playerList.size())).getName();
+                input = input.replace("%random_player%", randomPlayer);
+            } catch (Exception e) {
+                ServerHandler.sendDebugTrace(e);
+            }
+        } catch (Exception e) {
+            ServerHandler.sendDebugTrace(e);
         }
         input = ChatColor.translateAlternateColorCodes('&', input);
         if (ConfigHandler.getDepends().PlaceHolderAPIEnabled()) {

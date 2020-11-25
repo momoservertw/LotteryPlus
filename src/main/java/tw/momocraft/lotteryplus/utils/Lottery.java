@@ -7,7 +7,6 @@ import tw.momocraft.lotteryplus.handlers.ServerHandler;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class Lottery {
 
@@ -28,7 +27,7 @@ public class Lottery {
                 // Compare the group chance with the randomly total chance.
                 if (randTotalChance <= value) {
                     // Random execute a reward command from that group.
-                    command = key.get(new Random().nextInt(key.size()));
+                    command = Utils.getRandomString(key);
                     if (player != null) {
                         CustomCommands.executeMultipleCmds(player, command);
                     } else {
