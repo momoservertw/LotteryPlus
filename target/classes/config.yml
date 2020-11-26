@@ -5,7 +5,13 @@ Check-Updates: true
 Debugging: false
 
 General:
-  # To send frequently used commands with placeholders.
+  Settings:
+    Features:
+      # Changed these options need to restart the server.
+      Hook:
+        Vault: true
+        PlaceHolderAPI: true
+  # The settings for custom commands.
   # More information: https://github.com/momoservertw/LotteryPlus/wiki/Custom-Command
   Custom-Commands:
     Settings:
@@ -19,6 +25,7 @@ General:
           To-Zip: true
           Path: "plugin//CustomLogs"
           Name: "latest"
+    # To send frequently used commands with placeholders.
     Groups:
       reward: "message: &6&lReward&c✤ &f%cmd_arg1%"
       awards: "message: &d✧ &f%cmd_arg1% &d✧"

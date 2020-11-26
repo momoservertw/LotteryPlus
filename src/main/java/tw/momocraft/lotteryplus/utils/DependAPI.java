@@ -1,14 +1,19 @@
 package tw.momocraft.lotteryplus.utils;
 
 import org.bukkit.Bukkit;
+import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 
 public class DependAPI {
     private boolean PlaceHolderAPI = false;
     private VaultAPI vault;
 
     public DependAPI() {
-        this.setPlaceHolderStatus(Bukkit.getServer().getPluginManager().getPlugin("PlaceHolderAPI") != null);
-        this.setVault();
+        if (ConfigHandler.getConfig("config.yml").getBoolean("General.Settings.Features.Hook.Vault")) {
+            this.setVault();
+        }
+        if (ConfigHandler.getConfig("config.yml").getBoolean("General.Settings.Features.Hook.PlaceHolderAPI")) {
+            this.setPlaceHolderStatus(Bukkit.getServer().getPluginManager().getPlugin("PlaceHolderAPI") != null);
+        }
     }
 
     public boolean PlaceHolderAPIEnabled() {
