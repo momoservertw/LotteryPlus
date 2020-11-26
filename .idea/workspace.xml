@@ -31,7 +31,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.1\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -57,10 +57,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="tw.momocraft.lotteryplus.utils" />
       <recent name="tw.momocraft.lotteryplus.handlers" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -95,29 +96,29 @@
       <screen x="0" y="0" width="1707" height="920" />
     </state>
     <state x="634" y="216" key="FileChooserDialogImpl/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1605966850580" />
-    <state width="1237" height="211" key="GridCell.Tab.0.bottom" timestamp="1606274354065">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state width="1663" height="129" key="GridCell.Tab.0.bottom" timestamp="1606355828266">
+      <screen x="0" y="0" width="1707" height="920" />
     </state>
     <state width="1237" height="211" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1606274354065" />
-    <state width="1663" height="137" key="GridCell.Tab.0.bottom/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1606010499506" />
+    <state width="1663" height="129" key="GridCell.Tab.0.bottom/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1606355828266" />
     <state width="1663" height="189" key="GridCell.Tab.0.bottom/2560.10.1707.920/0.0.1707.920@2560.10.1707.920" timestamp="1605610012014" />
-    <state width="1237" height="211" key="GridCell.Tab.0.center" timestamp="1606274354065">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state width="1663" height="129" key="GridCell.Tab.0.center" timestamp="1606355828265">
+      <screen x="0" y="0" width="1707" height="920" />
     </state>
     <state width="1237" height="211" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1606274354065" />
-    <state width="1663" height="137" key="GridCell.Tab.0.center/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1606010499506" />
+    <state width="1663" height="129" key="GridCell.Tab.0.center/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1606355828265" />
     <state width="1663" height="189" key="GridCell.Tab.0.center/2560.10.1707.920/0.0.1707.920@2560.10.1707.920" timestamp="1605610012014" />
-    <state width="1237" height="211" key="GridCell.Tab.0.left" timestamp="1606274354061">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state width="1663" height="129" key="GridCell.Tab.0.left" timestamp="1606355828265">
+      <screen x="0" y="0" width="1707" height="920" />
     </state>
     <state width="1237" height="211" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1606274354061" />
-    <state width="1663" height="137" key="GridCell.Tab.0.left/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1606010499506" />
+    <state width="1663" height="129" key="GridCell.Tab.0.left/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1606355828265" />
     <state width="1663" height="189" key="GridCell.Tab.0.left/2560.10.1707.920/0.0.1707.920@2560.10.1707.920" timestamp="1605610012013" />
-    <state width="1237" height="211" key="GridCell.Tab.0.right" timestamp="1606274354065">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state width="1663" height="129" key="GridCell.Tab.0.right" timestamp="1606355828265">
+      <screen x="0" y="0" width="1707" height="920" />
     </state>
     <state width="1237" height="211" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1606274354065" />
-    <state width="1663" height="137" key="GridCell.Tab.0.right/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1606010499506" />
+    <state width="1663" height="129" key="GridCell.Tab.0.right/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1606355828265" />
     <state width="1663" height="189" key="GridCell.Tab.0.right/2560.10.1707.920/0.0.1707.920@2560.10.1707.920" timestamp="1605610012014" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1606274348251">
       <screen x="0" y="0" width="1280" height="689" />
@@ -127,10 +128,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="326" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.689@0.0.1280.689" timestamp="1603852864974" />
-    <state x="341" y="29" width="1026" height="891" key="find.popup" timestamp="1605997504868">
+    <state x="341" y="29" width="1026" height="891" key="find.popup" timestamp="1606351404236">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
-    <state x="341" y="29" width="1026" height="891" key="find.popup/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1605997504868" />
+    <state x="341" y="29" width="1026" height="891" key="find.popup/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1606351404236" />
     <state x="2901" y="39" width="1026" height="891" key="find.popup/2560.10.1707.920/0.0.1707.920@2560.10.1707.920" timestamp="1604480748431" />
     <state x="551" y="206" key="refactoring.ChangeSignatureDialog" timestamp="1604062531792">
       <screen x="0" y="0" width="1707" height="920" />

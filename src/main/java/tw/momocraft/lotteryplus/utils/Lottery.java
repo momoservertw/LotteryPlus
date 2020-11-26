@@ -29,12 +29,22 @@ public class Lottery {
                     // Random execute a reward command from that group.
                     command = Utils.getRandomString(key);
                     if (player != null) {
-                        CustomCommands.executeMultipleCmds(player, command);
+                        String playerName = player.getName();
+                        CustomCommands.executeMultipleCmds(player, command, true);
+                        if (ConfigHandler.getConfigPath().isLotteryLog()) {
+                            ConfigHandler.getLogger().addLotteryLog(playerName + " - " + command, true);
+                        }
+                        ServerHandler.sendFeatureMessage("Lottery", playerName, "execute", "return", group + " " + command,
+                                new Throwable().getStackTrace()[0]);
                     } else {
-                        CustomCommands.executeMultipleCmds(sender, command);
+                        String senderName = sender.getName();
+                        CustomCommands.executeMultipleCmds((Player) sender, command, true);
+                        if (ConfigHandler.getConfigPath().isLotteryLog()) {
+                            ConfigHandler.getLogger().addLotteryLog(senderName + " - " + command, true);
+                        }
+                        ServerHandler.sendFeatureMessage("Lottery", senderName, "execute", "return", group + " " + command,
+                                new Throwable().getStackTrace()[0]);
                     }
-                    ServerHandler.sendFeatureMessage("Lottery", sender.getName(), "execute", "continue", group + " " + command,
-                            new Throwable().getStackTrace()[0]);
                     return;
                 }
                 randTotalChance -= value;

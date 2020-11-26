@@ -16,11 +16,20 @@ public class ConfigPath {
     //         General Settings                        //
     //  ============================================== //
     private Map<String, String> customCmdProp;
+    private boolean logDefaultNew;
+    private boolean logDefaultZip;
+    private boolean logCustomNew;
+    private boolean logCustomZip;
+    private String logCustomPath;
+    private String logCustomName;
 
     //  ============================================== //
     //         Lottery Settings                        //
     //  ============================================== //
     private boolean lottery;
+    private boolean lotteryLog;
+    private boolean lotteryLogNew;
+    private boolean lotteryLogZip;
     private Map<String, Map<List<String>, Double>> lotteryProp;
 
 
@@ -33,17 +42,26 @@ public class ConfigPath {
     }
 
     private void setupGeneral() {
-        ConfigurationSection cmdConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("General.Custom-Commands");
+        logDefaultZip = ConfigHandler.getConfig("config.yml").getBoolean("General.Custom-Commands.Settings.Log.Default.To-Zip");
+        logDefaultNew = ConfigHandler.getConfig("config.yml").getBoolean("General.Custom-Commands.Settings.Log.Default.New-File");
+        logCustomNew = ConfigHandler.getConfig("config.yml").getBoolean("General.Custom-Commands.Settings.Log.Custom.New-File");
+        logCustomZip = ConfigHandler.getConfig("config.yml").getBoolean("General.Custom-Commands.Settings.Log.Custom.To-Zip");
+        logCustomPath = ConfigHandler.getConfig("config.yml").getString("General.Custom-Commands.Settings.Log.Custom.Path");
+        logCustomName = ConfigHandler.getConfig("config.yml").getString("General.Custom-Commands.Settings.Log.Custom.Name");
+        ConfigurationSection cmdConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("General.Custom-Commands.Groups");
         if (cmdConfig != null) {
             customCmdProp = new HashMap<>();
             for (String group : cmdConfig.getKeys(false)) {
-                customCmdProp.put(group, ConfigHandler.getConfig("config.yml").getString("General.Custom-Commands." + group));
+                customCmdProp.put(group, ConfigHandler.getConfig("config.yml").getString("General.Custom-Commands.Groups." + group));
             }
         }
     }
 
     private void setupLottery() {
         lottery = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Enable");
+        lotteryLog = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Settings.Log.Enable");
+        lotteryLogNew = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Settings.Log.New-File");
+        lotteryLogZip = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Settings.Log.To-Zip");
         ConfigurationSection lotteryConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("Lottery.Groups");
         if (lotteryConfig != null) {
             lotteryProp = new HashMap<>();
@@ -76,12 +94,54 @@ public class ConfigPath {
         }
     }
 
+    //  ============================================== //
+    //         General Settings                        //
+    //  ============================================== //
     public Map<String, String> getCustomCmdProp() {
         return customCmdProp;
     }
 
+    public boolean isLogDefaultNew() {
+        return logDefaultNew;
+    }
+
+    public boolean isLogDefaultZip() {
+        return logDefaultZip;
+    }
+
+    public boolean isLogCustomNew() {
+        return logCustomNew;
+    }
+
+    public boolean isLogCustomZip() {
+        return logCustomZip;
+    }
+
+    public String getLogCustomName() {
+        return logCustomName;
+    }
+
+    public String getLogCustomPath() {
+        return logCustomPath;
+    }
+
+    //  ============================================== //
+    //         Lottery Settings                        //
+    //  ============================================== //
     public boolean isLottery() {
         return lottery;
+    }
+
+    public boolean isLotteryLog() {
+        return lotteryLog;
+    }
+
+    public boolean isLotteryLogNew() {
+        return lotteryLogNew;
+    }
+
+    public boolean isLotteryLogZip() {
+        return lotteryLogZip;
     }
 
     public Map<String, Map<List<String>, Double>> getLotteryProp() {

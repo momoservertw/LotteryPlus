@@ -2,14 +2,15 @@ name: LotteryPlus
 main: tw.momocraft.lotteryplus.LotteryPlus
 author: Momocraft
 api-version: 1.13
-version: 1.0.2
-description: Server utils.
-softdepend: [ Vault, PlaceHolderAPI ]
+version: 1.0.4
+description: Make your own capsule!
+softdepend: [Vault, PlaceHolderAPI]
 
 commands:
   lotteryplus:
     description: Displays main command menu.
     permission: lotteryplus.use
+    aliases: [ltp]
     usage: |
       /lotteryplus
 
@@ -20,8 +21,6 @@ permissions:
     children:
       lotteryplus.use: true
       LotteryPlus.command.*: true
-      LotteryPlus.bypass.*: true
-      LotteryPlus.drop.*: true
   LotteryPlus.use:
     description: Allows use of basic commands.
     default: true

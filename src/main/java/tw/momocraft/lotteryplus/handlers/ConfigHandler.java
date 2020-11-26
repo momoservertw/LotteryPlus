@@ -4,9 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import tw.momocraft.lotteryplus.Commands;
 import tw.momocraft.lotteryplus.LotteryPlus;
-import tw.momocraft.lotteryplus.utils.ConfigPath;
-import tw.momocraft.lotteryplus.utils.DependAPI;
-import tw.momocraft.lotteryplus.utils.TabComplete;
+import tw.momocraft.lotteryplus.utils.*;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -18,13 +16,19 @@ public class ConfigHandler {
     private static DependAPI depends;
     private static ConfigPath configPath;
     private static UpdateHandler updater;
+    private static Logger logger;
+    private static Zip ziper;
 
-    public static void generateData() {
+    public static void generateData(boolean reload) {
         genConfigFile("config.yml");
         setDepends(new DependAPI());
         sendUtilityDepends();
         setConfigPath(new ConfigPath());
-        setUpdater(new UpdateHandler());
+        if (!reload) {
+            setUpdater(new UpdateHandler());
+        }
+        setLogger(new Logger());
+        setZip(new Zip());
     }
 
     public static void registerEvents() {
@@ -87,7 +91,7 @@ public class ConfigHandler {
         File filePath = LotteryPlus.getInstance().getDataFolder();
         switch (fileName) {
             case "config.yml":
-                configVersion = 1;
+                configVersion = 2;
                 break;
         }
         getConfigData(filePath, fileName);
@@ -128,7 +132,7 @@ public class ConfigHandler {
         return configPath;
     }
 
-    public static boolean getDebugging() {
+    public static boolean isDebugging() {
         return ConfigHandler.getConfig("config.yml").getBoolean("Debugging");
     }
 
@@ -138,5 +142,21 @@ public class ConfigHandler {
 
     private static void setUpdater(UpdateHandler update) {
         updater = update;
+    }
+
+    private static void setLogger(Logger log) {
+        logger = log;
+    }
+
+    public static Logger getLogger() {
+        return logger;
+    }
+
+    private static void setZip(Zip zip) {
+        ziper = zip;
+    }
+
+    public static Zip getZip() {
+        return ziper;
     }
 }

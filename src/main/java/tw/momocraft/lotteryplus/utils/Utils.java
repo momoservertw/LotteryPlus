@@ -9,28 +9,91 @@ import org.bukkit.entity.Player;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 import tw.momocraft.lotteryplus.handlers.ServerHandler;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Utils {
+    public static boolean containsIgnoreCase(String string1, String string2) {
+        return string1 != null && string2 != null && string1.toLowerCase().contains(string2.toLowerCase());
+    }
+
+    public static boolean isInt(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static int getRandom(int lower, int upper) {
+        Random random = new Random();
+        return random.nextInt((upper - lower) + 1) + lower;
+    }
 
     public static String getRandomString(List<String> list) {
         return list.get(new Random().nextInt(list.size()));
     }
 
+    public static Integer returnInteger(String text) {
+        if (text == null) {
+            return null;
+        } else {
+            char[] characters = text.toCharArray();
+            Integer value = null;
+            boolean isPrevDigit = false;
+            for (char character : characters) {
+                if (!isPrevDigit) {
+                    if (Character.isDigit(character)) {
+                        isPrevDigit = true;
+                        value = Character.getNumericValue(character);
+                    }
+                } else {
+                    if (Character.isDigit(character)) {
+                        value = (value * 10) + Character.getNumericValue(character);
+                    } else {
+                        break;
+                    }
+                }
+            }
+            return value;
+        }
+    }
+
+    /**
+     * Converts a serialized location to a Location. Returns null if string is empty
+     *
+     * @param s - serialized location in format "world:x:y:z"
+     * @return Location
+     */
+    public static Location getLocationString(final String s) {
+        if (s == null || s.trim().equals("")) {
+            return null;
+        }
+        final String[] parts = s.split(":");
+        if (parts.length == 4) {
+            final World w = Bukkit.getServer().getWorld(parts[0]);
+            final int x = Integer.parseInt(parts[1]);
+            final int y = Integer.parseInt(parts[2]);
+            final int z = Integer.parseInt(parts[3]);
+            return new Location(w, x, y, z);
+        }
+        return null;
+    }
+
     private static String getNearbyPlayer(Player player, int range) {
         try {
             ArrayList<Entity> entities = (ArrayList<Entity>) player.getNearbyEntities(range, range, range);
-            ArrayList<Block> sightBlock = (ArrayList<Block>) player.getLineOfSight((Set<Material>) null, range);
-            ArrayList<Location> sight = new ArrayList<Location>();
-            for (int i = 0; i < sightBlock.size(); i++)
-                sight.add(sightBlock.get(i).getLocation());
-            for (int i = 0; i < sight.size(); i++) {
-                for (int k = 0; k < entities.size(); k++) {
-                    if (Math.abs(entities.get(k).getLocation().getX() - sight.get(i).getX()) < 1.3) {
-                        if (Math.abs(entities.get(k).getLocation().getY() - sight.get(i).getY()) < 1.5) {
-                            if (Math.abs(entities.get(k).getLocation().getZ() - sight.get(i).getZ()) < 1.3) {
-                                if (entities.get(k) instanceof Player) {
-                                    return entities.get(k).getName();
+            ArrayList<Block> sightBlock = (ArrayList<Block>) player.getLineOfSight(null, range);
+            ArrayList<Location> sight = new ArrayList<>();
+            for (Block block : sightBlock) sight.add(block.getLocation());
+            for (Location location : sight) {
+                for (Entity entity : entities) {
+                    if (Math.abs(entity.getLocation().getX() - location.getX()) < 1.3) {
+                        if (Math.abs(entity.getLocation().getY() - location.getY()) < 1.5) {
+                            if (Math.abs(entity.getLocation().getZ() - location.getZ()) < 1.3) {
+                                if (entity instanceof Player) {
+                                    return entity.getName();
                                 }
                             }
                         }
@@ -44,17 +107,44 @@ public class Utils {
     }
 
     public static String translateLayout(String input, Player player) {
-        String playerName = "EXEMPT";
-        if (player != null) {
-            playerName = player.getName();
-        }
         if (player != null && !(player instanceof ConsoleCommandSender)) {
+            String playerName = player.getName();
+            // %player%
             try {
                 input = input.replace("%player%", playerName);
             } catch (Exception e) {
                 ServerHandler.sendDebugTrace(e);
             }
+            // %server_name%
+            try {
+                input = input.replace("%server_name%", Bukkit.getServer().getName());
+            } catch (Exception e) {
+                ServerHandler.sendDebugTrace(e);
+            }
+            // %player_world%, %player_location%, %player_location%, %player_loc%, %player_loc_x%, %player_loc_y%, %player_loc_z%,
+            if (input.contains("%player_world%") || input.contains("%player_loc%") || input.contains("%player_loc_x%")
+                    || input.contains("%player_loc_y%") || input.contains("%player_loc_z%")) {
+                try {
+                    Location loc = player.getLocation();
+                    input = input.replace("%player_world%", loc.getWorld().getName())
+                            .replace("%player_loc%", loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ())
+                            .replace("%player_loc_x%", String.valueOf(loc.getBlockX()))
+                            .replace("%player_loc_y%", String.valueOf(loc.getBlockY()))
+                            .replace("%player_loc_z%", String.valueOf(loc.getBlockZ()));
+                } catch (Exception e) {
+                    ServerHandler.sendDebugTrace(e);
+                }
+            }
+            // %player_interact%
+            if (input.contains("%player_interact%")) {
+                try {
+                    input = input.replace("%player_interact%", getNearbyPlayer(player, 3));
+                } catch (Exception e) {
+                    ServerHandler.sendDebugTrace(e);
+                }
+            }
         }
+        // %player% => CONSOLE
         if (player == null) {
             try {
                 input = input.replace("%player%", "CONSOLE");
@@ -62,9 +152,15 @@ public class Utils {
                 ServerHandler.sendDebugTrace(e);
             }
         }
+        // %localtime_time% =>
         try {
-            // %random_number%500%
-            if (input.contains("%random_number%")) {
+            input = input.replace("%localtime_time%", new SimpleDateFormat("YYYY/MM/dd HH:mm:ss").format(new Date()));
+        } catch (Exception e) {
+            ServerHandler.sendDebugTrace(e);
+        }
+        // %random_number%500%
+        if (input.contains("%random_number%")) {
+            try {
                 String[] arr = input.split("%");
                 List<Integer> list = new ArrayList<>();
                 for (int i = 0; i < arr.length; i++) {
@@ -75,12 +171,12 @@ public class Utils {
                 for (int max : list) {
                     input = input.replace("%random_number%" + max + "%", String.valueOf(new Random().nextInt(max)));
                 }
+            } catch (Exception e) {
+                ServerHandler.sendDebugTrace(e);
             }
-        } catch (Exception e) {
-            ServerHandler.sendDebugTrace(e);
         }
-        try {
-            // %random_player%
+        // %random_player%
+        if (input.contains("%random_player%")) {
             try {
                 List<Player> playerList = new ArrayList(Bukkit.getOnlinePlayers());
                 String randomPlayer = playerList.get(new Random().nextInt(playerList.size())).getName();
@@ -88,19 +184,16 @@ public class Utils {
             } catch (Exception e) {
                 ServerHandler.sendDebugTrace(e);
             }
-        } catch (Exception e) {
-            ServerHandler.sendDebugTrace(e);
         }
+        // Translate color codes.
         input = ChatColor.translateAlternateColorCodes('&', input);
+        // Translate PlaceHolderAPI's placeholders.
         if (ConfigHandler.getDepends().PlaceHolderAPIEnabled()) {
             try {
-                try {
-                    return PlaceholderAPI.setPlaceholders(player, input);
-                } catch (NoSuchFieldError e) {
-                    ServerHandler.sendDebugMessage("Error has occured when setting the PlaceHolder " + e.getMessage() + ", if this issue persits contact the developer of PlaceholderAPI.");
-                    return input;
-                }
-            } catch (Exception ignored) {
+                return PlaceholderAPI.setPlaceholders(player, input);
+            } catch (NoSuchFieldError e) {
+                ServerHandler.sendDebugMessage("Error has occurred when setting the PlaceHolder " + e.getMessage() + ", if this issue persist contact the developer of PlaceholderAPI.");
+                return input;
             }
         }
         return input;
@@ -111,8 +204,8 @@ public class Utils {
      * High -> Low
      *
      * @param map the input map.
-     * @param <K>
-     * @param <V>
+     * @param <K> key
+     * @param <V> value
      * @return the sorted map.
      */
     public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
@@ -131,8 +224,8 @@ public class Utils {
      * Low -> High
      *
      * @param map the input map.
-     * @param <K>
-     * @param <V>
+     * @param <K> key
+     * @param <V> value
      * @return the sorted map.
      */
     public static <K, V extends Comparable<? super V>> Map<K, V> sortByValueLow(Map<K, V> map) {
@@ -148,6 +241,5 @@ public class Utils {
 
     public static String translateColorCode(String input) {
         return ChatColor.translateAlternateColorCodes('&', input);
-
     }
 }

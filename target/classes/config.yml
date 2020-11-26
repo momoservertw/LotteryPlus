@@ -1,19 +1,37 @@
 # --{ =-=-=-=-=-=-=-=-=-= LotteryPlus's Configuration Settings, by Momocraft =-=-=-=-=-=-=-=-=-= }--
 # Wiki: https://github.com/momoservertw/LotteryPlus/wiki
-Config-Version: 1
+Config-Version: 2
 Check-Updates: true
 Debugging: false
 
 General:
-  # - "custom: cgl, Lottery ticket, Jackpot, $10,000"
+  # To send frequently used commands with placeholders.
+  # More information: https://github.com/momoservertw/LotteryPlus/wiki/Custom-Command
   Custom-Commands:
-    reward: "message: &6&lReward&c✤ &f%cmd_arg1%"
-    awards: "message: &d✧ &f%cmd_arg1% &d✧"
-    cgl: "broadcast: &6Congratulate &e%player% &6use &f%cmd_arg1% &8- &6Get the %cmd_arg2% &7<&f%cmd_arg3%&7>"
-    money: "console: money give %player% %cmd_arg1%"
+    Settings:
+      Log:
+        Default:
+          # Creating new file if the modified date is difference.
+          New-File: true
+          To-Zip: true
+        Custom:
+          New-File: false
+          To-Zip: true
+          Path: "plugin//CustomLogs"
+          Name: "latest"
+    Groups:
+      reward: "message: &6&lReward&c✤ &f%cmd_arg1%"
+      awards: "message: &d✧ &f%cmd_arg1% &d✧"
+      cgl: "broadcast: &6Congratulate &e%player% &6use &f%cmd_arg1% &8- &6Get the %cmd_arg2% &7<&f%cmd_arg3%&7>"
+      money: "console: money give %player% %cmd_arg1%"
 
 Lottery:
   Enable: true
+  Settings:
+    Log:
+      Enable: true
+      New-File: false
+      To-Zip: true
   Groups:
     ticket:
       Enable: true
@@ -21,30 +39,30 @@ Lottery:
         Enable: true
         Chance: 0.5
         Commands:
-          - "message: &6&lReward&c✤ &fNormal award;console: give %player% IRON_INGOT 16"
-          - "message: &6&lReward&c✤ &fNormal award;console: give %player% GOLD_INGOT 8"
-          - "message: &6&lReward&c✤ &fNormal award;console: money give %player% %random_number%500%"
+          - "custom: awards, Normal award;console: give %player% IRON_INGOT 16;"
+          - "custom: awards, Normal award;console: give %player% GOLD_INGOT 8"
+          - "custom: awards, Normal award;console: money give %player% %random_number%500%"
       Rare:
         Enable: true
         Chance: 0.375
         Commands:
-          - "message: &6&lReward&c✤ &fNormal award;console: give %player% IRON_INGOT 32"
-          - "message: &6&lReward&c✤ &fNormal award;console: give %player% GOLD_INGOT 16"
-          - "message: &6&lReward&c✤ &fRare award;console: money give %player% 1000"
+          - "custom: awards, Rare award;console: give %player% IRON_INGOT 32"
+          - "custom: awards, Rare award;console: give %player% GOLD_INGOT 16"
+          - "custom: awards, Rare award;console: money give %player% 1000"
       Super-Rare:
         Enable: true
         Chance: 0.06
         Commands:
-          - "message: &6&lReward&c✤ &fNormal award;console: give %player% IRON_INGOT 64"
-          - "message: &6&lReward&c✤ &fNormal award;console: give %player% GOLD_INGOT 32"
-          - "message: &6&lReward&c✤ &fSuper Rare award;console: money give %player% 3000"
+          - "custom: awards, Super Rare award;console: give %player% IRON_INGOT 64"
+          - "custom: awards, Super Rare award;console: give %player% GOLD_INGOT 32"
+          - "custom: awards, Super Rare award;console: money give %player% 3000"
       Ultra-Rare:
         Enable: true
         Chance: 0.03
         Commands:
-          - "message: &6&lReward&c✤ &fNormal award;console: give %player% DIAMOND 1"
-          - "message: &6&lReward&c✤ &fNormal award;console: give %player% GOLD_INGOT 64"
-          - "message: &6&lReward&c✤ &fUltra Rare award;console: money give %player% 10000"
+          - "custom: awards, Ultra Rare award;console: give %player% DIAMOND 1"
+          - "custom: awards, Ultra Rare award;console: give %player% GOLD_INGOT 64"
+          - "custom: awards, Ultra Rare award;console: money give %player% 10000"
     head_random:
       Enable: true
       online:
