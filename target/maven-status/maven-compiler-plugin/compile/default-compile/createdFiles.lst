@@ -8,7 +8,6 @@ tw\momocraft\lotteryplus\utils\Utils.class
 tw\momocraft\lotteryplus\handlers\PermissionsHandler.class
 tw\momocraft\lotteryplus\utils\TabComplete.class
 tw\momocraft\lotteryplus\Commands.class
-tw\momocraft\lotteryplus\utils\Language$Lang.class
 tw\momocraft\lotteryplus\LotteryPlus.class
 tw\momocraft\lotteryplus\utils\VaultAPI.class
 tw\momocraft\lotteryplus\handlers\UpdateHandler.class

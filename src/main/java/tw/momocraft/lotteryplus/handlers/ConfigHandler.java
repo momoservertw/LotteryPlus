@@ -34,12 +34,11 @@ public class ConfigHandler {
     public static void registerEvents() {
         LotteryPlus.getInstance().getCommand("LotteryPlus").setExecutor(new Commands());
         LotteryPlus.getInstance().getCommand("LotteryPlus").setTabCompleter(new TabComplete());
-
     }
 
     private static void sendUtilityDepends() {
         ServerHandler.sendConsoleMessage("&fHooked [ &e"
-                + (getDepends().getVault().vaultEnabled() ? "Vault, " : "")
+                + (getDepends().VaultEnabled() ? "Vault, " : "")
                 + (getDepends().PlaceHolderAPIEnabled() ? "PlaceHolderAPI, " : "")
                 + "&f]");
     }
@@ -61,17 +60,17 @@ public class ConfigHandler {
         return getPath(fileName, file, false);
     }
 
-    private static FileConfiguration getConfigData(File filePath, String fileName) {
+    private static void getConfigData(File filePath, String fileName) {
         File file = new File(filePath, fileName);
         if (!(file).exists()) {
             try {
                 LotteryPlus.getInstance().saveResource(fileName, false);
             } catch (Exception e) {
                 ServerHandler.sendErrorMessage("&cCannot save " + fileName + " to disk!");
-                return null;
+                return;
             }
         }
-        return getPath(fileName, file, true);
+        getPath(fileName, file, true);
     }
 
     private static YamlConfiguration getPath(String fileName, File file, boolean saveData) {
@@ -87,16 +86,16 @@ public class ConfigHandler {
 
     private static void genConfigFile(String fileName) {
         String[] fileNameSlit = fileName.split("\\.(?=[^\\.]+$)");
-        int configVersion = 0;
+        int configVer = 0;
         File filePath = LotteryPlus.getInstance().getDataFolder();
         switch (fileName) {
             case "config.yml":
-                configVersion = 2;
+                configVer = 2;
                 break;
         }
         getConfigData(filePath, fileName);
         File File = new File(filePath, fileName);
-        if (File.exists() && getConfig(fileName).getInt("Config-Version") != configVersion) {
+        if (File.exists() && getConfig(fileName).getInt("Config-Version") != configVer) {
             if (LotteryPlus.getInstance().getResource(fileName) != null) {
                 LocalDateTime currentDate = LocalDateTime.now();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
@@ -122,7 +121,6 @@ public class ConfigHandler {
     private static void setDepends(DependAPI depend) {
         depends = depend;
     }
-
 
     private static void setConfigPath(ConfigPath configPath) {
         ConfigHandler.configPath = configPath;

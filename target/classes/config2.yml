@@ -637,6 +637,30 @@ Lottery:
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 100代幣, 腐化 寵物技能 學習書;console: ij get petskill_decay %player%"
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 100代幣, 溫馴 寵物技能 學習書;console: ij get petskill_mount %player%"
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 100代幣, 輕盈 寵物技能 學習書;console: ij get petskill_lithe %player%"
+    # 隨機生物怪召喚書 兌換券
+    SM_BD:
+      Enable: true
+      shop:
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: cgl, 生日怪召喚書 兌換券, , 小草生日怪 召喚書;console: ij get SM_yoyo880603 %player%"
+          - "custom: cgl, 生日怪召喚書 兌換券, , 忒忒生日怪 召喚書;console: ij get SM_PTL_Una %player%"
+          - "custom: cgl, 生日怪召喚書 兌換券, , 呱呱生日怪 召喚書;console: ij get SM_Magic1412 %player%"
+          - "custom: cgl, 生日怪召喚書 兌換券, , 紫雲生日怪 召喚書;console: ij get SM_Zi_Shen_OuO %player%"
+          - "custom: cgl, 生日怪召喚書 兌換券, , 獅子魚生日怪 召喚書;console: ij get SM_Matoo_chu %player%"
+    # 隨機生物怪召喚書 兌換券
+    SM_HW:
+      Enable: true
+      shop:
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: cgl, 惡魔召喚書 兌換券, , 帕咪 召喚書;console: ij get SM_Zombie1 %player%"
+          - "custom: cgl, 惡魔召喚書 兌換券, , 黛咪 召喚書;console: ij get SM_Zombie2 %player%"
+          - "custom: cgl, 惡魔召喚書 兌換券, , 傑恩 召喚書;console: ij get SM_Zombie3 %player%"
+          - "custom: cgl, 惡魔召喚書 兌換券, , 小丑 召喚書;console: ij get SM_Zombie4 %player%"
+          - "custom: cgl, 惡魔召喚書 兌換券, , 人面鬼 召喚書;console: ij get SM_Zombie5 %player%"
 
 Message:
   prefix: '&f'
