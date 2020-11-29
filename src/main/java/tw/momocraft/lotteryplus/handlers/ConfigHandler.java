@@ -41,6 +41,13 @@ public class ConfigHandler {
                 + (getDepends().VaultEnabled() ? "Vault, " : "")
                 + (getDepends().PlaceHolderAPIEnabled() ? "PlaceHolderAPI, " : "")
                 + "&f]");
+        /*
+        if (ConfigHandler.getDepends().ResidenceEnabled()) {
+            if (ConfigHandler.getConfigPath().isSpawnResFlag()) {
+                FlagPermissions.addFlag("spawnbypass");
+            }
+        }
+         */
     }
 
 

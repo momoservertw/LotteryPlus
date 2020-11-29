@@ -4,9 +4,9 @@ import org.bukkit.Bukkit;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 
 public class DependAPI {
-    private boolean PlaceHolderAPI = false;
-    private boolean Vault = false;
     private VaultAPI vaultApi;
+    private boolean Vault = false;
+    private boolean PlaceHolderAPI = false;
 
     public DependAPI() {
         if (ConfigHandler.getConfig("config.yml").getBoolean("General.Settings.Features.Hook.Vault")) {

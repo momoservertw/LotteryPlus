@@ -2,7 +2,7 @@ name: LotteryPlus
 main: tw.momocraft.lotteryplus.LotteryPlus
 author: Momocraft
 api-version: 1.13
-version: 1.0.6
+version: 1.0.7
 description: Make your own capsule!
 softdepend: [Vault, PlaceHolderAPI]
 
@@ -21,22 +21,38 @@ permissions:
     children:
       lotteryplus.use: true
       LotteryPlus.command.*: true
-  LotteryPlus.use:
+  lotteryplus.use:
     description: Allows use of basic commands.
     default: true
-  LotteryPlus.command.*:
+  lotteryplus.command.*:
     description: Allows use all commands.
     default: op
     children:
-      LotteryPlus.command.reload: true
-      LotteryPlus.command.version: true
-      LotteryPlus.command.lottery: true
-  LotteryPlus.command.reload:
+      lotteryplus.command.reload: true
+      lotteryplus.command.version: true
+      lotteryplus.command.lottery: true
+  lotteryplus.command.reload:
     description: Allows use of /LotteryPlus command reload.
     default: op
-  LotteryPlus.command.version:
+  lotteryplus.command.version:
     description: Allows use of command /LotteryPlus version.
     default: op
-  LotteryPlus.command.lottery:
+  lotteryplus.command.lottery:
     description: Allows use of command /LotteryPlus lottery.
+    default: op
+  lotteryplus.reward.*:
+    description: Change the reward chance for lottery.
+    default: op
+    children:
+      lotteryplus.reward.1: true
+      lotteryplus.reward.2: true
+      lotteryplus.reward.3: true
+  lotteryplus.reward.1:
+    description: Change the reward chance for lottery.
+    default: op
+  lotteryplus.reward.2:
+    description: Change the reward chance for lottery.
+    default: op
+  lotteryplus.reward.3:
+    description: Change the reward chance for lottery.
     default: op

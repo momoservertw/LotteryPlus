@@ -52,6 +52,9 @@ Lottery:
       Rare:
         Enable: true
         Chance: 0.375
+        Chance-Groups:
+          vip: 0.4
+          mvp: 0.3
         Commands:
           - "custom: awards, Rare award;console: give %player% IRON_INGOT 32"
           - "custom: awards, Rare award;console: give %player% GOLD_INGOT 16"
@@ -59,6 +62,9 @@ Lottery:
       Super-Rare:
         Enable: true
         Chance: 0.06
+        Chance-Groups:
+          vip: 0.4
+          mvp: 0.3
         Commands:
           - "custom: awards, Super Rare award;console: give %player% IRON_INGOT 64"
           - "custom: awards, Super Rare award;console: give %player% GOLD_INGOT 32"
@@ -74,12 +80,21 @@ Lottery:
       Enable: true
       online:
         Enable: true
-        Chance: 20
+        Chance:
+          # Default group "0" (Necessary)
+          0: 0.70
+          # VIP
+          1: 0.65
+          # VVIP
+          2: 0.60
         Commands:
           - 'custom: cgl, Random Head, Online Players, Player Head;console: give %player% minecraft:player_head{SkullOwner:"%random_player%"} 1'
       staff:
         Enable: true
-        Chance: 6
+        Chance:
+          default: 0.25
+          vip: 0.275
+          mvp: 0.3
         Commands:
           - 'custom: cgl, Random Head, Staff, yoyo880603s Head;console: give %player% minecraft:player_head{SkullOwner:"yoyo880603"} 1'
           - 'custom: cgl, Random Head, Staff, PTL_piepiepigs Head;console: give %player% minecraft:player_head{SkullOwner:"PTL_piepiepig"} 1'
@@ -87,7 +102,10 @@ Lottery:
           - 'custom: cgl, Random Head, Staff, PowLim_Deitys Head;console: give %player% minecraft:player_head{SkullOwner:"PowLim_Deity"} 1'
       owner:
         Enable: true
-        Chance: 2
+        Chance:
+          default: 0.05
+          vip: 0.075
+          mvp: 0.1
         Commands:
           - 'custom: cgl, Random Head, Server Owner, AllByes Head;console: give %player% minecraft:player_head{SkullOwner:"AllBye"} 1'
           - 'custom: cgl, Random Head, Server Owner, huangge0513s Head;console: give %player% minecraft:player_head{SkullOwner:"huangge0513"} 1'
