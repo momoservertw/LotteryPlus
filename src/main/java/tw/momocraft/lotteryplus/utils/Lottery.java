@@ -20,20 +20,21 @@ public class Lottery {
         // Get the group's property.
         List<LotteryMap> lotteryMaps = ConfigHandler.getConfigPath().getLotteryProp().get(group);
         if (lotteryMaps != null) {
-            double totalChance = 0;
             Map<List<String>, Double> rewardMap = new HashMap<>();
+            Map<String, Double> chanceMap;
+            List<Integer> permsList;
+            String chanceGroup;
             for (LotteryMap lotteryMap : lotteryMaps) {
-                Map<String, Double> chanceMap = lotteryMap.getChanceMap();
+                chanceMap = lotteryMap.getChanceMap();
                 // Checking player reward chance for this chance-group.
-                List<Integer> permsList = new ArrayList<>();
-                for (String key : chanceMap.keySet()) {
-                    if (PermissionsHandler.hasPermission(target, "lotteryplus.reward.*")
-                            || PermissionsHandler.hasPermission(target, "lotteryplus.reward." + key)) {
-                        permsList.add(Integer.parseInt(key));
+                permsList = new ArrayList<>();
+                for (String permGroup : chanceMap.keySet()) {
+                    if (PermissionsHandler.hasPermission(target, "lotteryplus.lottery.*")
+                            || PermissionsHandler.hasPermission(target, "lotteryplus.lottery." + permGroup)) {
+                        permsList.add(Integer.parseInt(permGroup));
                     }
                 }
                 // Set this chance-group's chance.
-                String chanceGroup;
                 if (!permsList.isEmpty()) {
                     // Get the highest group.
                     chanceGroup = Collections.max(permsList).toString();
@@ -41,15 +42,19 @@ public class Lottery {
                     chanceGroup = "0";
                 }
                 rewardMap.put(lotteryMap.getList(), chanceMap.get(chanceGroup));
-                totalChance += chanceMap.get(chanceGroup);
+            }
+            // Get to total chance.
+            double totalChance = 0;
+            for (Double chance : rewardMap.values()) {
+                totalChance += chance;
             }
             double randTotalChance = Math.random() * totalChance;
-            double value;
+            double chance;
             String command;
             for (List<String> key : rewardMap.keySet()) {
-                value = rewardMap.get(key);
+                chance = rewardMap.get(key);
                 // Compare the group chance with the randomly total chance.
-                if (randTotalChance <= value) {
+                if (randTotalChance <= chance) {
                     // Random execute a reward command from that group.
                     command = Utils.getRandomString(key);
 
@@ -62,7 +67,7 @@ public class Lottery {
                             new Throwable().getStackTrace()[0]);
                     return;
                 }
-                randTotalChance -= value;
+                randTotalChance -= chance;
             }
         } else {
             Language.sendLangMessage("Message.LotteryPlus.lotteryNotFound", sender);

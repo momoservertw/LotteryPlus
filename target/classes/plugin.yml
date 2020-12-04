@@ -21,6 +21,7 @@ permissions:
     children:
       lotteryplus.use: true
       LotteryPlus.command.*: true
+      lotteryplus.lottery.*: true
   lotteryplus.use:
     description: Allows use of basic commands.
     default: true
@@ -40,19 +41,19 @@ permissions:
   lotteryplus.command.lottery:
     description: Allows use of command /LotteryPlus lottery.
     default: op
-  lotteryplus.reward.*:
-    description: Change the reward chance for lottery.
+  lotteryplus.lottery.*:
+    description: To get the highest lottery chance.
     default: op
     children:
-      lotteryplus.reward.1: true
-      lotteryplus.reward.2: true
-      lotteryplus.reward.3: true
-  lotteryplus.reward.1:
-    description: Change the reward chance for lottery.
+      lotteryplus.lottery.1: true
+      lotteryplus.lottery.2: true
+      lotteryplus.lottery.3: true
+  lotteryplus.lottery.1:
+    description: To get the higher lottery chance.
     default: op
-  lotteryplus.reward.2:
-    description: Change the reward chance for lottery.
+  lotteryplus.lottery.2:
+    description: To get the higher lottery chance.
     default: op
-  lotteryplus.reward.3:
-    description: Change the reward chance for lottery.
+  lotteryplus.lottery.3:
+    description: To get the higher lottery chance.
     default: op

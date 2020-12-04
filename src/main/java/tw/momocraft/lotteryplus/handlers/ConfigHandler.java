@@ -22,7 +22,6 @@ public class ConfigHandler {
     public static void generateData(boolean reload) {
         genConfigFile("config.yml");
         setDepends(new DependAPI());
-        sendUtilityDepends();
         setConfigPath(new ConfigPath());
         if (!reload) {
             setUpdater(new UpdateHandler());
@@ -30,26 +29,6 @@ public class ConfigHandler {
         setLogger(new Logger());
         setZip(new Zip());
     }
-
-    public static void registerEvents() {
-        LotteryPlus.getInstance().getCommand("LotteryPlus").setExecutor(new Commands());
-        LotteryPlus.getInstance().getCommand("LotteryPlus").setTabCompleter(new TabComplete());
-    }
-
-    private static void sendUtilityDepends() {
-        ServerHandler.sendConsoleMessage("&fHooked [ &e"
-                + (getDepends().VaultEnabled() ? "Vault, " : "")
-                + (getDepends().PlaceHolderAPIEnabled() ? "PlaceHolderAPI, " : "")
-                + "&f]");
-        /*
-        if (ConfigHandler.getDepends().ResidenceEnabled()) {
-            if (ConfigHandler.getConfigPath().isSpawnResFlag()) {
-                FlagPermissions.addFlag("spawnbypass");
-            }
-        }
-         */
-    }
-
 
     public static FileConfiguration getConfig(String fileName) {
         File filePath = LotteryPlus.getInstance().getDataFolder();
@@ -97,7 +76,7 @@ public class ConfigHandler {
         File filePath = LotteryPlus.getInstance().getDataFolder();
         switch (fileName) {
             case "config.yml":
-                configVer = 2;
+                configVer = 3;
                 break;
         }
         getConfigData(filePath, fileName);

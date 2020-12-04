@@ -5,6 +5,7 @@ tw\momocraft\lotteryplus\utils\CustomCommands.class
 tw\momocraft\lotteryplus\utils\Logger.class
 tw\momocraft\lotteryplus\handlers\ServerHandler.class
 tw\momocraft\lotteryplus\utils\Utils.class
+tw\momocraft\lotteryplus\listeners\BlockDropItem.class
 tw\momocraft\lotteryplus\handlers\PermissionsHandler.class
 tw\momocraft\lotteryplus\utils\TabComplete.class
 tw\momocraft\lotteryplus\Commands.class
@@ -13,6 +14,7 @@ tw\momocraft\lotteryplus\utils\LotteryMap.class
 tw\momocraft\lotteryplus\utils\VaultAPI.class
 tw\momocraft\lotteryplus\handlers\UpdateHandler.class
 tw\momocraft\lotteryplus\handlers\PlayerHandler.class
+tw\momocraft\lotteryplus\handlers\RegisterHandler.class
 tw\momocraft\lotteryplus\utils\DependAPI.class
 tw\momocraft\lotteryplus\handlers\ConfigHandler.class
 tw\momocraft\lotteryplus\utils\ConfigPath.class

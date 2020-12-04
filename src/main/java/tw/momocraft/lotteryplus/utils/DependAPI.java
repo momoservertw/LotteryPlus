@@ -2,6 +2,7 @@ package tw.momocraft.lotteryplus.utils;
 
 import org.bukkit.Bukkit;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
+import tw.momocraft.lotteryplus.handlers.ServerHandler;
 
 public class DependAPI {
     private VaultAPI vaultApi;
@@ -18,6 +19,22 @@ public class DependAPI {
         if (ConfigHandler.getConfig("config.yml").getBoolean("General.Settings.Features.Hook.PlaceHolderAPI")) {
             this.setPlaceHolderStatus(Bukkit.getServer().getPluginManager().getPlugin("PlaceHolderAPI") != null);
         }
+        sendUtilityDepends();
+    }
+
+    private void sendUtilityDepends() {
+        ServerHandler.sendConsoleMessage("&fHooked [ &e"
+                + (VaultEnabled() ? "Vault, " : "")
+                + (PlaceHolderAPIEnabled() ? "PlaceHolderAPI, " : "")
+                + "&f]");
+
+        /*
+        if (ResidenceEnabled()) {
+            if (ConfigHandler.getConfigPath().isSpawnResFlag()) {
+                FlagPermissions.addFlag("spawnbypass");
+            }
+        }
+         */
     }
 
     public boolean VaultEnabled() {
@@ -27,6 +44,7 @@ public class DependAPI {
     public boolean PlaceHolderAPIEnabled() {
         return this.PlaceHolderAPI;
     }
+
 
     public void setVaultStatus(boolean bool) {
         this.Vault = bool;

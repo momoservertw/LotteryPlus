@@ -6,21 +6,22 @@ import java.util.Map;
 public class LotteryMap {
 
     private List<String> list;
-    private Map<String, Double> groupMap;
+    private Map<String, Double> chanceMap;
 
     public List<String> getList() {
         return list;
     }
 
     public Map<String, Double> getChanceMap() {
-        return groupMap;
+        return chanceMap;
     }
 
-    public void setGroupMap(Map<String, Double> groupMap) {
-        this.groupMap = groupMap;
+    public void setChanceMap(Map<String, Double> chanceMap) {
+        this.chanceMap = chanceMap;
     }
 
     public void setList(List<String> list) {
         this.list = list;
     }
+
 }

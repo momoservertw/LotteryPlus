@@ -1,6 +1,6 @@
 # --{ =-=-=-=-=-=-=-=-=-= LotteryPlus's Configuration Settings, by Momocraft =-=-=-=-=-=-=-=-=-= }--
 # Wiki: https://github.com/momoservertw/LotteryPlus/wiki
-Config-Version: 2
+Config-Version: 3
 Check-Updates: true
 Debugging: false
 
@@ -32,9 +32,16 @@ General:
       cgl: "broadcast: &6Congratulate &e%player% &6use &f%cmd_arg1% &8- &6Get the %cmd_arg2% &7<&f%cmd_arg3%&7>"
       money: "console: money give %player% %cmd_arg1%"
 
+# Randomly select rewards and set rarity for them.
+# Recommend use with ItemJoin to create one use item.
+# Or using with menu plugins like ChestCommands or BossShop.
+# More information: https://github.com/momoservertw/LotteryPlus/wiki/Lottery
 Lottery:
-  Enable: true
+  Enable: false
   Settings:
+    Features:
+      # Executing lottery when player break a lucky block.
+      Lucky-Block: false
     Log:
       Enable: true
       New-File: false
@@ -52,9 +59,6 @@ Lottery:
       Rare:
         Enable: true
         Chance: 0.375
-        Chance-Groups:
-          vip: 0.4
-          mvp: 0.3
         Commands:
           - "custom: awards, Rare award;console: give %player% IRON_INGOT 32"
           - "custom: awards, Rare award;console: give %player% GOLD_INGOT 16"
@@ -62,9 +66,6 @@ Lottery:
       Super-Rare:
         Enable: true
         Chance: 0.06
-        Chance-Groups:
-          vip: 0.4
-          mvp: 0.3
         Commands:
           - "custom: awards, Super Rare award;console: give %player% IRON_INGOT 64"
           - "custom: awards, Super Rare award;console: give %player% GOLD_INGOT 32"
@@ -80,21 +81,21 @@ Lottery:
       Enable: true
       online:
         Enable: true
+        # Permission: lotteryplus.lottery.GROUP
         Chance:
-          # Default group "0" (Necessary)
+          # The default group which player doesn't have permission. (Necessary)
           0: 0.70
-          # VIP
+          # The higher group will be chosen if player has multiple groups.
           1: 0.65
-          # VVIP
           2: 0.60
         Commands:
           - 'custom: cgl, Random Head, Online Players, Player Head;console: give %player% minecraft:player_head{SkullOwner:"%random_player%"} 1'
       staff:
         Enable: true
         Chance:
-          default: 0.25
-          vip: 0.275
-          mvp: 0.3
+          0: 0.25
+          1: 0.275
+          2: 0.3
         Commands:
           - 'custom: cgl, Random Head, Staff, yoyo880603s Head;console: give %player% minecraft:player_head{SkullOwner:"yoyo880603"} 1'
           - 'custom: cgl, Random Head, Staff, PTL_piepiepigs Head;console: give %player% minecraft:player_head{SkullOwner:"PTL_piepiepig"} 1'
@@ -103,12 +104,28 @@ Lottery:
       owner:
         Enable: true
         Chance:
-          default: 0.05
-          vip: 0.075
-          mvp: 0.1
+          0: 0.05
+          1: 0.075
+          2: 0.1
         Commands:
           - 'custom: cgl, Random Head, Server Owner, AllByes Head;console: give %player% minecraft:player_head{SkullOwner:"AllBye"} 1'
           - 'custom: cgl, Random Head, Server Owner, huangge0513s Head;console: give %player% minecraft:player_head{SkullOwner:"huangge0513"} 1'
+    lucky_block:
+      Enable: true
+      Settings:
+        Lucky-Block:
+          # Executing lottery when player break a skull with this textures.
+          Skull-Textures: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzlkMWVmNGMxNTNiZGU4YTdiMDhmOTJjMGM0Yjc5ZmRjMmZjYjU3ZjgzYTMxYTgyMjljNjJhYzc1ZjFmMGEzMSJ9fX0="
+      Normal:
+        Enable: true
+        Chance: 0.8
+        Commands:
+          - "custom: awards, Normal award;console: give %player% IRON_INGOT 1;"
+      Rare:
+        Enable: true
+        Chance: 0.3
+        Commands:
+          - "custom: awards, Rare award;console: give %player% IRON_INGOT 2"
 
 Message:
   prefix: '&f'

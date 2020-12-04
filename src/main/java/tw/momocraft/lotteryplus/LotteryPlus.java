@@ -2,6 +2,7 @@ package tw.momocraft.lotteryplus;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
+import tw.momocraft.lotteryplus.handlers.RegisterHandler;
 import tw.momocraft.lotteryplus.handlers.ServerHandler;
 
 public class LotteryPlus extends JavaPlugin {
@@ -11,7 +12,7 @@ public class LotteryPlus extends JavaPlugin {
     public void onEnable() {
         instance = this;
         ConfigHandler.generateData(false);
-        ConfigHandler.registerEvents();
+        RegisterHandler.registerEvents();
         ServerHandler.sendConsoleMessage("&fhas been Enabled.");
     }
 

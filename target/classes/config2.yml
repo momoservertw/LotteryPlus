@@ -40,9 +40,16 @@ General:
       ij: "console: ij get %cmd_arg1% %player%"
       ij2: "console: ij get %cmd_arg1% %player% %cmd_arg2%"
 
+# Randomly select rewards and set rarity for them.
+# Recommend use with ItemJoin to create one use item.
+# Or using with menu plugins like ChestCommands or BossShop.
+# More information: https://github.com/momoservertw/LotteryPlus/wiki/Lottery
 Lottery:
   Enable: true
   Settings:
+    Features:
+      # Executing lottery when player break a lucky block.
+      Lucky-Block: true
     Log:
       Enable: true
       New-File: false
@@ -551,6 +558,10 @@ Lottery:
     # 黃金彩蛋
     egg1:
       Enable: true
+      Settings:
+        Lucky-Block:
+          # Executing lottery when player break a skull with this textures.
+          Skull-Textures: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTNlOGJiYzhkMTc0YWVjZDZiNDY4ODhmYTYzZjliYWRlMTRiMDQyZTVlMTcwNjMxMzlkNjdmOGUwMTYzYTM4In19fQ=="
       "1":
         Enable: true
         Chance: 10
