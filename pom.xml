@@ -6,7 +6,7 @@
 
     <groupId>momocraft.tw</groupId>
     <artifactId>LotteryPlus</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <build>
         <plugins>
             <plugin>
@@ -68,8 +68,24 @@
             <groupId>net.milkbowl.vault</groupId>
             <artifactId>Vault</artifactId>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/java/tw/momocraft/LotteryPlus/extra/VaultAPI.jar</systemPath>
+            <systemPath>${pom.basedir}/src/main/java/tw/momocraft/lotteryplus/extra/VaultAPI.jar</systemPath>
             <version>LATEST</version>
+        </dependency>
+        <!--PlayerPoints API-->
+        <dependency>
+            <groupId>org.black_ixx</groupId>
+            <artifactId>PlayerPoints</artifactId>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/src/main/java/tw/momocraft/lotteryplus/extra/PlayerPoints.jar</systemPath>
+            <version>LEGACY</version>
+        </dependency>
+        <!--GemsEconomy API-->
+        <dependency>
+            <groupId>me.GemsEconomy</groupId>
+            <artifactId>GemsEconomy</artifactId>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/src/main/java/tw/momocraft/lotteryplus/extra/GemsEconomy-4.9.jar</systemPath>
+            <version>LEGACY</version>
         </dependency>
         <!--PlaceholderAPI API-->
         <dependency>

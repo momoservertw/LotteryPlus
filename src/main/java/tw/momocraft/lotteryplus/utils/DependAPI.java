@@ -6,7 +6,12 @@ import tw.momocraft.lotteryplus.handlers.ServerHandler;
 
 public class DependAPI {
     private VaultAPI vaultApi;
+    private PlayerPointsAPI playerPointsApi;
+    private GEAPI gemsEconomyApi;
+
     private boolean Vault = false;
+    private boolean PlayerPoints = false;
+    private boolean GemsEconomy = false;
     private boolean PlaceHolderAPI = false;
 
     public DependAPI() {
@@ -16,15 +21,30 @@ public class DependAPI {
                 setVaultApi();
             }
         }
+        if (ConfigHandler.getConfig("config.yml").getBoolean("General.Settings.Features.Hook.PlayerPoints")) {
+            this.setPlayerPointsStatus(Bukkit.getServer().getPluginManager().getPlugin("PlayerPoints") != null);
+            if (PlayerPoints) {
+                setPlayerPointsApi();
+            }
+        }
+        if (ConfigHandler.getConfig("config.yml").getBoolean("General.Settings.Features.Hook.GemsEconomy")) {
+            this.setGemsEconomyStatus(Bukkit.getServer().getPluginManager().getPlugin("GemsEconomy") != null);
+            if (GemsEconomy) {
+                setGemsEconomyApi();
+            }
+        }
         if (ConfigHandler.getConfig("config.yml").getBoolean("General.Settings.Features.Hook.PlaceHolderAPI")) {
             this.setPlaceHolderStatus(Bukkit.getServer().getPluginManager().getPlugin("PlaceHolderAPI") != null);
         }
+
         sendUtilityDepends();
     }
 
     private void sendUtilityDepends() {
         ServerHandler.sendConsoleMessage("&fHooked [ &e"
                 + (VaultEnabled() ? "Vault, " : "")
+                + (PlayerPointsEnabled() ? "PlayerPoints, " : "")
+                + (GemsEconomyEnabled() ? "GemsEconomy, " : "")
                 + (PlaceHolderAPIEnabled() ? "PlaceHolderAPI, " : "")
                 + "&f]");
 
@@ -41,6 +61,14 @@ public class DependAPI {
         return this.Vault;
     }
 
+    public boolean PlayerPointsEnabled() {
+        return this.PlayerPoints;
+    }
+
+    public boolean GemsEconomyEnabled() {
+        return this.GemsEconomy;
+    }
+
     public boolean PlaceHolderAPIEnabled() {
         return this.PlaceHolderAPI;
     }
@@ -50,9 +78,18 @@ public class DependAPI {
         this.Vault = bool;
     }
 
+    private void setPlayerPointsStatus(boolean bool) {
+        this.PlayerPoints = bool;
+    }
+
+    private void setGemsEconomyStatus(boolean bool) {
+        this.GemsEconomy = bool;
+    }
+
     public void setPlaceHolderStatus(boolean bool) {
         this.PlaceHolderAPI = bool;
     }
+
 
     public VaultAPI getVaultApi() {
         return this.vaultApi;
@@ -60,5 +97,21 @@ public class DependAPI {
 
     private void setVaultApi() {
         vaultApi = new VaultAPI();
+    }
+
+    public PlayerPointsAPI getPlayerPointsApi() {
+        return this.playerPointsApi;
+    }
+
+    private void setPlayerPointsApi() {
+        playerPointsApi = new PlayerPointsAPI();
+    }
+
+    public GEAPI getGemsEconomyApi() {
+        return this.gemsEconomyApi;
+    }
+
+    private void setGemsEconomyApi() {
+        gemsEconomyApi = new GEAPI();
     }
 }

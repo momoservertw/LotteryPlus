@@ -14,6 +14,7 @@ import java.net.URLConnection;
  */
 public class UpdateHandler {
 
+    private final String plugin = "lotteryplus";
     private final int PROJECTID = 85995;
 
     private final String versionExact = LotteryPlus.getInstance().getDescription().getVersion();
@@ -32,12 +33,12 @@ public class UpdateHandler {
     /**
      * Checks to see if an update is required, notifying the console window and online op players.
      *
-     * @param sender  - The executor of the update checking.
+     * @param sender - The executor of the update checking.
      */
     public void checkUpdates(final CommandSender sender) {
         if (this.updateNeeded(sender) && this.updatesAllowed) {
             ServerHandler.sendMessage(sender, "&aNew version is available: " + "&e&lv" + this.latestVersion);
-            ServerHandler.sendMessage(sender, "&ehttps://www.spigotmc.org/resources/LotteryPlus.85995/history");
+            ServerHandler.sendMessage(sender, "&ehttps://www.spigotmc.org/resources/" + plugin + "." + PROJECTID + "/history");
         } else if (this.updatesAllowed) {
             ServerHandler.sendMessage(sender, "&fYou are up to date!");
         }
@@ -46,7 +47,7 @@ public class UpdateHandler {
     /**
      * Directly checks to see if the spigotmc host has an update available.
      *
-     * @param sender  - The executor of the update checking.
+     * @param sender - The executor of the update checking.
      * @return If an update is needed.
      */
     private boolean updateNeeded(final CommandSender sender) {

@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 import tw.momocraft.lotteryplus.handlers.PermissionsHandler;
 import tw.momocraft.lotteryplus.handlers.PlayerHandler;
-import tw.momocraft.lotteryplus.handlers.ServerHandler;
 import tw.momocraft.lotteryplus.utils.Language;
 import tw.momocraft.lotteryplus.utils.Lottery;
 
@@ -73,7 +72,7 @@ public class Commands implements CommandExecutor {
                         if (ConfigHandler.getConfigPath().isLottery()) {
                             Lottery.startLottery(sender, null, args[1]);
                         } else {
-                            ServerHandler.sendConsoleMessage("Lottery is Disabled.");
+                            Language.sendLangMessage("Message.featureDisabled", sender);
                         }
                     } else {
                         Language.sendLangMessage("Message.noPermission", sender);
@@ -82,7 +81,7 @@ public class Commands implements CommandExecutor {
                 }
             case 3:
                 if (args[0].equalsIgnoreCase("lottery")) {
-                    if (PermissionsHandler.hasPermission(sender, "lotteryplus.command.lottery")) {
+                    if (PermissionsHandler.hasPermission(sender, "lotteryplus.command.lottery.other")) {
                         if (ConfigHandler.getConfigPath().isLottery()) {
                             Player player = PlayerHandler.getPlayerString(args[2]);
                             if (player == null) {
@@ -93,7 +92,7 @@ public class Commands implements CommandExecutor {
                             }
                             Lottery.startLottery(sender, player, args[1]);
                         } else {
-                            ServerHandler.sendConsoleMessage("Lottery is Disabled.");
+                            Language.sendLangMessage("Message.featureDisabled", sender);
                         }
                     } else {
                         Language.sendLangMessage("Message.noPermission", sender);

@@ -11,6 +11,8 @@ General:
       Hook:
         Vault: true
         PlaceHolderAPI: true
+        PlayerPoints: true
+        GemsEconomy: true
   # The settings for custom commands.
   # More information: https://github.com/momoservertw/LotteryPlus/wiki/Custom-Command
   Custom-Commands:
@@ -79,6 +81,9 @@ Lottery:
           - "custom: awards, Ultra Rare award;console: money give %player% 10000"
     head_random:
       Enable: true
+      Price:
+        Type: money
+        Amount: 100
       online:
         Enable: true
         # Permission: lotteryplus.lottery.GROUP
@@ -128,16 +133,19 @@ Lottery:
           - "custom: awards, Rare award;console: give %player% IRON_INGOT 2"
 
 Message:
-  prefix: '&f'
+  prefix: '&d[LotteryPlus] &r'
   noPermission: '&cYou do not have permission to use that command!'
   configReload: '&aConfiguration(s) Reloaded!'
   unknownCommand: '&cUnknown command, See &e/LotteryPlus help &cfor a list of commands.'
   targetNotFound: '&cThe player &c%targetplayer% &ccould not be found!'
+  featureDisabled: "&cThe feature is disabled."
+  onlyPlayer: "&cThis command can only executing from player."
   LotteryPlus:
     Commands:
-      title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &d&lLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
-      help: "&a/lotteryplus help &8- &7This help menu."
-      reload: "&a/lotteryplus reload &8- &7Reloads config file."
+      title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &dLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
+      help: "&f/lotteryplus help &8- &7This help menu."
+      reload: "&f/lotteryplus reload &8- &7Reloads config file."
       version: "&f/lotteryplus version &8- &7Checks the plugin version and updates."
       lottery: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
+      lotteryOther: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
     lotteryNotFound: "&cThis lottery group doesn't exist."

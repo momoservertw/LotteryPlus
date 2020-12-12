@@ -2,9 +2,13 @@ package tw.momocraft.lotteryplus.utils;
 
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import tw.momocraft.lotteryplus.LotteryPlus;
 import tw.momocraft.lotteryplus.handlers.ServerHandler;
+
+import java.util.UUID;
 
 public class VaultAPI {
     private Economy econ = null;
@@ -43,5 +47,9 @@ public class VaultAPI {
 
     public Permission getPermissions() {
         return this.perms;
+    }
+
+    public double getBalance(UUID uuid) {
+        return econ.getBalance(Bukkit.getOfflinePlayer(uuid));
     }
 }

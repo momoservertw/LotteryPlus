@@ -3,7 +3,6 @@ package tw.momocraft.lotteryplus.utils;
 import javafx.util.Pair;
 import org.bukkit.configuration.ConfigurationSection;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
-import tw.momocraft.lotteryplus.handlers.ServerHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
