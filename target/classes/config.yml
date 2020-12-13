@@ -13,6 +13,31 @@ General:
         PlaceHolderAPI: true
         PlayerPoints: true
         GemsEconomy: true
+  # The settings for custom sounds.
+  # More information: https://github.com/momoservertw/SlimeChunkPlus/wiki/Custom-Sounds
+  Sounds:
+    Succeed:
+      Type: ENTITY_PLAYER_LEVELUP
+    Failed:
+      Type: ENTITY_SHULKER_HURT
+    SlimeJump:
+      Type: ENTITY_SLIME_JUMP
+      Loop:
+        Times: 8
+        Interval: 20
+  # The settings for custom particles.
+  # More information: https://github.com/momoservertw/SlimeChunkPlus/wiki/Custom-Particles
+  Particles:
+    Slime:
+      Type: SLIME
+      Amount: 3
+      Times: 8
+      Interval: 20
+    Flame:
+      Type: FLAME
+      Amount: 3
+      Times: 8
+      Interval: 20
   # The settings for custom commands.
   # More information: https://github.com/momoservertw/LotteryPlus/wiki/Custom-Command
   Custom-Commands:
@@ -51,6 +76,10 @@ Lottery:
   Groups:
     ticket:
       Enable: true
+      Settings:
+        Price:
+          Type: money
+          Amount: 100
       Normal:
         Enable: true
         Chance: 0.5
@@ -81,9 +110,6 @@ Lottery:
           - "custom: awards, Ultra Rare award;console: money give %player% 10000"
     head_random:
       Enable: true
-      Price:
-        Type: money
-        Amount: 100
       online:
         Enable: true
         # Permission: lotteryplus.lottery.GROUP
@@ -133,13 +159,14 @@ Lottery:
           - "custom: awards, Rare award;console: give %player% IRON_INGOT 2"
 
 Message:
-  prefix: '&d[LotteryPlus] &r'
-  noPermission: '&cYou do not have permission to use that command!'
-  configReload: '&aConfiguration(s) Reloaded!'
-  unknownCommand: '&cUnknown command, See &e/LotteryPlus help &cfor a list of commands.'
-  targetNotFound: '&cThe player &c%targetplayer% &ccould not be found!'
+  prefix: "&d[LotteryPlus] &r"
+  noPermission: "&cYou do not have permission to use that command!"
+  configReload: "&aConfiguration(s) Reloaded!"
+  unknownCommand: "&cUnknown command, See &e/LotteryPlus help &cfor a list of commands."
+  targetNotFound: "&cThe player &c%targetplayer% &ccould not be found!"
   featureDisabled: "&cThe feature is disabled."
   onlyPlayer: "&cThis command can only executing from player."
+  notEnoughMoney: "&cYou don't have enough %pricetype%! You need %pricetype%: %price%."
   LotteryPlus:
     Commands:
       title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &dLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
@@ -149,3 +176,4 @@ Message:
       lottery: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
       lotteryOther: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
     lotteryNotFound: "&cThis lottery group doesn't exist."
+    lotterySucceed: "&aSucceed lottery &e%group% &8- &7%pricetype%: %balance%"

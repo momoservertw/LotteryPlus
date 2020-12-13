@@ -102,7 +102,11 @@ public class Language {
                 .replace("%command%", langHolder[0])
                 .replace("%player%", langHolder[1])
                 .replace("%targetplayer%", langHolder[2])
-                .replace("%amount%", langHolder[6])
+                .replace("%group%", langHolder[3])
+                .replace("%pricetype%", langHolder[4])
+                .replace("%price%", langHolder[5])
+                .replace("%balance%", langHolder[6])
+                .replace("%amount%", langHolder[7])
                 ;
     }
 

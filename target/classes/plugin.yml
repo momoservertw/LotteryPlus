@@ -2,7 +2,7 @@ name: LotteryPlus
 main: tw.momocraft.lotteryplus.LotteryPlus
 author: Momocraft
 api-version: 1.13
-version: 1.0.8
+version: 1.1.0
 description: Make your own capsule!
 softdepend: [Vault, PlayerPoints, GemsEconomy, PlaceHolderAPI]
 

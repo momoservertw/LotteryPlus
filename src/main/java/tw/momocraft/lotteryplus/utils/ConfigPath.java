@@ -18,12 +18,8 @@ public class ConfigPath {
     //         General Settings                        //
     //  ============================================== //
     private Map<String, String> customCmdProp;
-    private boolean logDefaultNew;
-    private boolean logDefaultZip;
-    private boolean logCustomNew;
-    private boolean logCustomZip;
-    private String logCustomPath;
-    private String logCustomName;
+    private final Map<String, SoundMap> soundProp = new HashMap<>();
+    private final Map<String, ParticleMap> particleProp = new HashMap<>();
 
     //  ============================================== //
     //         Lottery Settings                        //
@@ -33,7 +29,7 @@ public class ConfigPath {
     private boolean lotteryLog;
     private boolean lotteryLogNew;
     private boolean lotteryLogZip;
-    private final Map<String, List<LotteryMap>> lotteryProp = new HashMap<>();
+    private final Map<String, Pair<PriceMap, List<LotteryMap>>> lotteryProp = new HashMap<>();
     private final Map<String, Pair<String, List<LotteryMap>>> lotteryBlockProp = new HashMap<>();
 
     //  ============================================== //
@@ -45,17 +41,36 @@ public class ConfigPath {
     }
 
     private void setupGeneral() {
-        logDefaultZip = ConfigHandler.getConfig("config.yml").getBoolean("General.Custom-Commands.Settings.Log.Default.To-Zip");
-        logDefaultNew = ConfigHandler.getConfig("config.yml").getBoolean("General.Custom-Commands.Settings.Log.Default.New-File");
-        logCustomNew = ConfigHandler.getConfig("config.yml").getBoolean("General.Custom-Commands.Settings.Log.Custom.New-File");
-        logCustomZip = ConfigHandler.getConfig("config.yml").getBoolean("General.Custom-Commands.Settings.Log.Custom.To-Zip");
-        logCustomPath = ConfigHandler.getConfig("config.yml").getString("General.Custom-Commands.Settings.Log.Custom.Path");
-        logCustomName = ConfigHandler.getConfig("config.yml").getString("General.Custom-Commands.Settings.Log.Custom.Name");
         ConfigurationSection cmdConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("General.Custom-Commands.Groups");
         if (cmdConfig != null) {
             customCmdProp = new HashMap<>();
             for (String group : cmdConfig.getKeys(false)) {
                 customCmdProp.put(group, ConfigHandler.getConfig("config.yml").getString("General.Custom-Commands.Groups." + group));
+            }
+        }
+        ConfigurationSection particleConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("General.Particles");
+        if (particleConfig != null) {
+            ParticleMap particleMap;
+            for (String group : particleConfig.getKeys(false)) {
+                particleMap = new ParticleMap();
+                particleMap.setType(ConfigHandler.getConfig("config.yml").getString("General.Particles." + group + ".Type"));
+                particleMap.setAmount(ConfigHandler.getConfig("config.yml").getInt("General.Particles." + group + ".Amount", 1));
+                particleMap.setTimes(ConfigHandler.getConfig("config.yml").getInt("General.Particles." + group + ".Times", 1));
+                particleMap.setInterval(ConfigHandler.getConfig("config.yml").getInt("General.Particles." + group + ".Interval", 20));
+                particleProp.put(group, particleMap);
+            }
+        }
+        ConfigurationSection soundConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("General.Sounds");
+        if (soundConfig != null) {
+            SoundMap soundMap;
+            for (String group : soundConfig.getKeys(false)) {
+                soundMap = new SoundMap();
+                soundMap.setType(ConfigHandler.getConfig("config.yml").getString("General.Sounds." + group + ".Type"));
+                soundMap.setVolume(ConfigHandler.getConfig("config.yml").getInt("General.Sounds." + group + ".Volume", 1));
+                soundMap.setPitch(ConfigHandler.getConfig("config.yml").getInt("General.Sounds." + group + ".Pitch", 1));
+                soundMap.setTimes(ConfigHandler.getConfig("config.yml").getInt("General.Sounds." + group + ".Loop.Times", 1));
+                soundMap.setInterval(ConfigHandler.getConfig("config.yml").getInt("General.Sounds." + group + ".Loop.Interval", 20));
+                soundProp.put(group, soundMap);
             }
         }
     }
@@ -69,8 +84,8 @@ public class ConfigPath {
         ConfigurationSection lotteryConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("Lottery.Groups");
         if (lotteryConfig != null) {
             ConfigurationSection groupConfig;
-            String groupEnable;
             LotteryMap lotteryMap;
+            PriceMap priceMap;
             List<LotteryMap> lotteryMapList;
             ConfigurationSection chanceConfig;
             Map<String, Double> chanceMap;
@@ -80,19 +95,20 @@ public class ConfigPath {
                 if (group.equals("Enable")) {
                     continue;
                 }
+                lotteryMap = new LotteryMap();
+                priceMap = new PriceMap();
+                priceMap.setPriceType(ConfigHandler.getConfig("config.yml").getString("Lottery.Groups." + group + ".Settings.Price.Type"));
+                priceMap.setPriceAmount(ConfigHandler.getConfig("config.yml").getDouble("Lottery.Groups." + group + ".Settings.Price.Amount"));
                 groupConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("Lottery.Groups." + group);
                 if (groupConfig != null) {
-                    groupEnable = ConfigHandler.getConfig("config.yml").getString("Lottery.Groups." + group + ".Enable");
-                    if (groupEnable == null || groupEnable.equals("true")) {
+                    if (ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Groups." + group + ".Enable", true)) {
                         lotteryMapList = new ArrayList<>();
                         // Reward Groups Priority
                         for (String rarityGroup : groupConfig.getKeys(false)) {
                             if (rarityGroup.equals("Enable") || rarityGroup.equals("Settings")) {
                                 continue;
                             }
-                            groupEnable = ConfigHandler.getConfig("config.yml").getString("Lottery.Groups." + group + "." + rarityGroup + ".Enable");
-                            if (groupEnable == null || groupEnable.equals("true")) {
-                                lotteryMap = new LotteryMap();
+                            if (ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Groups." + group + ".Enable", true)) {
                                 lotteryMap.setList(ConfigHandler.getConfig("config.yml").getStringList("Lottery.Groups." + group + "." + rarityGroup + ".Commands"));
                                 chanceMap = new HashMap<>();
                                 chanceConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("Lottery.Groups." + group + "." + rarityGroup + ".Chance");
@@ -107,7 +123,7 @@ public class ConfigPath {
                                 lotteryMapList.add(lotteryMap);
                             }
                         }
-                        lotteryProp.put(group, lotteryMapList);
+                        lotteryProp.put(group, new Pair<>(priceMap, lotteryMapList));
                         lotteryBlockSkull = ConfigHandler.getConfig("config.yml").getString("Lottery.Groups." + group + ".Settings.Lucky-Block.Skull-Textures");
                         if (lotteryBlockSkull != null) {
                             lotteryBlockProp.put(lotteryBlockSkull, new Pair<>(group, lotteryMapList));
@@ -125,28 +141,12 @@ public class ConfigPath {
         return customCmdProp;
     }
 
-    public boolean isLogDefaultNew() {
-        return logDefaultNew;
+    public Map<String, ParticleMap> getParticleProp() {
+        return particleProp;
     }
 
-    public boolean isLogDefaultZip() {
-        return logDefaultZip;
-    }
-
-    public boolean isLogCustomNew() {
-        return logCustomNew;
-    }
-
-    public boolean isLogCustomZip() {
-        return logCustomZip;
-    }
-
-    public String getLogCustomName() {
-        return logCustomName;
-    }
-
-    public String getLogCustomPath() {
-        return logCustomPath;
+    public Map<String, SoundMap> getSoundProp() {
+        return soundProp;
     }
 
     //  ============================================== //
@@ -172,7 +172,7 @@ public class ConfigPath {
         return lotteryLogZip;
     }
 
-    public Map<String, List<LotteryMap>> getLotteryProp() {
+    public Map<String, Pair<PriceMap, List<LotteryMap>>> getLotteryProp() {
         return lotteryProp;
     }
 

@@ -9,6 +9,9 @@ import tw.momocraft.lotteryplus.handlers.PermissionsHandler;
 import tw.momocraft.lotteryplus.handlers.PlayerHandler;
 import tw.momocraft.lotteryplus.utils.Language;
 import tw.momocraft.lotteryplus.utils.Lottery;
+import tw.momocraft.lotteryplus.utils.LotteryMap;
+
+import java.util.List;
 
 
 public class Commands implements CommandExecutor {

@@ -1,5 +1,6 @@
 package tw.momocraft.lotteryplus.utils;
 
+import javafx.util.Pair;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
@@ -10,27 +11,48 @@ import java.util.*;
 
 public class Lottery {
 
-    public static void startLottery(CommandSender sender, Player player, String group) {
-        Player target;
-        if (player != null) {
-            target = player;
+    public static void startLottery(CommandSender sender, Player target, String group) {
+        Player player;
+        if (target != null) {
+            player = target;
         } else {
-            target = (Player) sender;
+            player = (Player) sender;
         }
         // Get the group's property.
-        List<LotteryMap> lotteryMaps = ConfigHandler.getConfigPath().getLotteryProp().get(group);
+        Pair<PriceMap, List<LotteryMap>> lotteryMaps = ConfigHandler.getConfigPath().getLotteryProp().get(group);
         if (lotteryMaps != null) {
+            if (!PermissionsHandler.hasPermission(player, "lotteryplus.bypass.lottery")) {
+                UUID uuid = player.getUniqueId();
+                String priceType = lotteryMaps.getKey().getPriceType();
+                if (priceType == null) {
+                    Language.sendLangMessage("Message.noPermission", sender);
+                    return;
+                }
+                double priceAmount = lotteryMaps.getKey().getPriceAmount();
+                if (PriceAPI.getTypeBalance(uuid, priceType) < priceAmount) {
+                    String[] placeHolders = Language.newString();
+                    placeHolders[4] = priceType;
+                    placeHolders[5] = String.valueOf(priceAmount);
+                    Language.sendLangMessage("Message.notEnoughMoney", sender, placeHolders);
+                    return;
+                }
+                String[] placeHolders = Language.newString();
+                placeHolders[3] = group;
+                placeHolders[4] = priceType;
+                placeHolders[6] = String.valueOf(PriceAPI.takeTypeMoney(uuid, priceType, priceAmount));
+                Language.sendLangMessage("Message.LotteryPlus.lotterySucceed", sender, placeHolders);
+            }
             Map<List<String>, Double> rewardMap = new HashMap<>();
             Map<String, Double> chanceMap;
             List<Integer> permsList;
             String chanceGroup;
-            for (LotteryMap lotteryMap : lotteryMaps) {
+            for (LotteryMap lotteryMap : lotteryMaps.getValue()) {
                 chanceMap = lotteryMap.getChanceMap();
                 // Checking player reward chance for this chance-group.
                 permsList = new ArrayList<>();
                 for (String permGroup : chanceMap.keySet()) {
-                    if (PermissionsHandler.hasPermission(target, "lotteryplus.lottery.*")
-                            || PermissionsHandler.hasPermission(target, "lotteryplus.lottery." + permGroup)) {
+                    if (PermissionsHandler.hasPermission(player, "lotteryplus.lottery.*")
+                            || PermissionsHandler.hasPermission(player, "lotteryplus.lottery." + permGroup)) {
                         permsList.add(Integer.parseInt(permGroup));
                     }
                 }
@@ -58,8 +80,8 @@ public class Lottery {
                     // Random execute a reward command from that group.
                     command = Utils.getRandomString(key);
 
-                    String playerName = target.getName();
-                    CustomCommands.executeMultipleCmds(target, command, true);
+                    String playerName = player.getName();
+                    CustomCommands.executeMultipleCmds(player, command, true);
                     if (ConfigHandler.getConfigPath().isLotteryLog()) {
                         ConfigHandler.getLogger().addLotteryLog(playerName + " - " + command, true);
                     }
