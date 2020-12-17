@@ -4,7 +4,7 @@ author: Momocraft
 api-version: 1.13
 version: 1.1.0
 description: Make your own capsule!
-softdepend: [Vault, PlayerPoints, GemsEconomy, PlaceHolderAPI]
+depend: [ CorePlus ]
 
 commands:
   lotteryplus:
@@ -45,6 +45,8 @@ permissions:
   lotteryplus.command.lottery.other:
     description: Allows use of command /lotteryplus lottery.
     default: op
+    children:
+      lotteryplus.command.lottery: true
   lotteryplus.lottery.*:
     description: To get the highest lottery chance.
     default: op
@@ -52,12 +54,19 @@ permissions:
       lotteryplus.lottery.1: true
       lotteryplus.lottery.2: true
       lotteryplus.lottery.3: true
-  lotteryplus.lottery.1:
+  lotteryplus.lottery.user.1:
     description: To get the higher lottery chance.
     default: op
-  lotteryplus.lottery.2:
+  lotteryplus.lottery.group.2:
     description: To get the higher lottery chance.
     default: op
-  lotteryplus.lottery.3:
+  lotteryplus.lottery.group.3:
     description: To get the higher lottery chance.
     default: op
+  lotteryplus.lottery.group.*:
+    description: To get the highest lottery chance.
+    default: op
+    children:
+      lotteryplus.lottery.1: true
+      lotteryplus.lottery.2: true
+      lotteryplus.lottery.3: true

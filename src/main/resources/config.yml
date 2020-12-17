@@ -1,63 +1,7 @@
 # --{ =-=-=-=-=-=-=-=-=-= LotteryPlus's Configuration Settings, by Momocraft =-=-=-=-=-=-=-=-=-= }--
 # Wiki: https://github.com/momoservertw/LotteryPlus/wiki
-Config-Version: 3
+Config-Version: 4
 Check-Updates: true
-Debugging: false
-
-General:
-  Settings:
-    Features:
-      # Changed these options need to restart the server.
-      Hook:
-        Vault: true
-        PlaceHolderAPI: true
-        PlayerPoints: true
-        GemsEconomy: true
-  # The settings for custom sounds.
-  # More information: https://github.com/momoservertw/SlimeChunkPlus/wiki/Custom-Sounds
-  Sounds:
-    Succeed:
-      Type: ENTITY_PLAYER_LEVELUP
-    Failed:
-      Type: ENTITY_SHULKER_HURT
-    SlimeJump:
-      Type: ENTITY_SLIME_JUMP
-      Loop:
-        Times: 8
-        Interval: 20
-  # The settings for custom particles.
-  # More information: https://github.com/momoservertw/SlimeChunkPlus/wiki/Custom-Particles
-  Particles:
-    Slime:
-      Type: SLIME
-      Amount: 3
-      Times: 8
-      Interval: 20
-    Flame:
-      Type: FLAME
-      Amount: 3
-      Times: 8
-      Interval: 20
-  # The settings for custom commands.
-  # More information: https://github.com/momoservertw/LotteryPlus/wiki/Custom-Command
-  Custom-Commands:
-    Settings:
-      Log:
-        Default:
-          # Creating new file if the modified date is difference.
-          New-File: true
-          To-Zip: true
-        Custom:
-          New-File: false
-          To-Zip: true
-          Path: "plugin//CustomLogs"
-          Name: "latest"
-    # To send frequently used commands with placeholders.
-    Groups:
-      reward: "message: &6&lReward&c✤ &f%cmd_arg1%"
-      awards: "message: &d✧ &f%cmd_arg1% &d✧"
-      cgl: "broadcast: &6Congratulate &e%player% &6use &f%cmd_arg1% &8- &6Get the %cmd_arg2% &7<&f%cmd_arg3%&7>"
-      money: "console: money give %player% %cmd_arg1%"
 
 # Randomly select rewards and set rarity for them.
 # Recommend use with ItemJoin to create one use item.
@@ -160,20 +104,13 @@ Lottery:
 
 Message:
   prefix: "&d[LotteryPlus] &r"
-  noPermission: "&cYou do not have permission to use that command!"
-  configReload: "&aConfiguration(s) Reloaded!"
-  unknownCommand: "&cUnknown command, See &e/LotteryPlus help &cfor a list of commands."
-  targetNotFound: "&cThe player &c%targetplayer% &ccould not be found!"
-  featureDisabled: "&cThe feature is disabled."
-  onlyPlayer: "&cThis command can only executing from player."
-  notEnoughMoney: "&cYou don't have enough %pricetype%! You need %pricetype%: %price%."
-  LotteryPlus:
-    Commands:
-      title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &dLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
-      help: "&f/lotteryplus help &8- &7This help menu."
-      reload: "&f/lotteryplus reload &8- &7Reloads config file."
-      version: "&f/lotteryplus version &8- &7Checks the plugin version and updates."
-      lottery: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
-      lotteryOther: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
-    lotteryNotFound: "&cThis lottery group doesn't exist."
-    lotterySucceed: "&aSucceed lottery &e%group% &8- &7%pricetype%: %balance%"
+  Commands:
+    title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &dLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
+    help: "&f/lotteryplus help &8- &7This help menu."
+    reload: "&f/lotteryplus reload &8- &7Reloads config file."
+    version: "&f/lotteryplus version &8- &7Checks the plugin version and updates."
+    lottery: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
+    lotteryOther: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
+  lotteryNotFound: "&cThis lottery group doesn't exist."
+  lotterySucceed: "&aSucceed lottery &e%group% &8- &7%pricetype%: %balance%"
+  lotterySucceedTarget: "&a%targetplayer% succeed lottery &e%group% &8- &7%pricetype%: %balance%"

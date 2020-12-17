@@ -1,44 +1,7 @@
 # --{ =-=-=-=-=-=-=-=-=-= LotteryPlus's Configuration Settings, by Momocraft =-=-=-=-=-=-=-=-=-= }--
 # Wiki: https://github.com/momoservertw/LotteryPlus/wiki
-Config-Version: 2
+Config-Version: 4
 Check-Updates: true
-Debugging: false
-
-General:
-  Settings:
-    Features:
-      # Changed these options need to restart the server.
-      Hook:
-        Vault: true
-        PlaceHolderAPI: true
-  # To send frequently used commands with placeholders.
-  # More information: https://github.com/momoservertw/LotteryPlus/wiki/Custom-Command
-  Custom-Commands:
-    Settings:
-      Log:
-        Default:
-          # Creating new file if the modified date is difference.
-          New-File: true
-          To-Zip: true
-        Custom:
-          New-File: false
-          To-Zip: true
-          Path: "plugin//CustomLogs"
-          Name: "latest"
-    Groups:
-      reward: "message: &f &6&l得到了&c✤ &f%cmd_arg1%"
-      awards: "message: &d✧ &f%cmd_arg1% &d✧"
-      cgl: "broadcast: &6恭喜 &e%player% &6使用 &f%cmd_arg1% &8- &6兌換到%cmd_arg2% &7<&f%cmd_arg3%&7>"
-      money: "console: cmi money give %player% %cmd_arg1%"
-
-      pet: "console: petadmin create -f %player% %cmd_arg1%"
-      petmsg: "message: &f &6&l得到了&c✤ &f寵物 %cmd_arg1%"
-      petskill: "console: petadmin skilltree %player% %cmd_arg1%"
-      petskillmsg: "message: &6你的寵物技能已更改為： &f%cmd_arg1%"
-      vehicle: "console: give%cmd_arg1% %player% %cmd_arg2%"
-      vehiclemsg: "message: &f &6&l得到了&c✤ &f坐騎 %cmd_arg1%"
-      ij: "console: ij get %cmd_arg1% %player%"
-      ij2: "console: ij get %cmd_arg1% %player% %cmd_arg2%"
 
 # Randomly select rewards and set rarity for them.
 # Recommend use with ItemJoin to create one use item.
@@ -675,15 +638,11 @@ Lottery:
 
 Message:
   prefix: '&f'
-  noPermission: '&cYou do not have permission to use that command!'
-  configReload: '&aConfiguration(s) Reloaded!'
-  unknownCommand: '&cUnknown command, See &e/LotteryPlus help &cfor a list of commands.'
-  targetNotFound: '&cThe player &c%targetplayer% &ccould not be found!'
-  LotteryPlus:
-    Commands:
-      title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &d&lLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
-      help: "&a/lotteryplus help &8- &7This help menu."
-      reload: "&a/lotteryplus reload &8- &7Reloads config file."
-      version: "&f/lotteryplus version &8- &7Checks the plugin version and updates."
-      lottery: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
-    lotteryNotFound: "&cThis lottery group doesn't exist."
+  Commands:
+    title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &d&lLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
+    help: "&a/lotteryplus help &8- &7This help menu."
+    reload: "&a/lotteryplus reload &8- &7Reloads config file."
+    version: "&f/lotteryplus version &8- &7Checks the plugin version and updates."
+    lottery: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
+  lotteryNotFound: "&cThis lottery group doesn't exist."
+  lotterySucceed: "&aSucceed lottery &e%group% &8- &7%pricetype%: %balance%"

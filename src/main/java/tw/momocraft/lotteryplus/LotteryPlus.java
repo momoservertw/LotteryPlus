@@ -1,9 +1,9 @@
 package tw.momocraft.lotteryplus;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import tw.momocraft.coreplus.api.CorePlusAPI;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 import tw.momocraft.lotteryplus.handlers.RegisterHandler;
-import tw.momocraft.lotteryplus.handlers.ServerHandler;
 
 public class LotteryPlus extends JavaPlugin {
     private static LotteryPlus instance;
@@ -13,12 +13,12 @@ public class LotteryPlus extends JavaPlugin {
         instance = this;
         ConfigHandler.generateData(false);
         RegisterHandler.registerEvents();
-        ServerHandler.sendConsoleMessage("&fhas been Enabled.");
+        CorePlusAPI.getLangManager().sendConsoleMsg(ConfigHandler.getPrefix(), "&fhas been Enabled.");
     }
 
     @Override
     public void onDisable() {
-        ServerHandler.sendConsoleMessage("&fhas been Disabled.");
+        CorePlusAPI.getLangManager().sendConsoleMsg(ConfigHandler.getPrefix(), "&fhas been Disabled.");
     }
 
     public static LotteryPlus getInstance() {

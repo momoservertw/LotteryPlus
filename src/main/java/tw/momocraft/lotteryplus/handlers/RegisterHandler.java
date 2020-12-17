@@ -1,5 +1,6 @@
 package tw.momocraft.lotteryplus.handlers;
 
+import tw.momocraft.coreplus.api.CorePlusAPI;
 import tw.momocraft.lotteryplus.LotteryPlus;
 import tw.momocraft.lotteryplus.Commands;
 import tw.momocraft.lotteryplus.listeners.BlockDropItem;
@@ -13,14 +14,7 @@ public class RegisterHandler {
         LotteryPlus.getInstance().getCommand("LotteryPlus").setTabCompleter(new TabComplete());
 
         LotteryPlus.getInstance().getServer().getPluginManager().registerEvents(new BlockDropItem(), LotteryPlus.getInstance());
-        ServerHandler.sendFeatureMessage("Register-Event", "Lottery", "BlockBreak", "continue",
+        CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.getPrefix(), "Register-Event", "Lottery", "BlockBreak", "continue",
                 new Throwable().getStackTrace()[0]);
-        /*
-        if (ConfigHandler.getDepends().MyPetEnabled()) {
-            LotteryPlus.getInstance().getServer().getPluginManager().registerEvents(new MyPet(), ServerPlus.getInstance());
-            ServerHandler.sendFeatureMessage("Register-Event", "MyPet", "MyPet", "continue",
-                    new Throwable().getStackTrace()[0]);
-        }
-         */
     }
 }

@@ -3,9 +3,9 @@ package tw.momocraft.lotteryplus.utils;
 import javafx.util.Pair;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import tw.momocraft.coreplus.api.CorePlusAPI;
+import tw.momocraft.coreplus.utils.eco.PriceMap;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
-import tw.momocraft.lotteryplus.handlers.PermissionsHandler;
-import tw.momocraft.lotteryplus.handlers.ServerHandler;
 
 import java.util.*;
 
@@ -21,26 +21,36 @@ public class Lottery {
         // Get the group's property.
         Pair<PriceMap, List<LotteryMap>> lotteryMaps = ConfigHandler.getConfigPath().getLotteryProp().get(group);
         if (lotteryMaps != null) {
-            if (!PermissionsHandler.hasPermission(player, "lotteryplus.bypass.lottery")) {
+            if (!CorePlusAPI.getPermManager().hasPermission(sender, "lotteryplus.bypass.lottery")) {
                 UUID uuid = player.getUniqueId();
                 String priceType = lotteryMaps.getKey().getPriceType();
                 if (priceType == null) {
-                    Language.sendLangMessage("Message.noPermission", sender);
+                    CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPrefix(), "Message.noPermission", player);
+                    CorePlusAPI.getLangManager().sendErrorMsg(ConfigHandler.getPrefix(), "If player doesn't have bypass permission, you will need to add \"Price Type\" for this lottery group.");
+                    CorePlusAPI.getLangManager().sendErrorMsg(ConfigHandler.getPrefix(), "Or using command \"/ltp lottery <group> <player>\" from command.");
                     return;
                 }
                 double priceAmount = lotteryMaps.getKey().getPriceAmount();
-                if (PriceAPI.getTypeBalance(uuid, priceType) < priceAmount) {
-                    String[] placeHolders = Language.newString();
-                    placeHolders[4] = priceType;
-                    placeHolders[5] = String.valueOf(priceAmount);
-                    Language.sendLangMessage("Message.notEnoughMoney", sender, placeHolders);
+                if (CorePlusAPI.getPriceManager().getTypeBalance(uuid, priceType) < priceAmount) {
+                    String[] placeHolders = CorePlusAPI.getLangManager().newString();
+                    placeHolders[5] = priceType; // %pricetype%
+                    placeHolders[6] = String.valueOf(priceAmount); // %price%
+                    CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPrefix(), "Message.notEnoughMoney", player);
+                    if (target != null) {
+                        placeHolders[2] = player.getName(); // %targetplayer%
+                        CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPrefix(), "Message.notEnoughMoneyTarget", sender, placeHolders);
+                    }
                     return;
                 }
-                String[] placeHolders = Language.newString();
-                placeHolders[3] = group;
-                placeHolders[4] = priceType;
-                placeHolders[6] = String.valueOf(PriceAPI.takeTypeMoney(uuid, priceType, priceAmount));
-                Language.sendLangMessage("Message.LotteryPlus.lotterySucceed", sender, placeHolders);
+                String[] placeHolders = CorePlusAPI.getLangManager().newString();
+                placeHolders[4] = group; // %group%
+                placeHolders[5] = priceType; // %pricetype%
+                placeHolders[6] = String.valueOf(CorePlusAPI.getPriceManager().takeTypeMoney(uuid, priceType, priceAmount)); // %price%
+                CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPrefix(), ConfigHandler.getConfigPath().getMsgLotterySucceed(), player, placeHolders);
+                if (target != null) {
+                    placeHolders[2] = player.getName(); // %targetplayer%
+                    CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPrefix(), ConfigHandler.getConfigPath().getMsgLotterySucceedTarget(), player, placeHolders);
+                }
             }
             Map<List<String>, Double> rewardMap = new HashMap<>();
             Map<String, Double> chanceMap;
@@ -51,8 +61,7 @@ public class Lottery {
                 // Checking player reward chance for this chance-group.
                 permsList = new ArrayList<>();
                 for (String permGroup : chanceMap.keySet()) {
-                    if (PermissionsHandler.hasPermission(player, "lotteryplus.lottery.*")
-                            || PermissionsHandler.hasPermission(player, "lotteryplus.lottery." + permGroup)) {
+                    if (CorePlusAPI.getPermManager().hasPermission(player, "lotteryplus.lottery." + permGroup)) {
                         permsList.add(Integer.parseInt(permGroup));
                     }
                 }
@@ -78,21 +87,22 @@ public class Lottery {
                 // Compare the group chance with the randomly total chance.
                 if (randTotalChance <= chance) {
                     // Random execute a reward command from that group.
-                    command = Utils.getRandomString(key);
+                    command = CorePlusAPI.getUtilsManager().getRandomString(key);
 
                     String playerName = player.getName();
-                    CustomCommands.executeMultipleCmds(player, command, true);
+                    CorePlusAPI.getCommandManager().executeMultipleCmds(ConfigHandler.getPrefix(), player, command, true);
                     if (ConfigHandler.getConfigPath().isLotteryLog()) {
-                        ConfigHandler.getLogger().addLotteryLog(playerName + " - " + command, true);
+                        CorePlusAPI.getLoggerManager().addLog("plugins//LotteryLogs", "latest.log", playerName + " - " + command, true,
+                                ConfigHandler.getConfigPath().isLotteryLogNew(), ConfigHandler.getConfigPath().isLotteryLogZip());
                     }
-                    ServerHandler.sendFeatureMessage("Lottery", playerName, "execute", "return", group + " " + command,
+                    CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.getPrefix(), "Lottery", playerName, "execute", "return", group + " " + command,
                             new Throwable().getStackTrace()[0]);
                     return;
                 }
                 randTotalChance -= chance;
             }
         } else {
-            Language.sendLangMessage("Message.LotteryPlus.lotteryNotFound", sender);
+            CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPrefix(), ConfigHandler.getConfigPath().getMsgLotteryNotFound(), sender);
         }
     }
 }

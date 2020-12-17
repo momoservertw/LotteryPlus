@@ -31,16 +31,6 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
-        <!--PlaceholderAPI-->
-        <repository>
-            <id>placeholderapi</id>
-            <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
-        </repository>
-        <!-- mojang API-->
-        <repository>
-            <id>minecraft-repo</id>
-            <url>https://libraries.minecraft.net/</url>
-        </repository>
     </repositories>
     <dependencies>
         <!--Google API-->
@@ -63,43 +53,13 @@
             <version>LATEST</version>
             <scope>provided</scope>
         </dependency>
-        <!--Vault API-->
+        <!--CorePlus API-->
         <dependency>
-            <groupId>net.milkbowl.vault</groupId>
-            <artifactId>Vault</artifactId>
+            <groupId>momocraft.tw</groupId>
+            <artifactId>CorePlus</artifactId>
             <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/java/tw/momocraft/lotteryplus/extra/VaultAPI.jar</systemPath>
-            <version>LATEST</version>
-        </dependency>
-        <!--PlayerPoints API-->
-        <dependency>
-            <groupId>org.black_ixx</groupId>
-            <artifactId>PlayerPoints</artifactId>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/java/tw/momocraft/lotteryplus/extra/PlayerPoints.jar</systemPath>
+            <systemPath>${pom.basedir}/src/main/java/tw/momocraft/lotteryplus/extra/CorePlus-1.0.0.jar</systemPath>
             <version>LEGACY</version>
-        </dependency>
-        <!--GemsEconomy API-->
-        <dependency>
-            <groupId>me.GemsEconomy</groupId>
-            <artifactId>GemsEconomy</artifactId>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/src/main/java/tw/momocraft/lotteryplus/extra/GemsEconomy-4.9.jar</systemPath>
-            <version>LEGACY</version>
-        </dependency>
-        <!--PlaceholderAPI API-->
-        <dependency>
-            <groupId>me.clip</groupId>
-            <artifactId>placeholderapi</artifactId>
-            <version>LATEST</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- mojang API -->
-        <dependency>
-            <groupId>com.mojang</groupId>
-            <artifactId>authlib</artifactId>
-            <version>1.5.21</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
