@@ -3,6 +3,7 @@ package tw.momocraft.lotteryplus.handlers;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import tw.momocraft.coreplus.CorePlus;
 import tw.momocraft.coreplus.api.CorePlusAPI;
 import tw.momocraft.lotteryplus.LotteryPlus;
 import tw.momocraft.lotteryplus.utils.*;
@@ -22,7 +23,7 @@ public class ConfigHandler {
         if (!reload) {
             CorePlusAPI.getUpdateManager().check(getPrefix(), Bukkit.getConsoleSender(),
                     LotteryPlus.getInstance().getDescription().getName(),
-                    LotteryPlus.getInstance().getDescription().getVersion());
+                    LotteryPlus.getInstance().getDescription().getVersion(), true);
         }
     }
 
@@ -106,5 +107,9 @@ public class ConfigHandler {
 
     public static String getPrefix() {
         return getConfig("config.yml").getString("Message.prefix");
+    }
+
+    public static String getPlugin() {
+        return "[" + CorePlus.getInstance().getDescription().getName() + "] ";
     }
 }

@@ -1,7 +1,8 @@
-# --{ =-=-=-=-=-=-=-=-=-= LotteryPlus's Configuration Settings, by Momocraft =-=-=-=-=-=-=-=-=-= }--
-# Wiki: https://github.com/momoservertw/LotteryPlus/wiki
+# ░░░░░░░░░░░░░░░   LotteryPlus, By Momocraft♥   ░░░░░░░░░░░░░░░
+#  Spigot: https://www.spigotmc.org/resources/entityplus.85995/
+#  Wiki: https://github.com/momoservertw/LotteryPlus/wiki
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 Config-Version: 4
-Check-Updates: true
 
 # Randomly select rewards and set rarity for them.
 # Recommend use with ItemJoin to create one use item.
@@ -13,10 +14,7 @@ Lottery:
     Features:
       # Executing lottery when player break a lucky block.
       Lucky-Block: false
-    Log:
-      Enable: true
-      New-File: false
-      To-Zip: true
+    Log: true
   Groups:
     ticket:
       Enable: true

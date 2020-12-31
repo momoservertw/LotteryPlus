@@ -2,7 +2,7 @@ package tw.momocraft.lotteryplus.utils;
 
 import javafx.util.Pair;
 import org.bukkit.configuration.ConfigurationSection;
-import tw.momocraft.coreplus.utils.eco.PriceMap;
+import tw.momocraft.coreplus.utils.economy.PriceMap;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 
 import java.util.ArrayList;
@@ -33,8 +33,6 @@ public class ConfigPath {
     private boolean lottery;
     private boolean lotteryBlock;
     private boolean lotteryLog;
-    private boolean lotteryLogNew;
-    private boolean lotteryLogZip;
     private final Map<String, Pair<PriceMap, List<LotteryMap>>> lotteryProp = new HashMap<>();
     private final Map<String, Pair<String, List<LotteryMap>>> lotteryBlockProp = new HashMap<>();
 
@@ -66,9 +64,7 @@ public class ConfigPath {
     private void setupLottery() {
         lottery = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Enable");
         lotteryBlock = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Settings.Features.Lucky-Block");
-        lotteryLog = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Settings.Log.Enable");
-        lotteryLogNew = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Settings.Log.New-File");
-        lotteryLogZip = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Settings.Log.To-Zip");
+        lotteryLog = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Settings.Log", true);
         ConfigurationSection lotteryConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("Lottery.Groups");
         if (lotteryConfig != null) {
             ConfigurationSection groupConfig;
@@ -173,14 +169,6 @@ public class ConfigPath {
 
     public boolean isLotteryLog() {
         return lotteryLog;
-    }
-
-    public boolean isLotteryLogNew() {
-        return lotteryLogNew;
-    }
-
-    public boolean isLotteryLogZip() {
-        return lotteryLogZip;
     }
 
     public Map<String, Pair<PriceMap, List<LotteryMap>>> getLotteryProp() {

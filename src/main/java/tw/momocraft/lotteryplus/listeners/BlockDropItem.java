@@ -37,12 +37,13 @@ public class BlockDropItem implements Listener {
         }
         Pair<String, List<LotteryMap>> lotteryBlockProp = ConfigHandler.getConfigPath().getLotteryBlockProp().get(
                 CorePlusAPI.getUtilsManager().getSkullValue(headItemStack));
-        if (lotteryBlockProp != null) {
-            Player player = e.getPlayer();
-            e.getItems().clear();
-            Lottery.startLottery(player, null, lotteryBlockProp.getKey());
-            CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.getPrefix(), "Lottery", player.getName(), "execute", "return", "Lucky Block",
-                    new Throwable().getStackTrace()[0]);
+        if (lotteryBlockProp == null) {
+            return;
         }
+        Player player = e.getPlayer();
+        e.getItems().clear();
+        Lottery.startLottery(player, null, lotteryBlockProp.getKey());
+        CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.getPlugin(), "Lottery", player.getName(), "execute", "return", "Lucky Block",
+                new Throwable().getStackTrace()[0]);
     }
 }

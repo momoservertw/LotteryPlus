@@ -1,7 +1,8 @@
-# --{ =-=-=-=-=-=-=-=-=-= LotteryPlus's Configuration Settings, by Momocraft =-=-=-=-=-=-=-=-=-= }--
-# Wiki: https://github.com/momoservertw/LotteryPlus/wiki
+# ░░░░░░░░░░░░░░░   LotteryPlus, By Momocraft♥   ░░░░░░░░░░░░░░░
+#  Spigot: https://www.spigotmc.org/resources/entityplus.85995/
+#  Wiki: https://github.com/momoservertw/LotteryPlus/wiki
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 Config-Version: 4
-Check-Updates: true
 
 # Randomly select rewards and set rarity for them.
 # Recommend use with ItemJoin to create one use item.
@@ -13,10 +14,7 @@ Lottery:
     Features:
       # Executing lottery when player break a lucky block.
       Lucky-Block: true
-    Log:
-      Enable: true
-      New-File: false
-      To-Zip: true
+    Log: true
   Groups:
     mypet-novice:
       Enable: true
@@ -517,13 +515,12 @@ Lottery:
         Enable: true
         Chance: 1
         Commands:
-          - 'custom: cgl, 茉茉禮包III, 特別獎, 第1系列 坐騎轉蛋;custom: ij, vehiclebuy1'
+          - 'custom: cgl, 茉茉禮包III, 特別獎, 第1系列 坐騎轉蛋;custom: ij, vehiclesbuy1'
     # 黃金彩蛋
     egg1:
       Enable: true
       Settings:
         Lucky-Block:
-          # Executing lottery when player break a skull with this textures.
           Skull-Textures: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTNlOGJiYzhkMTc0YWVjZDZiNDY4ODhmYTYzZjliYWRlMTRiMDQyZTVlMTcwNjMxMzlkNjdmOGUwMTYzYTM4In19fQ=="
       "1":
         Enable: true
@@ -582,9 +579,9 @@ Lottery:
         Enable: true
         Chance: 1
         Commands:
-          - "custom: cgl, 商城隨機物品 兌換券, 價值： 10代幣, 新手套裝;op: motw shop kit1"
-          - "custom: cgl, 商城隨機物品 兌換券, 價值： 35代幣, 高手套裝;op: motw shop kit2"
-          - "custom: cgl, 商城隨機物品 兌換券, 價值： 50代幣, 菁英☆ 皮革套裝;op: motw shop kit3"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 10代幣, 新手套裝;op: motw give kit1"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 35代幣, 高手套裝;op: motw give kit2"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 50代幣, 菁英☆ 皮革套裝;op: motw give kit3"
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 80代幣, 不滅盾牌;op: motw give shield"
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 100代幣, 鋼鐵鞘翅;op: motw give elytra"
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 300代幣, 淨化猙之刃;op: motw give blade1"
@@ -599,7 +596,7 @@ Lottery:
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 200代幣, 僵屍頭;op: cmi give ZOMBIE_HEAD %player%"
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 200代幣, 骷髏頭;op: cmi give SKELETON_SKULL %player%"
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 10代幣, 飛行券(10分鐘);op: motw giveij fly"
-          - "custom: cgl, 商城隨機物品 兌換券, 價值： 30代幣, 遠端終界箱;op: motw give enderchest"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 30代幣, 遠端終界箱;console: ij get enderchest %player%"
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 200代幣, 第1系列 坐騎轉蛋;console: ij get vehiclesbuy1 %player%"
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 50代幣, 修補坐騎;op: repairvehicle"
           - "custom: cgl, 商城隨機物品 兌換券, 價值： 20代幣, 茉茉經驗瓶I;console: ij get exp1 %player%"

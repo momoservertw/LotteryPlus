@@ -24,26 +24,26 @@ public class TabComplete implements TabCompleter {
         Player[] playersOnlineOld;
         switch (args.length) {
             case 1:
-                if (CorePlusAPI.getPermManager().hasPermission(sender, "lotteryplus.use")) {
+                if (CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.use")) {
                     commands.add("help");
                 }
-                if (CorePlusAPI.getPermManager().hasPermission(sender, "lotteryplus.command.reload")) {
+                if (CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.command.reload")) {
                     commands.add("reload");
                 }
-                if (CorePlusAPI.getPermManager().hasPermission(sender, "lotteryplus.command.version")) {
+                if (CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.command.version")) {
                     commands.add("version");
                 }
-                if (CorePlusAPI.getPermManager().hasPermission(sender, "lotteryplus.command.lottery")) {
+                if (CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.command.lottery")) {
                     commands.add("lottery");
                 }
                 break;
             case 2:
-                if (args[0].equalsIgnoreCase("lottery") && CorePlusAPI.getPermManager().hasPermission(sender, "lotteryplus.command.lottery")) {
+                if (args[0].equalsIgnoreCase("lottery") && CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.command.lottery")) {
                     commands.addAll(ConfigHandler.getConfigPath().getLotteryProp().keySet());
                 }
                 break;
             case 3:
-                if (args[0].equalsIgnoreCase("lottery") && CorePlusAPI.getPermManager().hasPermission(sender, "lotteryplus.command.lottery")) {
+                if (args[0].equalsIgnoreCase("lottery") && CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.command.lottery")) {
                     try {
                         if (Bukkit.class.getMethod("getOnlinePlayers").getReturnType() == Collection.class) {
                             if (Bukkit.class.getMethod("getOnlinePlayers").getReturnType() == Collection.class) {

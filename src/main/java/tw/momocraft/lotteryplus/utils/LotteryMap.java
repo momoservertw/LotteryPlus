@@ -23,5 +23,4 @@ public class LotteryMap {
     public void setList(List<String> list) {
         this.list = list;
     }
-
 }
