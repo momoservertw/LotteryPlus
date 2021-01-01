@@ -65,6 +65,7 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 }
+                break;
             case 2:
                 // lotteryplus lottery GROUP
                 if (args[0].equalsIgnoreCase("lottery")) {
@@ -79,6 +80,7 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 }
+                break;
             case 3:
                 // lotteryplus lottery GROUP <PLAYER>
                 if (args[0].equalsIgnoreCase("lottery")) {
@@ -100,9 +102,9 @@ public class Commands implements CommandExecutor {
                     }
                     return true;
                 }
-            default:
-                CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPrefix(), "Message.unknownCommand", sender);
-                return true;
+                break;
         }
+        CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPrefix(), "Message.unknownCommand", sender);
+        return true;
     }
 }
