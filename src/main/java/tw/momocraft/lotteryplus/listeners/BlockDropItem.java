@@ -3,8 +3,6 @@ package tw.momocraft.lotteryplus.listeners;
 import javafx.util.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -46,7 +44,7 @@ public class BlockDropItem implements Listener {
         Player player = e.getPlayer();
         e.getItems().clear();
         Lottery.startLottery(Bukkit.getConsoleSender(), player, lotteryBlockProp.getKey());
-        CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.getPlugin(), "Lottery", player.getName(), "execute", "return", "Lucky Block",
+        CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.isDebugging(), ConfigHandler.getPlugin(), "Lottery", player.getName(), "execute", "return", "Lucky Block",
                 new Throwable().getStackTrace()[0]);
     }
 }

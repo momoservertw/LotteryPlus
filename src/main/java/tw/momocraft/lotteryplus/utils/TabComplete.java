@@ -24,26 +24,26 @@ public class TabComplete implements TabCompleter {
         Player[] playersOnlineOld;
         switch (args.length) {
             case 1:
-                if (CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.use")) {
+                if (CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPlugin(), sender, "lotteryplus.use")) {
                     commands.add("help");
                 }
-                if (CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.command.reload")) {
+                if (CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPlugin(), sender, "lotteryplus.command.reload")) {
                     commands.add("reload");
                 }
-                if (CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.command.version")) {
+                if (CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPlugin(), sender, "lotteryplus.command.version")) {
                     commands.add("version");
                 }
-                if (CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.command.lottery")) {
+                if (CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPlugin(), sender, "lotteryplus.command.lottery")) {
                     commands.add("lottery");
                 }
                 break;
             case 2:
-                if (args[0].equalsIgnoreCase("lottery") && CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.command.lottery")) {
+                if (args[0].equalsIgnoreCase("lottery") && CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPlugin(), sender, "lotteryplus.command.lottery")) {
                     commands.addAll(ConfigHandler.getConfigPath().getLotteryProp().keySet());
                 }
                 break;
             case 3:
-                if (args[0].equalsIgnoreCase("lottery") && CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.command.lottery")) {
+                if (args[0].equalsIgnoreCase("lottery") && CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPlugin(), sender, "lotteryplus.command.lottery")) {
                     try {
                         if (Bukkit.class.getMethod("getOnlinePlayers").getReturnType() == Collection.class) {
                             if (Bukkit.class.getMethod("getOnlinePlayers").getReturnType() == Collection.class) {
@@ -59,7 +59,7 @@ public class TabComplete implements TabCompleter {
                             }
                         }
                     } catch (Exception e) {
-                        CorePlusAPI.getLangManager().sendDebugTrace(ConfigHandler.getPrefix(), e);
+                        CorePlusAPI.getLangManager().sendDebugTrace(ConfigHandler.isDebugging(), ConfigHandler.getPrefix(), e);
                     }
                 }
                 break;

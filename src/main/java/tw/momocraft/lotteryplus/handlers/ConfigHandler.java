@@ -112,4 +112,12 @@ public class ConfigHandler {
     public static String getPlugin() {
         return "[" + CorePlus.getInstance().getDescription().getName() + "] ";
     }
+
+    public static String getPluginName() {
+        return CorePlus.getInstance().getDescription().getName();
+    }
+
+    public static boolean isDebugging() {
+        return ConfigHandler.getConfig("config.yml").getBoolean("Debugging");
+    }
 }

@@ -21,7 +21,7 @@ public class Lottery {
         // Get the group's property.
         Pair<PriceMap, List<LotteryMap>> lotteryMaps = ConfigHandler.getConfigPath().getLotteryProp().get(group);
         if (lotteryMaps != null) {
-            if (!CorePlusAPI.getPlayerManager().hasPermission(sender, "lotteryplus.bypass.lottery")) {
+            if (!CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPlugin(), sender, "lotteryplus.bypass.lottery")) {
                 UUID uuid = player.getUniqueId();
                 String priceType = lotteryMaps.getKey().getPriceType();
                 if (priceType == null) {
@@ -61,7 +61,7 @@ public class Lottery {
                 // Checking player reward chance for this chance-group.
                 permsList = new ArrayList<>();
                 for (String permGroup : chanceMap.keySet()) {
-                    if (CorePlusAPI.getPlayerManager().hasPermission(player, "lotteryplus.lottery." + permGroup)) {
+                    if (CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPlugin(), player, "lotteryplus.lottery." + permGroup)) {
                         permsList.add(Integer.parseInt(permGroup));
                     }
                 }
@@ -94,7 +94,7 @@ public class Lottery {
                     if (ConfigHandler.getConfigPath().isLotteryLog()) {
                         CorePlusAPI.getCommandManager().dispatchLogCustomCmd(ConfigHandler.getPrefix(), "LotteryPlus, playerName  - " + command);
                     }
-                    CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.getPlugin(), "Lottery", playerName, "execute", "return", group + " " + command,
+                    CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.isDebugging(), ConfigHandler.getPlugin(), "Lottery", playerName, "execute", "return", group + " " + command,
                             new Throwable().getStackTrace()[0]);
                     return;
                 }
