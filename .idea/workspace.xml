@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="db9de2ae-2a97-4e0b-968d-c3ef6fdf69c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/extra/CorePlus-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/extra/CorePlus-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/Lottery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/Lottery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/TabComplete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/TabComplete.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +48,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WorldGuard-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SlimeChunkPlus" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -96,10 +97,10 @@
       <screen x="0" y="0" width="1707" height="920" />
     </state>
     <state x="584" y="207" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1608146684650" />
-    <state x="475" y="162" key="FileChooserDialogImpl" timestamp="1610100186965">
+    <state x="475" y="162" key="FileChooserDialogImpl" timestamp="1610784776366">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="475" y="162" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1610100186965" />
+    <state x="475" y="162" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1610784776366" />
     <state x="634" y="216" key="FileChooserDialogImpl/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1609503881311" />
     <state width="1663" height="229" key="GridCell.Tab.0.bottom" timestamp="1609508582946">
       <screen x="0" y="0" width="1707" height="920" />
@@ -133,10 +134,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="326" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.689@0.0.1280.689" timestamp="1603852864974" />
-    <state x="190" y="0" width="770" height="668" key="find.popup" timestamp="1610735142149">
+    <state x="190" y="0" width="770" height="668" key="find.popup" timestamp="1610784964012">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="190" y="0" width="770" height="668" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1610735142149" />
+    <state x="190" y="0" width="770" height="668" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1610784964012" />
     <state x="254" y="0" width="1026" height="891" key="find.popup/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1609523584149" />
     <state x="2901" y="39" width="1026" height="891" key="find.popup/2560.10.1707.920/0.0.1707.920@2560.10.1707.920" timestamp="1609393393048" />
     <state x="445" y="121" key="new project wizard" timestamp="1606648258474">
