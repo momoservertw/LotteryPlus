@@ -26,8 +26,8 @@ public class Lottery {
                 String priceType = lotteryMaps.getKey().getPriceType();
                 if (priceType == null) {
                     CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPrefix(), "Message.noPermission", player);
-                    CorePlusAPI.getLangManager().sendErrorMsg(ConfigHandler.getPrefix(), "If player doesn't have bypass permission, you will need to add \"Price Type\" for this lottery group.");
-                    CorePlusAPI.getLangManager().sendErrorMsg(ConfigHandler.getPrefix(), "Or using command \"/ltp lottery <group> <player>\" from command.");
+                    CorePlusAPI.getLangManager().sendErrorMsg(ConfigHandler.getPluginName(), "If player doesn't have bypass permission, you will need to add \"Price Type\" for this lottery group.");
+                    CorePlusAPI.getLangManager().sendErrorMsg(ConfigHandler.getPluginName(), "Or using command \"/ltp lottery <group> <player>\" from command.");
                     return;
                 }
                 double priceAmount = lotteryMaps.getKey().getPriceAmount();
