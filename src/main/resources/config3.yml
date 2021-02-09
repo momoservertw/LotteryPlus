@@ -1,0 +1,90 @@
+# ░░░░░░░░░░░░░░░   LotteryPlus, By Momocraft♥   ░░░░░░░░░░░░░░░
+#  Spigot: https://www.spigotmc.org/resources/entityplus.85995/
+#  Wiki: https://github.com/momoservertw/LotteryPlus/wiki
+# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+Config-Version: 4
+
+# Randomly select rewards and set rarity for them.
+# Recommend use with ItemJoin to create one use item.
+# Or using with menu plugins like ChestCommands or BossShop.
+# More information: https://github.com/momoservertw/LotteryPlus/wiki/Lottery
+Lottery:
+  Enable: true
+  Settings:
+    Features:
+      # Executing lottery when player break a lucky block.
+      Lucky-Block: true
+    Log: true
+  Groups:
+    # 隨機頭顱
+    head_random:
+      Enable: true
+      online:
+        Enable: true
+        Chance: 20
+        Commands:
+          - 'custom: cgl, 隨機頭顱 兌換券, 在線玩家, 頭顱;console: give %player% minecraft:player_head{SkullOwner:"%random_player%"} 1'
+      staff:
+        Enable: true
+        Chance: 6
+        Commands:
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 小草的頭顱;console: give %player% minecraft:player_head{SkullOwner:"yoyo880603"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 筱芯的頭顱;console: give %player% minecraft:player_head{SkullOwner:"PTL_piepiepig"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 牆壁的頭顱;console: give %player% minecraft:player_head{SkullOwner:"LOTT_0"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, KK的頭顱;console: give %player% minecraft:player_head{SkullOwner:"PowLim_Deity"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, GG的頭顱;console: give %player% minecraft:player_head{SkullOwner:"JFla"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 小米的頭顱;console: give %player% minecraft:player_head{SkullOwner:"milk9915"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 提特的頭顱;console: give %player% minecraft:player_head{SkullOwner:"teter36"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 阿勝的頭顱;console: give %player% minecraft:player_head{SkullOwner:"mwx3344"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 小霸的頭顱;console: give %player% minecraft:player_head{SkullOwner:"Tyrant_Turant"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 茉茉的頭顱;console: give %player% minecraft:player_head{SkullOwner:"Momo_Darkness"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 嶸嶸的頭顱;console: give %player% minecraft:player_head{SkullOwner:"supermeo"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 工作人員, 紫雲的頭顱;console: give %player% minecraft:player_head{SkullOwner:"Zi_Shen_OuO"} 1'
+      owner:
+        Enable: true
+        Chance: 2
+        Commands:
+          - 'custom: cgl, 隨機頭顱 兌換券, 服主, 友利的頭顱;console: give %player% minecraft:player_head{SkullOwner:"AllBye"} 1'
+          - 'custom: cgl, 隨機頭顱 兌換券, 服主, 小埋的頭顱;console: give %player% minecraft:player_head{SkullOwner:"huangge0513"} 1'
+    # 商城隨機物品 兌換券
+    shop_random:
+      Enable: true
+      shop:
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 50代幣, 菁英☆ 皮革套裝;op: motw give kit3"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 80代幣, 不滅盾牌;op: motw give shield"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 100代幣, 鋼鐵鞘翅;op: motw give elytra"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 25代幣, 屏障 x64;console: cmi give barrier %player% 64"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 25代幣, 結構空位;console: cmi give structure_void %player% 64"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 100代幣, 智能漏斗;console: liquidtank give %player% 1"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 200代幣, 隨機頭顱;op: motw give randomhead"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 200代幣, 人頭;op: cmi give PLAYER_HEAD %player%"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 200代幣, 苦力帕頭;op: cmi give CREEPER_HEAD %player%"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 200代幣, 僵屍頭;op: cmi give ZOMBIE_HEAD %player%"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 200代幣, 骷髏頭;op: cmi give SKELETON_SKULL %player%"
+          - "custom: cgl, 商城隨機物品 兌換券, 價值： 10代幣, 飛行券(10分鐘);op: motw giveij fly"
+    # 隨機生物怪召喚書 兌換券
+    SM_BD:
+      Enable: true
+      shop:
+        Enable: true
+        Chance: 1
+        Commands:
+          - "custom: cgl, 生日怪召喚書 兌換券, , 小草生日怪 召喚書;console: ij get SM_yoyo880603 %player%"
+          - "custom: cgl, 生日怪召喚書 兌換券, , 忒忒生日怪 召喚書;console: ij get SM_PTL_Una %player%"
+          - "custom: cgl, 生日怪召喚書 兌換券, , 呱呱生日怪 召喚書;console: ij get SM_Magic1412 %player%"
+          - "custom: cgl, 生日怪召喚書 兌換券, , 紫雲生日怪 召喚書;console: ij get SM_Zi_Shen_OuO %player%"
+          - "custom: cgl, 生日怪召喚書 兌換券, , 獅子魚生日怪 召喚書;console: ij get SM_Matoo_chu %player%"
+
+Message:
+  prefix: '&f'
+  Commands:
+    title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &d&lLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
+    help: "&a/lotteryplus help &8- &7This help menu."
+    reload: "&a/lotteryplus reload &8- &7Reloads config file."
+    version: "&f/lotteryplus version &8- &7Checks the plugin version and updates."
+    lottery: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
+  lotteryNotFound: "&cThis lottery group doesn't exist."
+  lotterySucceed: "&aSucceed lottery &e%group% &8- &7%pricetype%: %balance%"

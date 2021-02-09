@@ -1,5 +1,5 @@
-tw\momocraft\lotteryplus\listeners\BlockDropItem.class
 tw\momocraft\lotteryplus\utils\Lottery.class
+tw\momocraft\lotteryplus\listeners\BlockDropItem.class
 tw\momocraft\lotteryplus\utils\TabComplete.class
 tw\momocraft\lotteryplus\Commands.class
 tw\momocraft\lotteryplus\LotteryPlus.class

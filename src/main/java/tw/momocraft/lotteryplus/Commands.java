@@ -67,7 +67,7 @@ public class Commands implements CommandExecutor {
                 }
                 break;
             case 2:
-                // lotteryplus lottery GROUP
+                // lotteryplus lottery <group>
                 if (args[0].equalsIgnoreCase("lottery")) {
                     if (CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPluginName(), sender, "lotteryplus.command.lottery")) {
                         if (ConfigHandler.getConfigPath().isLottery()) {
@@ -82,9 +82,9 @@ public class Commands implements CommandExecutor {
                 }
                 break;
             case 3:
-                // lotteryplus lottery GROUP <PLAYER>
+                // lotteryplus lottery <group> <player>
                 if (args[0].equalsIgnoreCase("lottery")) {
-                    if (CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPluginName(), sender, "lotteryplus.command.lottery.other")) {
+                    if (CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPluginName(), sender, "lotteryplus.command.lottery")) {
                         if (ConfigHandler.getConfigPath().isLottery()) {
                             Player player = CorePlusAPI.getPlayerManager().getPlayerString(args[2]);
                             if (player == null) {

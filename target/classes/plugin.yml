@@ -32,7 +32,6 @@ permissions:
       lotteryplus.command.reload: true
       lotteryplus.command.version: true
       lotteryplus.command.lottery: true
-      lotteryplus.command.lottery.other: true
   lotteryplus.command.reload:
     description: Allows use of /lotteryplus command reload.
     default: op
@@ -42,11 +41,6 @@ permissions:
   lotteryplus.command.lottery:
     description: Allows use of command /lotteryplus lottery.
     default: op
-  lotteryplus.command.lottery.other:
-    description: Allows use of command /lotteryplus lottery.
-    default: op
-    children:
-      lotteryplus.command.lottery: true
   lotteryplus.lottery.*:
     description: To get the highest lottery chance.
     default: op

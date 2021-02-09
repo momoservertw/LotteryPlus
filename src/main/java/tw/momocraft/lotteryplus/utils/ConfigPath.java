@@ -23,9 +23,6 @@ public class ConfigPath {
     private String msgReload;
     private String msgVersion;
     private String msgLottery;
-    private String msgLotteryNotFound;
-    private String msgLotterySucceed;
-    private String msgLotterySucceedTarget;
 
     //  ============================================== //
     //         Lottery Variables                       //
@@ -33,7 +30,7 @@ public class ConfigPath {
     private boolean lottery;
     private boolean lotteryBlock;
     private boolean lotteryLog;
-    private final Map<String, Pair<PriceMap, List<LotteryMap>>> lotteryProp = new HashMap<>();
+    private final Map<String, List<LotteryMap>> lotteryProp = new HashMap<>();
     private final Map<String, Pair<String, List<LotteryMap>>> lotteryBlockProp = new HashMap<>();
 
     //  ============================================== //
@@ -53,9 +50,6 @@ public class ConfigPath {
         msgReload = ConfigHandler.getConfig("config.yml").getString("Message.Commands.reload");
         msgVersion = ConfigHandler.getConfig("config.yml").getString("Message.Commands.version");
         msgLottery = ConfigHandler.getConfig("config.yml").getString("Message.Commands.lottery");
-        msgLotteryNotFound = ConfigHandler.getConfig("config.yml").getString("Message.lotteryNotFound");
-        msgLotterySucceed = ConfigHandler.getConfig("config.yml").getString("Message.lotterySucceed");
-        msgLotterySucceedTarget = ConfigHandler.getConfig("config.yml").getString("Message.lotterySucceedTarget");
     }
 
     //  ============================================== //
@@ -86,9 +80,6 @@ public class ConfigPath {
                 if (!ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Groups." + group + ".Enable", true)) {
                     continue;
                 }
-                priceMap = new PriceMap();
-                priceMap.setPriceType(ConfigHandler.getConfig("config.yml").getString("Lottery.Groups." + group + ".Settings.Price.Type"));
-                priceMap.setPriceAmount(ConfigHandler.getConfig("config.yml").getDouble("Lottery.Groups." + group + ".Settings.Price.Amount"));
                 lotteryMapList = new ArrayList<>();
                 // Reward Groups Priority
                 for (String rarityGroup : groupConfig.getKeys(false)) {
@@ -112,7 +103,7 @@ public class ConfigPath {
                     lotteryMap.setChanceMap(chanceMap);
                     lotteryMapList.add(lotteryMap);
                 }
-                lotteryProp.put(group, new Pair<>(priceMap, lotteryMapList));
+                lotteryProp.put(group, lotteryMapList);
                 lotteryBlockSkull = ConfigHandler.getConfig("config.yml").getString("Lottery.Groups." + group + ".Settings.Lucky-Block.Skull-Textures");
                 if (lotteryBlockSkull != null) {
                     lotteryBlockProp.put(lotteryBlockSkull, new Pair<>(group, lotteryMapList));
@@ -144,18 +135,6 @@ public class ConfigPath {
         return msgLottery;
     }
 
-    public String getMsgLotteryNotFound() {
-        return msgLotteryNotFound;
-    }
-
-    public String getMsgLotterySucceed() {
-        return msgLotterySucceed;
-    }
-
-    public String getMsgLotterySucceedTarget() {
-        return msgLotterySucceedTarget;
-    }
-
     //  ============================================== //
     //         Lottery Getter                          //
     //  ============================================== //
@@ -171,7 +150,7 @@ public class ConfigPath {
         return lotteryLog;
     }
 
-    public Map<String, Pair<PriceMap, List<LotteryMap>>> getLotteryProp() {
+    public Map<String, List<LotteryMap>> getLotteryProp() {
         return lotteryProp;
     }
 

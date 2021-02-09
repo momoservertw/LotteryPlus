@@ -18,10 +18,6 @@ Lottery:
   Groups:
     ticket:
       Enable: true
-      Settings:
-        Price:
-          Type: money
-          Amount: 100
       Normal:
         Enable: true
         Chance: 0.5
@@ -107,8 +103,4 @@ Message:
     help: "&f/lotteryplus help &8- &7This help menu."
     reload: "&f/lotteryplus reload &8- &7Reloads config file."
     version: "&f/lotteryplus version &8- &7Checks the plugin version and updates."
-    lottery: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
-    lotteryOther: "&f/lotteryplus lottery <rewardName> &8- &7Lottery the rewards."
-  lotteryNotFound: "&cThis lottery group doesn't exist."
-  lotterySucceed: "&aSucceed lottery &e%group% &8- &7%pricetype%: %balance%"
-  lotterySucceedTarget: "&a%targetplayer% succeed lottery &e%group% &8- &7%pricetype%: %balance%"
+    lottery: "&f/lotteryplus lottery <group> [player] &8- &7Lottery the rewards."
