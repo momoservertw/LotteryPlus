@@ -1,11 +1,8 @@
 package tw.momocraft.lotteryplus.utils;
 
-import javafx.util.Pair;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import tw.momocraft.coreplus.CorePlus;
 import tw.momocraft.coreplus.api.CorePlusAPI;
-import tw.momocraft.coreplus.utils.economy.PriceMap;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 
 import java.util.*;
@@ -31,7 +28,7 @@ public class Lottery {
                 // Checking player reward chance for this chance-group.
                 permsList = new ArrayList<>();
                 for (String permGroup : chanceMap.keySet()) {
-                    if (CorePlusAPI.getPlayerManager().hasPerm(ConfigHandler.getPluginName(), player, "lotteryplus.lottery." + permGroup)) {
+                    if (CorePlusAPI.getPlayerManager().hasPerm(player, "lotteryplus.lottery." + permGroup)) {
                         permsList.add(Integer.parseInt(permGroup));
                     }
                 }
@@ -64,7 +61,7 @@ public class Lottery {
                     if (ConfigHandler.getConfigPath().isLotteryLog()) {
                         CorePlusAPI.getCommandManager().dispatchLogCustomCmd(ConfigHandler.getPrefix(), "LotteryPlus, playerName  - " + command);
                     }
-                    CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.isDebugging(), ConfigHandler.getPlugin(), "Lottery", playerName, "execute", "return", group + " " + command,
+                    CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.isDebugging(), ConfigHandler.getPluginPrefix(), "Lottery", playerName, "execute", "return", group + " " + command,
                             new Throwable().getStackTrace()[0]);
                     return;
                 }

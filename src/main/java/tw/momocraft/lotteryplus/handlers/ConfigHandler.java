@@ -21,7 +21,7 @@ public class ConfigHandler {
         genConfigFile("config.yml");
         setConfigPath(new ConfigPath());
         if (!reload) {
-            CorePlusAPI.getUpdateManager().check(getPlugin(), Bukkit.getConsoleSender(),
+            CorePlusAPI.getUpdateManager().check(getPluginPrefix(), Bukkit.getConsoleSender(),
                     LotteryPlus.getInstance().getDescription().getName(),
                     LotteryPlus.getInstance().getDescription().getVersion(), true);
         }
@@ -105,16 +105,16 @@ public class ConfigHandler {
         return configPath;
     }
 
-    public static String getPrefix() {
-        return getConfig("config.yml").getString("Message.prefix");
+    public static String getPluginName() {
+        return CorePlus.getInstance().getDescription().getName();
     }
 
-    public static String getPlugin() {
+    public static String getPluginPrefix() {
         return "[" + CorePlus.getInstance().getDescription().getName() + "] ";
     }
 
-    public static String getPluginName() {
-        return CorePlus.getInstance().getDescription().getName();
+    public static String getPrefix() {
+        return getConfig("config.yml").getString("Message.prefix");
     }
 
     public static boolean isDebugging() {
