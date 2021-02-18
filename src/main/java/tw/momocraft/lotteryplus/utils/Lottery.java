@@ -70,7 +70,7 @@ public class Lottery {
         } else {
             String[] langHolder = CorePlusAPI.getLangManager().newString();
             langHolder[5] = group;
-            CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPrefix(), "groupNotFound", sender, langHolder);
+            CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPluginName(), ConfigHandler.getPrefix(), "groupNotFound", sender, langHolder);
         }
     }
 }

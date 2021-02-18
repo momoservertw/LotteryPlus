@@ -25,13 +25,9 @@
     <list default="true" id="db9de2ae-2a97-4e0b-968d-c3ef6fdf69c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/LotteryPlus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/LotteryPlus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/extra/CorePlus-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/extra/CorePlus-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/handlers/ConfigHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/handlers/ConfigHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/handlers/RegisterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/handlers/RegisterHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/listeners/BlockDropItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/listeners/BlockDropItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/Lottery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/Lottery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/TabComplete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/TabComplete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/ConfigPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/ConfigPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +67,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EntityPlus" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ServerPlus" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -130,43 +126,43 @@
       <screen x="0" y="0" width="1707" height="920" />
     </state>
     <state x="584" y="207" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1608146684650" />
-    <state x="475" y="162" key="FileChooserDialogImpl" timestamp="1613408398107">
+    <state x="475" y="162" key="FileChooserDialogImpl" timestamp="1613622360175">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="475" y="162" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1613408398107" />
+    <state x="475" y="162" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1613622360175" />
     <state x="634" y="216" key="FileChooserDialogImpl/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1612632979847" />
-    <state width="1237" height="123" key="GridCell.Tab.0.bottom" timestamp="1613579272806">
+    <state width="1237" height="123" key="GridCell.Tab.0.bottom" timestamp="1613689112181">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="123" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1613579272806" />
+    <state width="1237" height="123" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1613689112181" />
     <state width="1663" height="229" key="GridCell.Tab.0.bottom/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1612596053747" />
     <state width="1663" height="229" key="GridCell.Tab.0.bottom/2560.10.1707.920/0.0.1707.920@2560.10.1707.920" timestamp="1609397442892" />
-    <state width="1237" height="123" key="GridCell.Tab.0.center" timestamp="1613579272806">
+    <state width="1237" height="123" key="GridCell.Tab.0.center" timestamp="1613689112181">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="123" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1613579272806" />
+    <state width="1237" height="123" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1613689112181" />
     <state width="1663" height="229" key="GridCell.Tab.0.center/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1612596053747" />
     <state width="1663" height="229" key="GridCell.Tab.0.center/2560.10.1707.920/0.0.1707.920@2560.10.1707.920" timestamp="1609397442892" />
-    <state width="1237" height="123" key="GridCell.Tab.0.left" timestamp="1613579272806">
+    <state width="1237" height="123" key="GridCell.Tab.0.left" timestamp="1613689112181">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="123" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1613579272806" />
+    <state width="1237" height="123" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1613689112181" />
     <state width="1663" height="229" key="GridCell.Tab.0.left/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1612596053747" />
     <state width="1663" height="229" key="GridCell.Tab.0.left/2560.10.1707.920/0.0.1707.920@2560.10.1707.920" timestamp="1609397442892" />
-    <state width="1237" height="123" key="GridCell.Tab.0.right" timestamp="1613579272806">
+    <state width="1237" height="123" key="GridCell.Tab.0.right" timestamp="1613689112181">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="123" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1613579272806" />
+    <state width="1237" height="123" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1613689112181" />
     <state width="1663" height="229" key="GridCell.Tab.0.right/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1612596053747" />
     <state width="1663" height="229" key="GridCell.Tab.0.right/2560.10.1707.920/0.0.1707.920@2560.10.1707.920" timestamp="1609397442892" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1613576286863">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1613576286863" />
-    <state x="190" y="0" width="770" height="668" key="find.popup" timestamp="1613579153738">
+    <state x="190" y="0" width="770" height="668" key="find.popup" timestamp="1613689046668">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="190" y="0" width="770" height="668" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1613579153738" />
+    <state x="190" y="0" width="770" height="668" key="find.popup/0.0.1280.689@0.0.1280.689" timestamp="1613689046668" />
     <state x="254" y="0" width="1026" height="891" key="find.popup/2560.10.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1611303804824" />
     <state x="2901" y="39" width="1026" height="891" key="find.popup/2560.10.1707.920/0.0.1707.920@2560.10.1707.920" timestamp="1609393393048" />
     <state x="445" y="121" key="new project wizard" timestamp="1606648258474">

@@ -44,7 +44,8 @@ public class BlockDropItem implements Listener {
         Player player = e.getPlayer();
         e.getItems().clear();
         Lottery.startLottery(Bukkit.getConsoleSender(), player, lotteryBlockProp.getKey());
-        CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.isDebugging(), ConfigHandler.getPluginPrefix(), "Lottery", player.getName(), "execute", "return", "Lucky Block",
+        CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.isDebugging(), ConfigHandler.getPluginPrefix(),
+                "Lottery", player.getName(), "execute", "return", "Lucky Block",
                 new Throwable().getStackTrace()[0]);
     }
 }

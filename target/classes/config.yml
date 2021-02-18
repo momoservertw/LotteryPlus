@@ -3,6 +3,7 @@
 #  Wiki: https://github.com/momoservertw/LotteryPlus/wiki
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 Config-Version: 4
+Debugging: false
 
 # Randomly select rewards and set rarity for them.
 # Recommend use with ItemJoin to create one use item.

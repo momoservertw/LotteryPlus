@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import tw.momocraft.coreplus.CorePlus;
 import tw.momocraft.coreplus.api.CorePlusAPI;
 import tw.momocraft.lotteryplus.LotteryPlus;
-import tw.momocraft.lotteryplus.utils.*;
+import tw.momocraft.lotteryplus.utils.ConfigPath;
 
 import java.io.File;
 import java.time.LocalDateTime;

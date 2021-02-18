@@ -22,7 +22,7 @@ public class ConfigPath {
     private String msgHelp;
     private String msgReload;
     private String msgVersion;
-    private String msgLottery;
+    private String msgCmdLottery;
 
     //  ============================================== //
     //         Lottery Variables                       //
@@ -49,7 +49,7 @@ public class ConfigPath {
         msgHelp = ConfigHandler.getConfig("config.yml").getString("Message.Commands.help");
         msgReload = ConfigHandler.getConfig("config.yml").getString("Message.Commands.reload");
         msgVersion = ConfigHandler.getConfig("config.yml").getString("Message.Commands.version");
-        msgLottery = ConfigHandler.getConfig("config.yml").getString("Message.Commands.lottery");
+        msgCmdLottery = ConfigHandler.getConfig("config.yml").getString("Message.Commands.lottery");
     }
 
     //  ============================================== //
@@ -131,8 +131,8 @@ public class ConfigPath {
         return msgVersion;
     }
 
-    public String getMsgLottery() {
-        return msgLottery;
+    public String getMsgCmdLottery() {
+        return msgCmdLottery;
     }
 
     //  ============================================== //
