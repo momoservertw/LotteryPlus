@@ -14,7 +14,8 @@ public class RegisterHandler {
         LotteryPlus.getInstance().getCommand("LotteryPlus").setTabCompleter(new TabComplete());
 
         LotteryPlus.getInstance().getServer().getPluginManager().registerEvents(new BlockDropItem(), LotteryPlus.getInstance());
-        CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.isDebugging(), ConfigHandler.getPluginPrefix(), "Register-Event", "Lottery", "BlockBreak", "continue",
+        CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.isDebugging(), ConfigHandler.getPluginPrefix(),
+                "Register-Event", "Lottery", "BlockBreak", "continue",
                 new Throwable().getStackTrace()[0]);
     }
 }

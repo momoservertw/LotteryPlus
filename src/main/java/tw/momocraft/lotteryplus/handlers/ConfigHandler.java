@@ -7,6 +7,7 @@ import tw.momocraft.coreplus.CorePlus;
 import tw.momocraft.coreplus.api.CorePlusAPI;
 import tw.momocraft.lotteryplus.LotteryPlus;
 import tw.momocraft.lotteryplus.utils.ConfigPath;
+import tw.momocraft.lotteryplus.utils.Dependence;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -15,13 +16,15 @@ import java.time.format.DateTimeFormatter;
 public class ConfigHandler {
 
     private static YamlConfiguration configYAML;
+    private static Dependence depends;
     private static ConfigPath configPath;
 
     public static void generateData(boolean reload) {
         genConfigFile("config.yml");
+        setDepends(new Dependence());
         setConfigPath(new ConfigPath());
         if (!reload) {
-            CorePlusAPI.getUpdateManager().check(getPluginPrefix(), Bukkit.getConsoleSender(),
+            CorePlusAPI.getUpdateManager().check(getPluginName(), getPluginPrefix(), Bukkit.getConsoleSender(),
                     LotteryPlus.getInstance().getDescription().getName(),
                     LotteryPlus.getInstance().getDescription().getVersion(), true);
         }
@@ -103,6 +106,14 @@ public class ConfigHandler {
 
     public static ConfigPath getConfigPath() {
         return configPath;
+    }
+
+    public static Dependence getDepends() {
+        return depends;
+    }
+
+    private static void setDepends(Dependence depend) {
+        depends = depend;
     }
 
     public static String getPluginName() {
