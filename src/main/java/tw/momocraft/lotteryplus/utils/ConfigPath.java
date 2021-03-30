@@ -2,7 +2,8 @@ package tw.momocraft.lotteryplus.utils;
 
 import javafx.util.Pair;
 import org.bukkit.configuration.ConfigurationSection;
-import tw.momocraft.coreplus.utils.economy.PriceMap;
+import tw.momocraft.coreplus.api.CorePlusAPI;
+import tw.momocraft.lotteryplus.LotteryPlus;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 
 import java.util.ArrayList;
@@ -39,6 +40,23 @@ public class ConfigPath {
     private void setUp() {
         setupMsg();
         setupLottery();
+
+        sendSetupMsg();
+    }
+
+    private void sendSetupMsg() {
+        List<String> list = new ArrayList<>(LotteryPlus.getInstance().getDescription().getDepend());
+        list.addAll(LotteryPlus.getInstance().getDescription().getSoftDepend());
+        CorePlusAPI.getMsg().sendHookMsg(ConfigHandler.getPluginPrefix(), "plugins", list);
+
+        /*
+        list = Arrays.asList((
+                "spawnbypass" + ","
+                        + "spawnerbypass" + ","
+                        + "damagebypass"
+        ).split(","));
+        CorePlusAPI.getMsg().sendHookMsg(ConfigHandler.getPluginPrefix(), "Residence flags", list);
+    */
     }
 
     //  ============================================== //
@@ -60,55 +78,47 @@ public class ConfigPath {
         lotteryBlock = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Settings.Features.Lucky-Block");
         lotteryLog = ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Settings.Log", true);
         ConfigurationSection lotteryConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("Lottery.Groups");
-        if (lotteryConfig != null) {
-            ConfigurationSection groupConfig;
-            LotteryMap lotteryMap;
-            PriceMap priceMap;
-            List<LotteryMap> lotteryMapList;
-            ConfigurationSection chanceConfig;
-            Map<String, Double> chanceMap;
-            String lotteryBlockSkull;
-            // Reward Groups
-            for (String group : lotteryConfig.getKeys(false)) {
-                if (group.equals("Enable")) {
+        if (lotteryConfig == null) {
+            return;
+        }
+        ConfigurationSection groupConfig;
+        LotteryMap lotteryMap;
+        List<LotteryMap> lotteryMapList;
+        ConfigurationSection chanceConfig;
+        Map<String, Double> chanceMap;
+        String lotteryBlockSkull;
+        // Reward Groups
+        for (String group : lotteryConfig.getKeys(false)) {
+            if (group.equals("Enable"))
+                continue;
+            groupConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("Lottery.Groups." + group);
+            if (groupConfig == null)
+                continue;
+            if (!ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Groups." + group + ".Enable", true))
+                continue;
+            lotteryMapList = new ArrayList<>();
+            // Reward Groups Priority
+            for (String rarityGroup : groupConfig.getKeys(false)) {
+                lotteryMap = new LotteryMap();
+                if (rarityGroup.equals("Enable") || rarityGroup.equals("Settings"))
                     continue;
-                }
-                groupConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("Lottery.Groups." + group);
-                if (groupConfig == null) {
+                if (!ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Groups." + group + ".Enable", true))
                     continue;
-                }
-                if (!ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Groups." + group + ".Enable", true)) {
-                    continue;
-                }
-                lotteryMapList = new ArrayList<>();
-                // Reward Groups Priority
-                for (String rarityGroup : groupConfig.getKeys(false)) {
-                    lotteryMap = new LotteryMap();
-                    if (rarityGroup.equals("Enable") || rarityGroup.equals("Settings")) {
-                        continue;
-                    }
-                    if (!ConfigHandler.getConfig("config.yml").getBoolean("Lottery.Groups." + group + ".Enable", true)) {
-                        continue;
-                    }
-                    lotteryMap.setList(ConfigHandler.getConfig("config.yml").getStringList("Lottery.Groups." + group + "." + rarityGroup + ".Commands"));
-                    chanceMap = new HashMap<>();
-                    chanceConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("Lottery.Groups." + group + "." + rarityGroup + ".Chance");
-                    if (chanceConfig != null) {
-                        for (String chanceGroup : chanceConfig.getKeys(false)) {
-                            chanceMap.put(chanceGroup, ConfigHandler.getConfig("config.yml").getDouble("Lottery.Groups." + group + "." + rarityGroup + ".Chance." + chanceGroup));
-                        }
-                    } else {
-                        chanceMap.put("0", ConfigHandler.getConfig("config.yml").getDouble("Lottery.Groups." + group + "." + rarityGroup + ".Chance"));
-                    }
-                    lotteryMap.setChanceMap(chanceMap);
-                    lotteryMapList.add(lotteryMap);
-                }
-                lotteryProp.put(group, lotteryMapList);
-                lotteryBlockSkull = ConfigHandler.getConfig("config.yml").getString("Lottery.Groups." + group + ".Settings.Lucky-Block.Skull-Textures");
-                if (lotteryBlockSkull != null) {
-                    lotteryBlockProp.put(lotteryBlockSkull, new Pair<>(group, lotteryMapList));
-                }
+                lotteryMap.setList(ConfigHandler.getConfig("config.yml").getStringList("Lottery.Groups." + group + "." + rarityGroup + ".Commands"));
+                chanceMap = new HashMap<>();
+                chanceConfig = ConfigHandler.getConfig("config.yml").getConfigurationSection("Lottery.Groups." + group + "." + rarityGroup + ".Chance");
+                if (chanceConfig != null)
+                    for (String chanceGroup : chanceConfig.getKeys(false))
+                        chanceMap.put(chanceGroup, ConfigHandler.getConfig("config.yml").getDouble("Lottery.Groups." + group + "." + rarityGroup + ".Chance." + chanceGroup));
+                else
+                    chanceMap.put("0", ConfigHandler.getConfig("config.yml").getDouble("Lottery.Groups." + group + "." + rarityGroup + ".Chance"));
+                lotteryMap.setChanceMap(chanceMap);
+                lotteryMapList.add(lotteryMap);
             }
+            lotteryProp.put(group, lotteryMapList);
+            lotteryBlockSkull = ConfigHandler.getConfig("config.yml").getString("Lottery.Groups." + group + ".Settings.Lucky-Block.Skull-Textures");
+            if (lotteryBlockSkull != null)
+                lotteryBlockProp.put(lotteryBlockSkull, new Pair<>(group, lotteryMapList));
         }
     }
 

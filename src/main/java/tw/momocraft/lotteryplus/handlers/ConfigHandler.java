@@ -3,11 +3,9 @@ package tw.momocraft.lotteryplus.handlers;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import tw.momocraft.coreplus.CorePlus;
 import tw.momocraft.coreplus.api.CorePlusAPI;
 import tw.momocraft.lotteryplus.LotteryPlus;
 import tw.momocraft.lotteryplus.utils.ConfigPath;
-import tw.momocraft.lotteryplus.utils.Dependence;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -16,18 +14,16 @@ import java.time.format.DateTimeFormatter;
 public class ConfigHandler {
 
     private static YamlConfiguration configYAML;
-    private static Dependence depends;
     private static ConfigPath configPath;
 
     public static void generateData(boolean reload) {
         genConfigFile("config.yml");
-        setDepends(new Dependence());
+        UtilsHandler.setupFirst(reload);
         setConfigPath(new ConfigPath());
-        if (!reload) {
-            CorePlusAPI.getUpdateManager().check(getPluginName(), getPluginPrefix(), Bukkit.getConsoleSender(),
+        if (!reload)
+            CorePlusAPI.getUpdate().check(getPluginName(), getPluginPrefix(), Bukkit.getConsoleSender(),
                     LotteryPlus.getInstance().getDescription().getName(),
                     LotteryPlus.getInstance().getDescription().getVersion(), true);
-        }
     }
 
     public static FileConfiguration getConfig(String fileName) {
@@ -35,9 +31,8 @@ public class ConfigHandler {
         File file;
         switch (fileName) {
             case "config.yml":
-                if (configYAML == null) {
+                if (configYAML == null)
                     getConfigData(filePath, fileName);
-                }
                 break;
             default:
                 break;
@@ -52,7 +47,8 @@ public class ConfigHandler {
             try {
                 LotteryPlus.getInstance().saveResource(fileName, false);
             } catch (Exception e) {
-                CorePlusAPI.getLangManager().sendErrorMsg(ConfigHandler.getPluginName(), "&cCannot save " + fileName + " to disk!");
+                CorePlusAPI.getMsg().sendErrorMsg(ConfigHandler.getPluginName(),
+                        "Cannot save " + fileName + " to disk!");
                 return;
             }
         }
@@ -62,9 +58,8 @@ public class ConfigHandler {
     private static YamlConfiguration getPath(String fileName, File file, boolean saveData) {
         switch (fileName) {
             case "config.yml":
-                if (saveData) {
+                if (saveData)
                     configYAML = YamlConfiguration.loadConfiguration(file);
-                }
                 return configYAML;
         }
         return null;
@@ -93,7 +88,7 @@ public class ConfigHandler {
                     File configFile = new File(filePath, fileName);
                     configFile.delete();
                     getConfigData(filePath, fileName);
-                    CorePlusAPI.getLangManager().sendConsoleMsg(getPrefix(), "&4The file \"" + fileName + "\" is out of date, generating a new one!");
+                    CorePlusAPI.getMsg().sendConsoleMsg(getPrefix(), "&4The file \"" + fileName + "\" is out of date, generating a new one!");
                 }
             }
         }
@@ -108,20 +103,12 @@ public class ConfigHandler {
         return configPath;
     }
 
-    public static Dependence getDepends() {
-        return depends;
-    }
-
-    private static void setDepends(Dependence depend) {
-        depends = depend;
-    }
-
     public static String getPluginName() {
-        return CorePlus.getInstance().getDescription().getName();
+        return LotteryPlus.getInstance().getDescription().getName();
     }
 
     public static String getPluginPrefix() {
-        return "[" + CorePlus.getInstance().getDescription().getName() + "] ";
+        return "[" + LotteryPlus.getInstance().getDescription().getName() + "] ";
     }
 
     public static String getPrefix() {

@@ -11,11 +11,10 @@ public class Lottery {
 
     public static void startLottery(CommandSender sender, Player target, String group) {
         Player player;
-        if (target != null) {
+        if (target != null)
             player = target;
-        } else {
+        else
             player = (Player) sender;
-        }
         // Get the group's property.
         List<LotteryMap> lotteryMaps = ConfigHandler.getConfigPath().getLotteryProp().get(group);
         if (lotteryMaps != null) {
@@ -27,25 +26,21 @@ public class Lottery {
                 chanceMap = lotteryMap.getChanceMap();
                 // Checking player reward chance for this chance-group.
                 permsList = new ArrayList<>();
-                for (String permGroup : chanceMap.keySet()) {
-                    if (CorePlusAPI.getPlayerManager().hasPerm(player, "lotteryplus.lottery." + permGroup)) {
+                for (String permGroup : chanceMap.keySet())
+                    if (CorePlusAPI.getPlayer().hasPerm(player, "lotteryplus.lottery." + permGroup))
                         permsList.add(Integer.parseInt(permGroup));
-                    }
-                }
                 // Set this chance-group's chance.
-                if (!permsList.isEmpty()) {
+                if (!permsList.isEmpty())
                     // Get the highest group.
                     chanceGroup = Collections.max(permsList).toString();
-                } else {
+                else
                     chanceGroup = "0";
-                }
                 rewardMap.put(lotteryMap.getList(), chanceMap.get(chanceGroup));
             }
             // Get to total chance.
             double totalChance = 0;
-            for (Double chance : rewardMap.values()) {
+            for (Double chance : rewardMap.values())
                 totalChance += chance;
-            }
             double randTotalChance = Math.random() * totalChance;
             double chance;
             String command;
@@ -54,23 +49,22 @@ public class Lottery {
                 // Compare the group chance with the randomly total chance.
                 if (randTotalChance <= chance) {
                     // Random execute a reward command from that group.
-                    command = CorePlusAPI.getUtilsManager().getRandomString(key);
-
-                    String playerName = player.getName();
-                    CorePlusAPI.getCommandManager().executeCmd(ConfigHandler.getPrefix(), player, command, true);
-                    if (ConfigHandler.getConfigPath().isLotteryLog()) {
-                        CorePlusAPI.getCommandManager().dispatchLogCustomCmd(ConfigHandler.getPrefix(), "LotteryPlus, playerName  - " + command);
-                    }
-                    CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.isDebugging(), ConfigHandler.getPluginPrefix(), "Lottery", playerName, "execute", "return", group + " " + command,
+                    command = CorePlusAPI.getUtils().getRandomString(key);
+                    CorePlusAPI.getCmd().sendCmd(ConfigHandler.getPluginName(), player, player, command);
+                    if (ConfigHandler.getConfigPath().isLotteryLog())
+                        CorePlusAPI.getCmd().dispatchLogGroup(ConfigHandler.getPluginName(), "LotteryPlus, playerName  - " + command);
+                    CorePlusAPI.getMsg().sendDetailMsg(ConfigHandler.isDebugging(), ConfigHandler.getPluginPrefix(),
+                            "Lottery", player.getName(), "execute", "return", group + " " + command,
                             new Throwable().getStackTrace()[0]);
                     return;
                 }
                 randTotalChance -= chance;
             }
         } else {
-            String[] langHolder = CorePlusAPI.getLangManager().newString();
+            String[] langHolder = CorePlusAPI.getMsg().newString();
             langHolder[5] = group;
-            CorePlusAPI.getLangManager().sendLangMsg(ConfigHandler.getPluginName(), ConfigHandler.getPrefix(), "groupNotFound", sender, langHolder);
+            CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPluginName(), ConfigHandler.getPrefix(),
+                    "groupNotFound", sender, langHolder);
         }
     }
 }

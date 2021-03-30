@@ -5,50 +5,50 @@
 Config-Version: 4
 Debugging: false
 
-# Randomly select rewards and set rarity for them.
-# Recommend use with ItemJoin to create one use item.
-# Or using with menu plugins like ChestCommands or BossShop.
+# Randomly select a reward for player.
+# You can use ItemJoin to create disposable items.
 # More information: https://github.com/momoservertw/LotteryPlus/wiki/Lottery
 Lottery:
   Enable: false
   Settings:
     Features:
-      # Executing lottery when player break a lucky block.
+      # Executing lottery when player broke a lucky block.
+      # Needs to add settings in the group.
       Lucky-Block: false
     Log: true
   Groups:
     ticket:
-      Enable: true
+      Enable: false
       Normal:
         Enable: true
         Chance: 0.5
         Commands:
-          - "custom: awards, Normal award;console: give %player% IRON_INGOT 16;"
-          - "custom: awards, Normal award;console: give %player% GOLD_INGOT 8"
-          - "custom: awards, Normal award;console: money give %player% %random_number%500%"
+          - "custom: awards, Normal award{n}console: give %player% IRON_INGOT 16;"
+          - "custom: awards, Normal award{n}console: give %player% GOLD_INGOT 8"
+          - "custom: awards, Normal award{n}console: money give %player% %random_number%500%"
       Rare:
         Enable: true
         Chance: 0.375
         Commands:
-          - "custom: awards, Rare award;console: give %player% IRON_INGOT 32"
-          - "custom: awards, Rare award;console: give %player% GOLD_INGOT 16"
-          - "custom: awards, Rare award;console: money give %player% 1000"
+          - "custom: awards, Rare award{n}console: give %player% IRON_INGOT 32"
+          - "custom: awards, Rare award{n}console: give %player% GOLD_INGOT 16"
+          - "custom: awards, Rare award{n}console: money give %player% 1000"
       Super-Rare:
         Enable: true
         Chance: 0.06
         Commands:
-          - "custom: awards, Super Rare award;console: give %player% IRON_INGOT 64"
-          - "custom: awards, Super Rare award;console: give %player% GOLD_INGOT 32"
-          - "custom: awards, Super Rare award;console: money give %player% 3000"
+          - "custom: awards, Super Rare award{n}console: give %player% IRON_INGOT 64"
+          - "custom: awards, Super Rare award{n}console: give %player% GOLD_INGOT 32"
+          - "custom: awards, Super Rare award{n}console: money give %player% 3000"
       Ultra-Rare:
         Enable: true
         Chance: 0.03
         Commands:
-          - "custom: awards, Ultra Rare award;console: give %player% DIAMOND 1"
-          - "custom: awards, Ultra Rare award;console: give %player% GOLD_INGOT 64"
-          - "custom: awards, Ultra Rare award;console: money give %player% 10000"
+          - "custom: awards, Ultra Rare award{n}console: give %player% DIAMOND 1"
+          - "custom: awards, Ultra Rare award{n}console: give %player% GOLD_INGOT 64"
+          - "custom: awards, Ultra Rare award{n}console: money give %player% 10000"
     head_random:
-      Enable: true
+      Enable: false
       online:
         Enable: true
         # Permission: lotteryplus.lottery.GROUP
@@ -59,7 +59,7 @@ Lottery:
           1: 0.65
           2: 0.60
         Commands:
-          - 'custom: cgl, Random Head, Online Players, Player Head;console: give %player% minecraft:player_head{SkullOwner:"%random_player%"} 1'
+          - 'custom: cgl, Random Head, Online Players, Player Head{n}console: give %player% minecraft:player_head{SkullOwner:"%random_player%"} 1'
       staff:
         Enable: true
         Chance:
@@ -67,10 +67,10 @@ Lottery:
           1: 0.275
           2: 0.3
         Commands:
-          - 'custom: cgl, Random Head, Staff, yoyo880603s Head;console: give %player% minecraft:player_head{SkullOwner:"yoyo880603"} 1'
-          - 'custom: cgl, Random Head, Staff, PTL_piepiepigs Head;console: give %player% minecraft:player_head{SkullOwner:"PTL_piepiepig"} 1'
-          - 'custom: cgl, Random Head, Staff, LOTT_0s Head;console: give %player% minecraft:player_head{SkullOwner:"LOTT_0"} 1'
-          - 'custom: cgl, Random Head, Staff, PowLim_Deitys Head;console: give %player% minecraft:player_head{SkullOwner:"PowLim_Deity"} 1'
+          - 'custom: cgl, Random Head, Staff, yoyo880603s Head{n}console: give %player% minecraft:player_head{SkullOwner:"yoyo880603"} 1'
+          - 'custom: cgl, Random Head, Staff, PTL_piepiepigs Head{n}console: give %player% minecraft:player_head{SkullOwner:"PTL_piepiepig"} 1'
+          - 'custom: cgl, Random Head, Staff, LOTT_0s Head{n}console: give %player% minecraft:player_head{SkullOwner:"LOTT_0"} 1'
+          - 'custom: cgl, Random Head, Staff, PowLim_Deitys Head{n}console: give %player% minecraft:player_head{SkullOwner:"PowLim_Deity"} 1'
       owner:
         Enable: true
         Chance:
@@ -78,24 +78,24 @@ Lottery:
           1: 0.075
           2: 0.1
         Commands:
-          - 'custom: cgl, Random Head, Server Owner, AllByes Head;console: give %player% minecraft:player_head{SkullOwner:"AllBye"} 1'
-          - 'custom: cgl, Random Head, Server Owner, huangge0513s Head;console: give %player% minecraft:player_head{SkullOwner:"huangge0513"} 1'
+          - 'custom: cgl, Random Head, Server Owner, AllByes Head{n}console: give %player% minecraft:player_head{SkullOwner:"AllBye"} 1'
+          - 'custom: cgl, Random Head, Server Owner, huangge0513s Head{n}console: give %player% minecraft:player_head{SkullOwner:"huangge0513"} 1'
     lucky_block:
-      Enable: true
+      Enable: false
       Settings:
         Lucky-Block:
           # Executing lottery when player break a skull with this textures.
-          Skull-Textures: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzlkMWVmNGMxNTNiZGU4YTdiMDhmOTJjMGM0Yjc5ZmRjMmZjYjU3ZjgzYTMxYTgyMjljNjJhYzc1ZjFmMGEzMSJ9fX0="
+          Skull-Textures: ""
       Normal:
         Enable: true
         Chance: 0.8
         Commands:
-          - "custom: awards, Normal award;console: give %player% IRON_INGOT 1;"
+          - "custom: awards, Normal award{n}console: give %player% IRON_INGOT 1;"
       Rare:
         Enable: true
         Chance: 0.3
         Commands:
-          - "custom: awards, Rare award;console: give %player% IRON_INGOT 2"
+          - "custom: awards, Rare award{n}console: give %player% IRON_INGOT 2"
 
 Message:
   prefix: "&d[LotteryPlus] &r"

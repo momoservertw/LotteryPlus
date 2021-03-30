@@ -19,32 +19,26 @@ import java.util.List;
 
 public class BlockDropItem implements Listener {
 
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     private void onBlockDropItemEvent(BlockDropItemEvent e) {
-        if (!ConfigHandler.getConfigPath().isLottery()) {
+        if (!ConfigHandler.getConfigPath().isLottery())
             return;
-        }
-        if (!ConfigHandler.getConfigPath().isLotteryBlock()) {
+        if (!ConfigHandler.getConfigPath().isLotteryBlock())
             return;
-        }
         ItemStack headItemStack = null;
-        for (Item item : e.getItems()) {
-            if (item.getItemStack().getType().equals(Material.PLAYER_HEAD)) {
+        for (Item item : e.getItems())
+            if (item.getItemStack().getType().equals(Material.PLAYER_HEAD))
                 headItemStack = item.getItemStack();
-            }
-        }
-        if (headItemStack == null) {
+        if (headItemStack == null)
             return;
-        }
         Pair<String, List<LotteryMap>> lotteryBlockProp = ConfigHandler.getConfigPath().getLotteryBlockProp().get(
-                CorePlusAPI.getUtilsManager().getSkullValue(headItemStack));
-        if (lotteryBlockProp == null) {
+                CorePlusAPI.getCond().getSkullValue(headItemStack));
+        if (lotteryBlockProp == null)
             return;
-        }
         Player player = e.getPlayer();
         e.getItems().clear();
         Lottery.startLottery(Bukkit.getConsoleSender(), player, lotteryBlockProp.getKey());
-        CorePlusAPI.getLangManager().sendFeatureMsg(ConfigHandler.isDebugging(), ConfigHandler.getPluginPrefix(),
+        CorePlusAPI.getMsg().sendDetailMsg(ConfigHandler.isDebugging(), ConfigHandler.getPluginPrefix(),
                 "Lottery", player.getName(), "execute", "return", "Lucky Block",
                 new Throwable().getStackTrace()[0]);
     }
