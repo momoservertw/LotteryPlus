@@ -53,19 +53,19 @@ Lottery:
         Enable: true
         # Permission: lotteryplus.lottery.GROUP
         Chance:
-          # The default group which player doesn't have permission. (Necessary)
-          0: 0.70
-          # The higher group will be chosen if player has multiple groups.
-          1: 0.65
-          2: 0.60
+          # Priority is top to bottom.
+          mvp: 0.60
+          vip: 0.65
+          # The default group which player doesn't have permission. Default value is "0".
+          default: 0.70
         Commands:
           - 'custom: cgl, Random Head, Online Players, Player Head{n}console: give %player% minecraft:player_head{SkullOwner:"%random_player%"} 1'
       staff:
         Enable: true
         Chance:
-          0: 0.25
-          1: 0.275
-          2: 0.3
+          mvp: 0.3
+          vip: 0.275
+          default: 0.25
         Commands:
           - 'custom: cgl, Random Head, Staff, yoyo880603s Head{n}console: give %player% minecraft:player_head{SkullOwner:"yoyo880603"} 1'
           - 'custom: cgl, Random Head, Staff, PTL_piepiepigs Head{n}console: give %player% minecraft:player_head{SkullOwner:"PTL_piepiepig"} 1'
@@ -74,9 +74,9 @@ Lottery:
       owner:
         Enable: true
         Chance:
-          0: 0.05
-          1: 0.075
-          2: 0.1
+          mvp: 0.1
+          vip: 0.075
+          default: 0.05
         Commands:
           - 'custom: cgl, Random Head, Server Owner, AllByes Head{n}console: give %player% minecraft:player_head{SkullOwner:"AllBye"} 1'
           - 'custom: cgl, Random Head, Server Owner, huangge0513s Head{n}console: give %player% minecraft:player_head{SkullOwner:"huangge0513"} 1'

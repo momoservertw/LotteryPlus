@@ -5,11 +5,11 @@ import java.util.Map;
 
 public class LotteryMap {
 
-    private List<String> list;
+    private List<String> commands;
     private Map<String, Double> chanceMap;
 
-    public List<String> getList() {
-        return list;
+    public List<String> getCommands() {
+        return commands;
     }
 
     public Map<String, Double> getChanceMap() {
@@ -20,7 +20,7 @@ public class LotteryMap {
         this.chanceMap = chanceMap;
     }
 
-    public void setList(List<String> list) {
-        this.list = list;
+    public void setCommands(List<String> commands) {
+        this.commands = commands;
     }
 }

@@ -21,7 +21,7 @@ public class ConfigHandler {
         UtilsHandler.setupFirst(reload);
         setConfigPath(new ConfigPath());
         if (!reload)
-            CorePlusAPI.getUpdate().check(getPluginName(), getPluginPrefix(), Bukkit.getConsoleSender(),
+            CorePlusAPI.getUpdate().check(getPlugin(), getPluginPrefix(), Bukkit.getConsoleSender(),
                     LotteryPlus.getInstance().getDescription().getName(),
                     LotteryPlus.getInstance().getDescription().getVersion(), true);
     }
@@ -47,7 +47,7 @@ public class ConfigHandler {
             try {
                 LotteryPlus.getInstance().saveResource(fileName, false);
             } catch (Exception e) {
-                CorePlusAPI.getMsg().sendErrorMsg(ConfigHandler.getPluginName(),
+                CorePlusAPI.getMsg().sendErrorMsg(ConfigHandler.getPlugin(),
                         "Cannot save " + fileName + " to disk!");
                 return;
             }
@@ -103,7 +103,7 @@ public class ConfigHandler {
         return configPath;
     }
 
-    public static String getPluginName() {
+    public static String getPlugin() {
         return LotteryPlus.getInstance().getDescription().getName();
     }
 
@@ -115,7 +115,7 @@ public class ConfigHandler {
         return getConfig("config.yml").getString("Message.prefix");
     }
 
-    public static boolean isDebugging() {
+    public static boolean isDebug() {
         return ConfigHandler.getConfig("config.yml").getBoolean("Debugging");
     }
 }

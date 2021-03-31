@@ -5,7 +5,9 @@ import org.bukkit.entity.Player;
 import tw.momocraft.coreplus.api.CorePlusAPI;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Lottery {
 
@@ -15,56 +17,54 @@ public class Lottery {
             player = target;
         else
             player = (Player) sender;
-        // Get the group's property.
         List<LotteryMap> lotteryMaps = ConfigHandler.getConfigPath().getLotteryProp().get(group);
-        if (lotteryMaps != null) {
-            Map<List<String>, Double> rewardMap = new HashMap<>();
-            Map<String, Double> chanceMap;
-            List<Integer> permsList;
-            String chanceGroup;
-            for (LotteryMap lotteryMap : lotteryMaps) {
-                chanceMap = lotteryMap.getChanceMap();
-                // Checking player reward chance for this chance-group.
-                permsList = new ArrayList<>();
-                for (String permGroup : chanceMap.keySet())
-                    if (CorePlusAPI.getPlayer().hasPerm(player, "lotteryplus.lottery." + permGroup))
-                        permsList.add(Integer.parseInt(permGroup));
-                // Set this chance-group's chance.
-                if (!permsList.isEmpty())
-                    // Get the highest group.
-                    chanceGroup = Collections.max(permsList).toString();
-                else
-                    chanceGroup = "0";
-                rewardMap.put(lotteryMap.getList(), chanceMap.get(chanceGroup));
-            }
-            // Get to total chance.
-            double totalChance = 0;
-            for (Double chance : rewardMap.values())
-                totalChance += chance;
-            double randTotalChance = Math.random() * totalChance;
-            double chance;
-            String command;
-            for (List<String> key : rewardMap.keySet()) {
-                chance = rewardMap.get(key);
-                // Compare the group chance with the randomly total chance.
-                if (randTotalChance <= chance) {
-                    // Random execute a reward command from that group.
-                    command = CorePlusAPI.getUtils().getRandomString(key);
-                    CorePlusAPI.getCmd().sendCmd(ConfigHandler.getPluginName(), player, player, command);
-                    if (ConfigHandler.getConfigPath().isLotteryLog())
-                        CorePlusAPI.getCmd().dispatchLogGroup(ConfigHandler.getPluginName(), "LotteryPlus, playerName  - " + command);
-                    CorePlusAPI.getMsg().sendDetailMsg(ConfigHandler.isDebugging(), ConfigHandler.getPluginPrefix(),
-                            "Lottery", player.getName(), "execute", "return", group + " " + command,
-                            new Throwable().getStackTrace()[0]);
-                    return;
-                }
-                randTotalChance -= chance;
-            }
-        } else {
+        if (lotteryMaps == null) {
             String[] langHolder = CorePlusAPI.getMsg().newString();
             langHolder[5] = group;
-            CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPluginName(), ConfigHandler.getPrefix(),
+            CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
                     "groupNotFound", sender, langHolder);
+            return;
+        }
+        Map<LotteryMap, Double> rewardMap = new HashMap<>();
+        Map<String, Double> chanceMap;
+        String highestChanceGroup = null;
+        for (LotteryMap lotteryMap : lotteryMaps) {
+            chanceMap = lotteryMap.getChanceMap();
+            for (String chanceGroup : chanceMap.keySet()) {
+                if (CorePlusAPI.getPlayer().hasPerm(player, "lotteryplus.lottery.group." + chanceGroup)) {
+                    if (chanceMap.containsKey(chanceGroup)) {
+                        highestChanceGroup = chanceGroup;
+                        break;
+                    }
+                }
+            }
+            if (highestChanceGroup == null)
+                highestChanceGroup = "default";
+            rewardMap.put(lotteryMap, chanceMap.get(highestChanceGroup));
+        }
+        // Getting total chance.
+        double totalChance = 0;
+        for (double chance : rewardMap.values())
+            totalChance += chance;
+        double randomChance = Math.random() * totalChance;
+        String command;
+        double chance;
+        for (LotteryMap lotteryMap : rewardMap.keySet()) {
+            chance = rewardMap.get(lotteryMap);
+            // Compare the group chance with the randomly total chance.
+            if (randomChance <= chance) {
+                // Getting the random string of command list.
+                command = CorePlusAPI.getUtils().getRandomString(lotteryMap.getCommands());
+                CorePlusAPI.getCmd().sendCmd(ConfigHandler.getPlugin(), player, player, command);
+                String playerName = player.getName();
+                if (ConfigHandler.getConfigPath().isLotteryLog())
+                    CorePlusAPI.getCmd().dispatchLogGroup(ConfigHandler.getPlugin(), "LotteryPlus, " + playerName + " - " + command);
+                CorePlusAPI.getMsg().sendDetailMsg(ConfigHandler.isDebug(), ConfigHandler.getPluginPrefix(),
+                        "Lottery", playerName, "Final", "succeed", group + ": " + command,
+                        new Throwable().getStackTrace()[0]);
+                return;
+            }
+            randomChance -= chance;
         }
     }
 }
