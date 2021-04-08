@@ -21,7 +21,7 @@ public class Lottery {
         if (lotteryMaps == null) {
             String[] langHolder = CorePlusAPI.getMsg().newString();
             langHolder[5] = group;
-            CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
+            CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPrefix(),
                     "groupNotFound", sender, langHolder);
             return;
         }

@@ -28,17 +28,18 @@ public class TabComplete implements TabCompleter {
                 commands.add("version");
             if (CorePlusAPI.getPlayer().hasPerm(sender, "lotteryplus.command.lottery"))
                 commands.add("lottery");
-        }
-        switch (args[0]) {
-            case "lottery":
-                if (UtilsHandler.getPlayer().hasPerm(sender, "lotteryplus.command.lottery")) {
-                    if (length == 1) {
-                        commands.addAll(ConfigHandler.getConfigPath().getLotteryProp().keySet());
-                    } else if (length == 2) {
-                        commands.addAll(CorePlusAPI.getPlayer().getOnlinePlayerNames());
+        } else {
+            switch (args[0]) {
+                case "lottery":
+                    if (UtilsHandler.getPlayer().hasPerm(sender, "lotteryplus.command.lottery")) {
+                        if (length == 1) {
+                            commands.addAll(ConfigHandler.getConfigPath().getLotteryProp().keySet());
+                        } else if (length == 2) {
+                            commands.addAll(CorePlusAPI.getPlayer().getOnlinePlayerNames());
+                        }
                     }
-                }
-                break;
+                    break;
+            }
         }
         StringUtil.copyPartialMatches(args[(args.length - 1)], commands, completions);
         Collections.sort(completions);

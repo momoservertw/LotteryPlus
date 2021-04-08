@@ -66,7 +66,7 @@ public class ConfigHandler {
     }
 
     private static void genConfigFile(String fileName) {
-        String[] fileNameSlit = fileName.split("\\.(?=[^\\.]+$)");
+        String[] fileNameSlit = fileName.split("\\.(?=[^.]+$)");
         int configVer = 0;
         File filePath = LotteryPlus.getInstance().getDataFolder();
         switch (fileName) {

@@ -15,17 +15,16 @@ public class Commands implements CommandExecutor {
         int length = args.length;
         if (length == 0) {
             if (CorePlusAPI.getPlayer().hasPerm(sender, "lotteryplus.use")) {
-                CorePlusAPI.getMsg().sendMsg(ConfigHandler.getPrefix(), sender, "");
-                CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
-                        ConfigHandler.getConfigPath().getMsgTitle(), sender);
-                CorePlusAPI.getMsg().sendMsg(ConfigHandler.getPrefix(), sender,
+                CorePlusAPI.getMsg().sendMsg("", sender, "");
+                CorePlusAPI.getMsg().sendLangMsg("", ConfigHandler.getConfigPath().getMsgTitle(), sender);
+                CorePlusAPI.getMsg().sendMsg("", sender,
                         "&f " + LotteryPlus.getInstance().getDescription().getName()
                                 + " &ev" + LotteryPlus.getInstance().getDescription().getVersion() + "  &8by Momocraft");
-                CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
+                CorePlusAPI.getMsg().sendLangMsg("",
                         ConfigHandler.getConfigPath().getMsgHelp(), sender);
-                CorePlusAPI.getMsg().sendMsg(ConfigHandler.getPrefix(), sender, "");
+                CorePlusAPI.getMsg().sendMsg("", sender, "");
             } else {
-                CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
+                CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPrefix(),
                         "Message.noPermission", sender);
             }
             return true;
@@ -33,36 +32,31 @@ public class Commands implements CommandExecutor {
         switch (args[0].toLowerCase()) {
             case "help":
                 if (CorePlusAPI.getPlayer().hasPerm(sender, "lotteryplus.use")) {
-                    CorePlusAPI.getMsg().sendMsg(ConfigHandler.getPrefix(), sender, "");
-                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
-                            ConfigHandler.getConfigPath().getMsgTitle(), sender);
-                    CorePlusAPI.getMsg().sendMsg(ConfigHandler.getPrefix(), sender,
+                    CorePlusAPI.getMsg().sendMsg("", sender, "");
+                    CorePlusAPI.getMsg().sendLangMsg("", ConfigHandler.getConfigPath().getMsgTitle(), sender);
+                    CorePlusAPI.getMsg().sendMsg("", sender,
                             "&f " + LotteryPlus.getInstance().getDescription().getName()
                                     + " &ev" + LotteryPlus.getInstance().getDescription().getVersion() + "  &8by Momocraft");
-                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
-                            ConfigHandler.getConfigPath().getMsgHelp(), sender);
+                    CorePlusAPI.getMsg().sendLangMsg("", ConfigHandler.getConfigPath().getMsgHelp(), sender);
                     if (CorePlusAPI.getPlayer().hasPerm(sender, "lotteryplus.command.reload"))
-                        CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
-                                ConfigHandler.getConfigPath().getMsgReload(), sender);
+                        CorePlusAPI.getMsg().sendLangMsg("", ConfigHandler.getConfigPath().getMsgReload(), sender);
                     if (CorePlusAPI.getPlayer().hasPerm(sender, "lotteryplus.command.version"))
-                        CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
-                                ConfigHandler.getConfigPath().getMsgVersion(), sender);
+                        CorePlusAPI.getMsg().sendLangMsg("", ConfigHandler.getConfigPath().getMsgVersion(), sender);
                     if (CorePlusAPI.getPlayer().hasPerm(sender, "lotteryplus.command.lottery"))
-                        CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
-                                ConfigHandler.getConfigPath().getMsgCmdLottery(), sender);
-                    CorePlusAPI.getMsg().sendMsg(ConfigHandler.getPrefix(), sender, "");
+                        CorePlusAPI.getMsg().sendLangMsg("", ConfigHandler.getConfigPath().getMsgCmdLottery(), sender);
+                    CorePlusAPI.getMsg().sendMsg("", sender, "");
                 } else {
-                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
+                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPrefix(),
                             "Message.noPermission", sender);
                 }
                 return true;
             case "reload":
                 if (CorePlusAPI.getPlayer().hasPerm(sender, "lotteryplus.command.reload")) {
                     ConfigHandler.generateData(true);
-                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
+                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPrefix(),
                             "Message.configReload", sender);
                 } else {
-                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
+                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPrefix(),
                             "Message.noPermission", sender);
                 }
                 return true;
@@ -74,14 +68,14 @@ public class Commands implements CommandExecutor {
                     CorePlusAPI.getUpdate().check(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(), sender,
                             LotteryPlus.getInstance().getName(), LotteryPlus.getInstance().getDescription().getVersion(), true);
                 } else {
-                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
+                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPrefix(),
                             "Message.noPermission", sender);
                 }
                 return true;
             case "lottery":
                 if (CorePlusAPI.getPlayer().hasPerm(sender, "lotteryplus.command.lottery")) {
                     if (!ConfigHandler.getConfigPath().isLottery()) {
-                        CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
+                        CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPrefix(),
                                 "Message.featureDisabled", sender);
                         return true;
                     }
@@ -95,19 +89,19 @@ public class Commands implements CommandExecutor {
                         if (player == null) {
                             String[] placeHolders = CorePlusAPI.getMsg().newString();
                             placeHolders[1] = args[2]; // %targetplayer%
-                            CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
+                            CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPrefix(),
                                     "Message.targetNotFound", sender, placeHolders);
                             return true;
                         }
                         Lottery.startLottery(sender, player, args[1]);
                     }
                 } else {
-                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
+                    CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPrefix(),
                             "Message.noPermission", sender);
                 }
                 return true;
         }
-        CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(),
+        CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPrefix(),
                 "Message.unknownCommand", sender);
         return true;
     }
