@@ -24,12 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="db9de2ae-2a97-4e0b-968d-c3ef6fdf69c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/Commands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/extra/CorePlus-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/extra/CorePlus-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/handlers/ConfigHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/handlers/ConfigHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/Lottery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/Lottery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/TabComplete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tw/momocraft/lotteryplus/utils/TabComplete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/LotteryPlus-1.1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/LotteryPlus-1.1.0.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +45,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.1\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="vmOptionsForImporter" value="-Xmx768m" />
@@ -66,7 +66,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SlimeChunkPlus" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PlayerdataPlus" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -110,6 +110,12 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="634" y="216" key="FileChooserDialogImpl" timestamp="1617975520852">
+      <screen x="0" y="0" width="1707" height="920" />
+    </state>
+    <state x="634" y="216" key="FileChooserDialogImpl/2560.0.1707.920/0.0.1707.920@0.0.1707.920" timestamp="1617975520852" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

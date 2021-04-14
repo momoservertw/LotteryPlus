@@ -2,9 +2,9 @@ tw\momocraft\lotteryplus\utils\Lottery.class
 tw\momocraft\lotteryplus\handlers\DependHandler.class
 tw\momocraft\lotteryplus\listeners\BlockDropItem.class
 tw\momocraft\lotteryplus\handlers\UtilsHandler.class
-tw\momocraft\lotteryplus\utils\LotteryMap.class
-tw\momocraft\lotteryplus\handlers\ConfigHandler.class
-tw\momocraft\lotteryplus\utils\ConfigPath.class
 tw\momocraft\lotteryplus\utils\TabComplete.class
 tw\momocraft\lotteryplus\Commands.class
 tw\momocraft\lotteryplus\LotteryPlus.class
+tw\momocraft\lotteryplus\utils\LotteryMap.class
+tw\momocraft\lotteryplus\handlers\ConfigHandler.class
+tw\momocraft\lotteryplus\utils\ConfigPath.class
