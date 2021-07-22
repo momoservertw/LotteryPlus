@@ -23,29 +23,29 @@ Lottery:
         Enable: true
         Chance: 0.5
         Commands:
-          - "custom: awards, Normal award{n}console: give %player% IRON_INGOT 16;"
-          - "custom: awards, Normal award{n}console: give %player% GOLD_INGOT 8"
+          - "custom: awards, Normal award{n}console: give %player% iron_ingot 16"
+          - "custom: awards, Normal award{n}console: give %player% gold_inot 8"
           - "custom: awards, Normal award{n}console: money give %player% %random_number%500%"
       Rare:
         Enable: true
         Chance: 0.375
         Commands:
-          - "custom: awards, Rare award{n}console: give %player% IRON_INGOT 32"
-          - "custom: awards, Rare award{n}console: give %player% GOLD_INGOT 16"
+          - "custom: awards, Rare award{n}console: give %player% iron_ingot 32"
+          - "custom: awards, Rare award{n}console: give %player% gold_inot 16"
           - "custom: awards, Rare award{n}console: money give %player% 1000"
       Super-Rare:
         Enable: true
         Chance: 0.06
         Commands:
-          - "custom: awards, Super Rare award{n}console: give %player% IRON_INGOT 64"
-          - "custom: awards, Super Rare award{n}console: give %player% GOLD_INGOT 32"
+          - "custom: awards, Super Rare award{n}console: give %player% iron_ingot 64"
+          - "custom: awards, Super Rare award{n}console: give %player% gold_inot 32"
           - "custom: awards, Super Rare award{n}console: money give %player% 3000"
       Ultra-Rare:
         Enable: true
         Chance: 0.03
         Commands:
-          - "custom: awards, Ultra Rare award{n}console: give %player% DIAMOND 1"
-          - "custom: awards, Ultra Rare award{n}console: give %player% GOLD_INGOT 64"
+          - "custom: awards, Ultra Rare award{n}console: give %player% diamond 1"
+          - "custom: awards, Ultra Rare award{n}console: give %player% gold_inot 64"
           - "custom: awards, Ultra Rare award{n}console: money give %player% 10000"
     head_random:
       Enable: false
@@ -59,7 +59,7 @@ Lottery:
           # The default group which player doesn't have permission. Default value is "0".
           default: 0.70
         Commands:
-          - 'custom: cgl, Random Head, Online Players, Player Head{n}console: give %player% minecraft:player_head{SkullOwner:"%random_player%"} 1'
+          - 'custom: prize, Random Head, Online Players, Player Head{n}console: give %player% minecraft:player_head{SkullOwner:"%random_player%"} 1'
       staff:
         Enable: true
         Chance:
@@ -67,10 +67,10 @@ Lottery:
           vip: 0.275
           default: 0.25
         Commands:
-          - 'custom: cgl, Random Head, Staff, yoyo880603s Head{n}console: give %player% minecraft:player_head{SkullOwner:"yoyo880603"} 1'
-          - 'custom: cgl, Random Head, Staff, PTL_piepiepigs Head{n}console: give %player% minecraft:player_head{SkullOwner:"PTL_piepiepig"} 1'
-          - 'custom: cgl, Random Head, Staff, LOTT_0s Head{n}console: give %player% minecraft:player_head{SkullOwner:"LOTT_0"} 1'
-          - 'custom: cgl, Random Head, Staff, PowLim_Deitys Head{n}console: give %player% minecraft:player_head{SkullOwner:"PowLim_Deity"} 1'
+          - 'custom: prize, Random Head, Staff, yoyo880603s Head{n}console: give %player% minecraft:player_head{SkullOwner:"yoyo880603"} 1'
+          - 'custom: prize, Random Head, Staff, PTL_piepiepigs Head{n}console: give %player% minecraft:player_head{SkullOwner:"PTL_piepiepig"} 1'
+          - 'custom: prize, Random Head, Staff, LOTT_0s Head{n}console: give %player% minecraft:player_head{SkullOwner:"LOTT_0"} 1'
+          - 'custom: prize, Random Head, Staff, PowLim_Deitys Head{n}console: give %player% minecraft:player_head{SkullOwner:"PowLim_Deity"} 1'
       owner:
         Enable: true
         Chance:
@@ -78,8 +78,8 @@ Lottery:
           vip: 0.075
           default: 0.05
         Commands:
-          - 'custom: cgl, Random Head, Server Owner, AllByes Head{n}console: give %player% minecraft:player_head{SkullOwner:"AllBye"} 1'
-          - 'custom: cgl, Random Head, Server Owner, huangge0513s Head{n}console: give %player% minecraft:player_head{SkullOwner:"huangge0513"} 1'
+          - 'custom: prize, Random Head, Server Owner, AllByes Head{n}console: give %player% minecraft:player_head{SkullOwner:"AllBye"} 1'
+          - 'custom: prize, Random Head, Server Owner, huangge0513s Head{n}console: give %player% minecraft:player_head{SkullOwner:"huangge0513"} 1'
     lucky_block:
       Enable: false
       Settings:

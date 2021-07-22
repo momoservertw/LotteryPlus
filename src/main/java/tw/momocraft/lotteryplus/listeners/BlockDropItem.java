@@ -1,6 +1,5 @@
 package tw.momocraft.lotteryplus.listeners;
 
-import javafx.util.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
@@ -13,9 +12,6 @@ import org.bukkit.inventory.ItemStack;
 import tw.momocraft.coreplus.api.CorePlusAPI;
 import tw.momocraft.lotteryplus.handlers.ConfigHandler;
 import tw.momocraft.lotteryplus.utils.Lottery;
-import tw.momocraft.lotteryplus.utils.LotteryMap;
-
-import java.util.List;
 
 public class BlockDropItem implements Listener {
 
@@ -31,13 +27,13 @@ public class BlockDropItem implements Listener {
                 headItemStack = item.getItemStack();
         if (headItemStack == null)
             return;
-        Pair<String, List<LotteryMap>> lotteryBlockProp = ConfigHandler.getConfigPath().getLotteryBlockProp().get(
+        String lotteryBlockGroup = ConfigHandler.getConfigPath().getLotteryBlockProp().get(
                 CorePlusAPI.getCond().getSkullValue(headItemStack));
-        if (lotteryBlockProp == null)
+        if (lotteryBlockGroup == null)
             return;
         Player player = e.getPlayer();
         e.getItems().clear();
-        Lottery.startLottery(Bukkit.getConsoleSender(), player, lotteryBlockProp.getKey());
+        Lottery.startLottery(Bukkit.getConsoleSender(), player, lotteryBlockGroup);
         CorePlusAPI.getMsg().sendDetailMsg(ConfigHandler.isDebug(), ConfigHandler.getPluginPrefix(),
                 "Lottery", player.getName(), "Lucky Block", "succeed",
                 new Throwable().getStackTrace()[0]);

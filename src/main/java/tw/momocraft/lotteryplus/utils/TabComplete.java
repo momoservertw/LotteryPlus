@@ -19,7 +19,7 @@ public class TabComplete implements TabCompleter {
         final List<String> completions = new ArrayList<>();
         final List<String> commands = new ArrayList<>();
         int length = args.length;
-        if (length == 0) {
+        if (length == 1) {
             if (CorePlusAPI.getPlayer().hasPerm(sender, "lotteryplus.use"))
                 commands.add("help");
             if (CorePlusAPI.getPlayer().hasPerm(sender, "lotteryplus.command.reload"))
@@ -29,12 +29,12 @@ public class TabComplete implements TabCompleter {
             if (CorePlusAPI.getPlayer().hasPerm(sender, "lotteryplus.command.lottery"))
                 commands.add("lottery");
         } else {
-            switch (args[0]) {
+            switch (args[0].toLowerCase()) {
                 case "lottery":
                     if (UtilsHandler.getPlayer().hasPerm(sender, "lotteryplus.command.lottery")) {
-                        if (length == 1) {
+                        if (length == 2) {
                             commands.addAll(ConfigHandler.getConfigPath().getLotteryProp().keySet());
-                        } else if (length == 2) {
+                        } else if (length == 3) {
                             commands.addAll(CorePlusAPI.getPlayer().getOnlinePlayerNames());
                         }
                     }

@@ -85,7 +85,7 @@ public class Commands implements CommandExecutor {
                         return true;
                         // lotteryplus lottery <group> <player>
                     } else if (length == 3) {
-                        Player player = CorePlusAPI.getPlayer().getPlayerString(args[2]);
+                        Player player = CorePlusAPI.getPlayer().getPlayer(args[2]);
                         if (player == null) {
                             String[] placeHolders = CorePlusAPI.getMsg().newString();
                             placeHolders[1] = args[2]; // %targetplayer%

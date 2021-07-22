@@ -58,9 +58,9 @@ public class Lottery {
                 CorePlusAPI.getCmd().sendCmd(ConfigHandler.getPlugin(), player, player, command);
                 String playerName = player.getName();
                 if (ConfigHandler.getConfigPath().isLotteryLog())
-                    CorePlusAPI.getCmd().dispatchLogGroup(ConfigHandler.getPlugin(), "LotteryPlus, " + playerName + " - " + command);
+                    CorePlusAPI.getFile().getLog().add(ConfigHandler.getPlugin(), "LotteryPlus", playerName + " - " + command);
                 CorePlusAPI.getMsg().sendDetailMsg(ConfigHandler.isDebug(), ConfigHandler.getPluginPrefix(),
-                        "Lottery", playerName, "Final", "succeed", group + ": " + command,
+                        "Lottery", playerName, "final", "succeed", group + ": " + command,
                         new Throwable().getStackTrace()[0]);
                 return;
             }
