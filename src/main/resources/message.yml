@@ -1,0 +1,10 @@
+Config-Version: 1
+
+Message:
+  prefix: "&d[LotteryPlus] &r"
+  Commands:
+    title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &dLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
+    help: "&f/lotteryplus help &8- &7This help menu."
+    reload: "&f/lotteryplus reload &8- &7Reloads config file."
+    version: "&f/lotteryplus version &8- &7Checks the plugin version and updates."
+    lottery: "&f/lotteryplus lottery <group> [player] &8- &7Lottery the rewards."

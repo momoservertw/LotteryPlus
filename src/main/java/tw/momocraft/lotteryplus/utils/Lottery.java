@@ -31,15 +31,22 @@ public class Lottery {
         for (LotteryMap lotteryMap : lotteryMaps) {
             chanceMap = lotteryMap.getChanceMap();
             for (String chanceGroup : chanceMap.keySet()) {
-                if (CorePlusAPI.getPlayer().hasPerm(player, "lotteryplus.lottery.group." + chanceGroup)) {
+                if (CorePlusAPI.getPlayer().hasPerm(player, "lotteryplus.lottery.chancegroup.*") ||
+                        CorePlusAPI.getPlayer().hasPerm(player, "lotteryplus.lottery.chancegroup." + chanceGroup)) {
                     if (chanceMap.containsKey(chanceGroup)) {
                         highestChanceGroup = chanceGroup;
                         break;
                     }
                 }
             }
-            if (highestChanceGroup == null)
+            if (highestChanceGroup == null) {
                 highestChanceGroup = "default";
+                if (chanceMap.get(highestChanceGroup) == null) {
+                    CorePlusAPI.getMsg().sendErrorMsg(ConfigHandler.getPluginName(),
+                            "Can not find the default reward group for \"" + group + "\"");
+                    return;
+                }
+            }
             rewardMap.put(lotteryMap, chanceMap.get(highestChanceGroup));
         }
         // Getting total chance.
@@ -55,10 +62,10 @@ public class Lottery {
             if (randomChance <= chance) {
                 // Getting the random string of command list.
                 command = CorePlusAPI.getUtils().getRandomString(lotteryMap.getCommands());
-                CorePlusAPI.getCmd().sendCmd(ConfigHandler.getPlugin(), player, player, command);
+                CorePlusAPI.getCmd().sendCmd(ConfigHandler.getPluginName(), player, player, command);
                 String playerName = player.getName();
                 if (ConfigHandler.getConfigPath().isLotteryLog())
-                    CorePlusAPI.getFile().getLog().add(ConfigHandler.getPlugin(), "LotteryPlus", playerName + " - " + command);
+                    CorePlusAPI.getFile().getLog().add(ConfigHandler.getPluginName(), "LotteryPlus", playerName + " - " + command);
                 CorePlusAPI.getMsg().sendDetailMsg(ConfigHandler.isDebug(), ConfigHandler.getPluginPrefix(),
                         "Lottery", playerName, "final", "succeed", group + ": " + command,
                         new Throwable().getStackTrace()[0]);

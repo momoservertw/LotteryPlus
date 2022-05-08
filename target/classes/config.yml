@@ -4,104 +4,66 @@
 # ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 Config-Version: 4
 Debugging: false
+Check-Updates: true
 
 # Randomly select a reward for player.
-# You can use ItemJoin to create disposable items.
+# You can use ItemJoin to create one-use items.
+# Or using with menu plugins like ChestCommands or BossShop.
+# Lottery command: /lotteryplus lottery <groupName>
 # More information: https://github.com/momoservertw/LotteryPlus/wiki/Lottery
 Lottery:
   Enable: false
   Settings:
     Features:
       # Executing lottery when player broke a lucky block.
-      # Needs to add settings in the group.
       Lucky-Block: false
+      # The proportion of different player groups.
+      # Permission: lotteryplus.lottery.chancegroup.GROUP
+      Priority:
+        defualt: 0
+        vip: 1
+        mvp: 2
+    # Add logs when lottery.
     Log: true
   Groups:
     ticket:
       Enable: false
-      Normal:
-        Enable: true
-        Chance: 0.5
-        Commands:
-          - "custom: awards, Normal award{n}console: give %player% iron_ingot 16"
-          - "custom: awards, Normal award{n}console: give %player% gold_inot 8"
-          - "custom: awards, Normal award{n}console: money give %player% %random_number%500%"
-      Rare:
-        Enable: true
-        Chance: 0.375
-        Commands:
-          - "custom: awards, Rare award{n}console: give %player% iron_ingot 32"
-          - "custom: awards, Rare award{n}console: give %player% gold_inot 16"
-          - "custom: awards, Rare award{n}console: money give %player% 1000"
-      Super-Rare:
-        Enable: true
-        Chance: 0.06
-        Commands:
-          - "custom: awards, Super Rare award{n}console: give %player% iron_ingot 64"
-          - "custom: awards, Super Rare award{n}console: give %player% gold_inot 32"
-          - "custom: awards, Super Rare award{n}console: money give %player% 3000"
-      Ultra-Rare:
-        Enable: true
-        Chance: 0.03
-        Commands:
-          - "custom: awards, Ultra Rare award{n}console: give %player% diamond 1"
-          - "custom: awards, Ultra Rare award{n}console: give %player% gold_inot 64"
-          - "custom: awards, Ultra Rare award{n}console: money give %player% 10000"
-    head_random:
+      Groups:
+        Normal:
+          Enable: true
+          Chance: 0.5
+          Commands:
+            - "message: You win iron_ingot x16.{n}console: give %player% iron_ingot 16"
+            - "message: You win gold_inot x16.{n}console: give %player% gold_inot 16"
+            - "message: You win iron_ingot x16.{n}console: money give %player% %random_number%500%"
+        Rare:
+          Enable: true
+          Chance: 0.375
+          Commands:
+            - "broadcast: %player% win iron_ingot x16.{n}console: give %player% iron_ingot 32"
+            - "broadcast: %player% win gold_inot x16.{n}console: give %player% gold_inot 32"
+            - "broadcast: %player% win iron_ingot x16.{n}console: money give %player% %random_number%1000%"
+    random_head:
       Enable: false
-      online:
-        Enable: true
-        # Permission: lotteryplus.lottery.GROUP
-        Chance:
-          # Priority is top to bottom.
-          mvp: 0.60
-          vip: 0.65
-          # The default group which player doesn't have permission. Default value is "0".
-          default: 0.70
-        Commands:
-          - 'custom: prize, Random Head, Online Players, Player Head{n}console: give %player% minecraft:player_head{SkullOwner:"%random_player%"} 1'
-      staff:
-        Enable: true
-        Chance:
-          mvp: 0.3
-          vip: 0.275
-          default: 0.25
-        Commands:
-          - 'custom: prize, Random Head, Staff, yoyo880603s Head{n}console: give %player% minecraft:player_head{SkullOwner:"yoyo880603"} 1'
-          - 'custom: prize, Random Head, Staff, PTL_piepiepigs Head{n}console: give %player% minecraft:player_head{SkullOwner:"PTL_piepiepig"} 1'
-          - 'custom: prize, Random Head, Staff, LOTT_0s Head{n}console: give %player% minecraft:player_head{SkullOwner:"LOTT_0"} 1'
-          - 'custom: prize, Random Head, Staff, PowLim_Deitys Head{n}console: give %player% minecraft:player_head{SkullOwner:"PowLim_Deity"} 1'
-      owner:
-        Enable: true
-        Chance:
-          mvp: 0.1
-          vip: 0.075
-          default: 0.05
-        Commands:
-          - 'custom: prize, Random Head, Server Owner, AllByes Head{n}console: give %player% minecraft:player_head{SkullOwner:"AllBye"} 1'
-          - 'custom: prize, Random Head, Server Owner, huangge0513s Head{n}console: give %player% minecraft:player_head{SkullOwner:"huangge0513"} 1'
+      Groups:
+        online_players:
+          Enable: true
+          # Setting difference change for groups.
+          # You have to set their "Priority" above.
+          Chance:
+            default: 0.70
+            vip: 0.65
+          Commands:
+            - "console: give %player% minecraft:player_head{SkullOwner:\"%random_player%\"} 1"
     lucky_block:
       Enable: false
       Settings:
         Lucky-Block:
-          # Executing lottery when player break a skull with this textures.
-          Skull-Textures: ""
-      Normal:
-        Enable: true
-        Chance: 0.8
-        Commands:
-          - "custom: awards, Normal award{n}console: give %player% IRON_INGOT 1;"
-      Rare:
-        Enable: true
-        Chance: 0.3
-        Commands:
-          - "custom: awards, Rare award{n}console: give %player% IRON_INGOT 2"
-
-Message:
-  prefix: "&d[LotteryPlus] &r"
-  Commands:
-    title: "&8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩ &dLotteryPlus &8▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩"
-    help: "&f/lotteryplus help &8- &7This help menu."
-    reload: "&f/lotteryplus reload &8- &7Reloads config file."
-    version: "&f/lotteryplus version &8- &7Checks the plugin version and updates."
-    lottery: "&f/lotteryplus lottery <group> [player] &8- &7Lottery the rewards."
+          # More skull(copy the Value): https://minecraft-heads.com/custom-heads
+          Skull-Textures: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzlkMWVmNGMxNTNiZGU4YTdiMDhmOTJjMGM0Yjc5ZmRjMmZjYjU3ZjgzYTMxYTgyMjljNjJhYzc1ZjFmMGEzMSJ9fX0="
+      Groups:
+        Normal:
+          Enable: true
+          Chance: 0.8
+          Commands:
+            - "custom: awards, Normal award{n}console: give %player% IRON_INGOT 1;"

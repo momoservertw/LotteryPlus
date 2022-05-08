@@ -65,7 +65,7 @@ public class Commands implements CommandExecutor {
                     CorePlusAPI.getMsg().sendMsg(ConfigHandler.getPrefix(), sender,
                             "&f " + LotteryPlus.getInstance().getDescription().getName()
                                     + " &ev" + LotteryPlus.getInstance().getDescription().getVersion() + "  &8by Momocraft");
-                    CorePlusAPI.getUpdate().check(ConfigHandler.getPlugin(), ConfigHandler.getPrefix(), sender,
+                    CorePlusAPI.getUpdate().check(ConfigHandler.getPluginName(), ConfigHandler.getPrefix(), sender,
                             LotteryPlus.getInstance().getName(), LotteryPlus.getInstance().getDescription().getVersion(), true);
                 } else {
                     CorePlusAPI.getMsg().sendLangMsg(ConfigHandler.getPrefix(),

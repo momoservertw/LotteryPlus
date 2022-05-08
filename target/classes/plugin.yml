@@ -10,7 +10,7 @@ commands:
   lotteryplus:
     description: Displays main command menu.
     permission: lotteryplus.use
-    aliases: [ltp]
+    aliases: [ ltp ]
     usage: |
       /lotteryplus
 
@@ -41,19 +41,15 @@ permissions:
   lotteryplus.command.lottery:
     description: Allows use of command /lotteryplus lottery.
     default: op
-  lotteryplus.lottery.group.*:
+  lotteryplus.lottery.chancegroup.*:
     description: To get the highest lottery chance.
     default: op
     children:
-      lotteryplus.lottery.group.1: true
-      lotteryplus.lottery.group.2: true
-      lotteryplus.lottery.group.3: true
-  lotteryplus.lottery.group.1:
+      lotteryplus.lottery.chancegroup.vip: true
+      lotteryplus.lottery.chancegroup.mvp: true
+  lotteryplus.lottery.chancegroup.vip:
     description: To get the higher chance of lottery.
     default: op
-  lotteryplus.lottery.group.2:
-    description: To get the higher chance of lottery.
-    default: op
-  lotteryplus.lottery.group.3:
+  lotteryplus.lottery.chancegroup.mvp:
     description: To get the higher chance of lottery.
     default: op
