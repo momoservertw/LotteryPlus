@@ -74,4 +74,5 @@ Lottery:
           Enable: true
           Chance: 0.5
           Commands:
+            # Custom commands: https://github.com/momoservertw/CorePlus/wiki/Custom-Commands
             - "custom: Rewards, iron_ingot x64{n}console: give %player% IRON_INGOT 64"
