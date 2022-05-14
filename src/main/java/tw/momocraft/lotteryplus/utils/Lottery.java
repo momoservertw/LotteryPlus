@@ -33,10 +33,10 @@ public class Lottery {
             for (String chanceGroup : chanceMap.keySet()) {
                 if (CorePlusAPI.getPlayer().hasPerm(player, "lotteryplus.lottery.chancegroup.*") ||
                         CorePlusAPI.getPlayer().hasPerm(player, "lotteryplus.lottery.chancegroup." + chanceGroup)) {
-                    if (chanceMap.containsKey(chanceGroup)) {
-                        highestChanceGroup = chanceGroup;
-                        break;
-                    }
+                    if (chanceMap.get(chanceGroup) == null)
+                        continue;
+                    highestChanceGroup = chanceGroup;
+                    break;
                 }
             }
             if (highestChanceGroup == null) {
@@ -62,11 +62,12 @@ public class Lottery {
             if (randomChance <= chance) {
                 // Getting the random string of command list.
                 command = CorePlusAPI.getUtils().getRandomString(lotteryMap.getCommands());
-                CorePlusAPI.getCmd().sendCmd(ConfigHandler.getPluginName(), player, player, command);
+                command = CorePlusAPI.getMsg().transHolder(ConfigHandler.getPluginName(), player, null, command);
+                CorePlusAPI.getCmd().sendCmd(ConfigHandler.getPluginName(), player, command);
                 String playerName = player.getName();
                 if (ConfigHandler.getConfigPath().isLotteryLog())
-                    CorePlusAPI.getFile().getLog().add(ConfigHandler.getPluginName(), "LotteryPlus", playerName + " - " + command);
-                CorePlusAPI.getMsg().sendDetailMsg(ConfigHandler.isDebug(), ConfigHandler.getPluginPrefix(),
+                    CorePlusAPI.getFile().getLog().add(ConfigHandler.getPluginName(), "lotteryplus", playerName + " - " + command);
+                CorePlusAPI.getMsg().sendDetailMsg(ConfigHandler.isDebug(), ConfigHandler.getPluginName(),
                         "Lottery", playerName, "final", "succeed", group + ": " + command,
                         new Throwable().getStackTrace()[0]);
                 return;

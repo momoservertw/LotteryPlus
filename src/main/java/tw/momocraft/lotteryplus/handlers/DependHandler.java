@@ -10,9 +10,10 @@ import tw.momocraft.lotteryplus.utils.TabComplete;
 public class DependHandler {
 
     public void setup(boolean reload) {
-        registerEvents();
-        if (!reload)
+        if (!reload) {
+            registerEvents();
             checkUpdate();
+        }
     }
 
     public void checkUpdate() {
