@@ -54,17 +54,16 @@ public class Lottery {
         for (double chance : rewardMap.values())
             totalChance += chance;
         double randomChance = Math.random() * totalChance;
-        String command;
         double chance;
         for (LotteryMap lotteryMap : rewardMap.keySet()) {
             chance = rewardMap.get(lotteryMap);
             // Compare the group chance with the randomly total chance.
             if (randomChance <= chance) {
                 // Getting the random string of command list.
-                command = CorePlusAPI.getUtils().getRandomString(lotteryMap.getCommands());
-                command = CorePlusAPI.getMsg().transHolder(ConfigHandler.getPluginName(), player, null, command);
-                CorePlusAPI.getCmd().sendCmd(ConfigHandler.getPluginName(), player, command);
                 String playerName = player.getName();
+                String command = CorePlusAPI.getUtils().getRandomString(lotteryMap.getCommands());
+                command = CorePlusAPI.getMsg().transHolder(ConfigHandler.getPluginName(), player, command);
+                CorePlusAPI.getCmd().sendCmd(ConfigHandler.getPluginName(), player, command);
                 if (ConfigHandler.getConfigPath().isLotteryLog())
                     CorePlusAPI.getFile().getLog().add(ConfigHandler.getPluginName(), "lotteryplus", playerName + " - " + command);
                 CorePlusAPI.getMsg().sendDetailMsg(ConfigHandler.isDebug(), ConfigHandler.getPluginName(),
